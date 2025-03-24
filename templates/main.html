@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Trading Simulation Game</title>
+    <!-- Include Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <!-- Include Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>
+                <i class="fas fa-bolt"></i>
+                Energy Trading Simulation
+            </h1>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="dashboard">
+            <div class="sidebar">
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-bar" id="searchHouseholds" placeholder="Search households...">
+                    <button class="search-ok-btn" id="searchOkBtn">Search</button>
+                </div>
+                
+                <div class="households-header">
+                    <h2><i class="fas fa-home"></i> Households</h2>
+                    <div class="action-buttons">
+                        <button class="btn btn-primary" id="addHouseholdBtn"><i class="fas fa-plus"></i> Add</button>
+                    </div>
+                </div>
+                
+                <div class="household-list-container">
+                    <ul class="household-list" id="householdList">
+                        <!-- Household list will be populated by JavaScript -->
+                    </ul>
+                </div>
+                
+                <div class="center-view-container">
+                    <button class="center-view-btn" id="viewButton"><i class="fas fa-eye"></i> View</button>
+                    <button class="center-view-btn" id="nextButton"><i class="fas fa-arrow-right"></i> Next</button>
+                </div>
+            </div>
+            
+            <div class="main-content">
+                <div class="household-details" id="householdDetails">
+                    <h2><i class="fas fa-house-user"></i> <span id="householdTitle">Household Details</span></h2>
+                    
+                    <div class="tabs">
+                        <div class="tab active" data-tab="energy"><i class="fas fa-plug"></i> Energy Data</div>
+                        <div class="tab" data-tab="trading"><i class="fas fa-exchange-alt"></i> Energy Graphs</div>
+                        <div class="tab" data-tab="graphs"><i class="fas fa-chart-line"></i> Trading Options</div>
+                    </div>
+                    
+                    <div class="tab-content active" id="energyTab">
+                        <div class="energy-data">
+                            <div class="card">
+                                <h3><i class="fas fa-bolt"></i> Voltage</h3>
+                                <div class="value" id="Voltage">0.00</div>
+                                <div class="unit">V</div>
+                            </div>
+                            <div class="card">
+                                <h3><i class="fas fa-wave-square"></i> Current</h3>
+                                <div class="value" id="Current">0.00</div>
+                                <div class="unit">A</div>
+                            </div>
+                            <div class="card">
+                                <h3><i class="fas fa-plug"></i> Power Consumption</h3>
+                                <div class="value" id="PowerConsumption">0.00</div>
+                                <div class="unit">kW</div>
+                            </div>
+                            <div class="card">
+                                <h3><i class="fas fa-sun icon-solar"></i> Solar Power</h3>
+                                <div class="value" id="SolarPower">0.00</div>
+                                <div class="unit">kW</div>
+                            </div>
+                            <div class="card">
+                                <h3><i class="fas fa-wind icon-wind"></i> Wind Power</h3>
+                                <div class="value" id="WindPower">0.00</div>
+                                <div class="unit">kW</div>
+                            </div>
+                            <div class="card">
+                                <h3><i class="fas fa-broadcast-tower icon-grid"></i> Grid Supply</h3>
+                                <div class="value" id="GridSupply">0.00</div>
+                                <div class="unit">kW</div>
+                            </div>
+                            <div class="card">
+                                <h3><i class="fas fa-exclamation-triangle icon-warning"></i> Overload</h3>
+                                <div class="value" id="OverloadCondition">No</div>
+                                <div class="unit">Status</div>
+                            </div>
+                            <div class="card">
+                                <h3><i class="fas fa-wrench icon-warning"></i> Transformer</h3>
+                                <div class="value" id="TransformerFault">No</div>
+                                <div class="unit">Status</div>
+                            </div>
+                            <div class="card">
+                                <h3><i class="fas fa-thermometer-half icon-temperature"></i> Temperature</h3>
+                                <div class="value" id="Temperature">0.00</div>
+                                <div class="unit">°C</div>
+                            </div>
+                            <div class="card">
+                                <h3><i class="fas fa-tint"></i> Humidity</h3>
+                                <div class="value" id="Humidity">0.00</div>
+                                <div class="unit">%</div>
+                            </div>
+                            <div class="card">
+                                <h3><i class="fas fa-tag icon-money"></i> Price</h3>
+                                <div class="value" id="ElectricityPrice">0.00</div>
+                                <div class="unit">$/kWh</div>
+                            </div>
+                            <div class="card">
+                                <h3><i class="fas fa-chart-bar"></i> Predicted Load</h3>
+                                <div class="value" id="PredictedLoad">0.00</div>
+                                <div class="unit">kW</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="tradingTab">
+                        <div class="trading-options">
+                            <div class="trading-card">
+                                <h3>
+                                    <i class="fas fa-upload"></i>
+                                    Sell Surplus Energy
+                                </h3>
+                                <p>You have <span id="sellableSurplus">0.00</span> kW of surplus energy available for trading.</p>
+                                <div class="price"><i class="fas fa-coins"></i> Current Direct Trading Price: $<span id="directPrice">0.00</span>/kWh</div>
+                                <button class="btn btn-primary" id="sellEnergyBtn"><i class="fas fa-dollar-sign"></i> Sell Energy</button>
+                            </div>
+                            
+                            <div class="trading-card">
+                                <h3>
+                                    <i class="fas fa-download"></i>
+                                    Buy Energy
+                                </h3>
+                                <p>Current market has <span id="availableEnergy">0.00</span> kW of energy available for purchase.</p>
+                                <div class="price"><i class="fas fa-coins"></i> Current Market Price: $<span id="marketPrice">0.00</span>/kWh</div>
+                                <button class="btn btn-primary" id="buyEnergyBtn"><i class="fas fa-shopping-cart"></i> Buy Energy</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-content" id="graphsTab">
+                        <div class="graphs-container">
+                            <div class="graph-card">
+                                <h3><i class="fas fa-chart-line"></i> Power Consumption Over Time</h3>
+                                <div class="graph-control-panel">
+                                    <div class="time-range">
+                                        <div class="time-btn active" data-range="day"><i class="fas fa-calendar-day"></i> Day</div>
+                                        <div class="time-btn" data-range="week"><i class="fas fa-calendar-week"></i> Week</div>
+                                        <div class="time-btn" data-range="month"><i class="fas fa-calendar-alt"></i> Month</div>
+                                    </div>
+                                </div>
+                                <div id="powerConsumptionChart" class="plotly-graph"></div>
+                            </div>
+                            
+                            <div class="graph-card">
+                                <h3><i class="fas fa-chart-pie"></i> Energy Production Mix</h3>
+                                <div id="energyMixChart" class="plotly-graph"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Household Modal -->
+    <div class="modal" id="addHouseholdModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-plus-circle"></i> Add New Household</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <form id="addHouseholdForm">
+                <div class="form-group">
+                    <label for="householdName">Household Name</label>
+                    <i class="fas fa-home"></i>
+                    <input type="text" id="householdName" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location</label>
+                    <i class="fas fa-map-marker-alt"></i>
+                    <input type="text" id="location" required>
+                </div>
+                <div class="form-group">
+                    <label for="capacity">Energy Capacity (kW)</label>
+                    <i class="fas fa-battery-full icon-battery"></i>
+                    <input type="number" id="capacity" min="0" step="0.1" required>
+                </div>
+                <div class="form-buttons">
+                    <button type="button" class="btn btn-secondary close-modal-btn"><i class="fas fa-times"></i> Cancel</button>
+                    <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Add Household</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
