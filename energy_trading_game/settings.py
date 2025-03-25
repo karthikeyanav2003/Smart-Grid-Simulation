@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'djongo', 
+    'households',
+    'trading', 
 ]
 
 MIDDLEWARE = [
@@ -78,8 +79,10 @@ WSGI_APPLICATION = 'energy_trading_game.wsgi.application'
 
 
 # Database: MongoDB Configuration
+from pymongo import MongoClient
 
-
+MONGO_CLIENT = MongoClient("mongodb+srv://vishwarprediscan:zT0K3JICskXrc44W@household.ipekb.mongodb.net/")
+MONGO_DB = MONGO_CLIENT["Smartgrid"]  # Your database name
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [

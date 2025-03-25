@@ -1,14 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Energy Trading Simulation Game</title>
-    <!-- Include Plotly.js -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <!-- Include Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    {% load static %}
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
 <body>
@@ -39,7 +37,9 @@
                 
                 <div class="household-list-container">
                     <ul class="household-list" id="householdList">
-                        <!-- Household list will be populated by JavaScript -->
+                        {% for household in households %}
+                            <li data-id="{{ household }}">{{ household }}</li>
+                        {% endfor %}
                     </ul>
                 </div>
                 
@@ -55,8 +55,8 @@
                     
                     <div class="tabs">
                         <div class="tab active" data-tab="energy"><i class="fas fa-plug"></i> Energy Data</div>
-                        <div class="tab" data-tab="trading"><i class="fas fa-exchange-alt"></i> Energy Graphs</div>
-                        <div class="tab" data-tab="graphs"><i class="fas fa-chart-line"></i> Trading Options</div>
+                        <div class="tab" data-tab="graphs"><i class="fas fa-chart-line"></i> Energy Graphs</div>
+                        <div class="tab" data-tab="trading"><i class="fas fa-exchange-alt"></i> Trading Options</div>
                     </div>
                     
                     <div class="tab-content active" id="energyTab">
@@ -127,20 +127,13 @@
                     <div class="tab-content" id="tradingTab">
                         <div class="trading-options">
                             <div class="trading-card">
-                                <h3>
-                                    <i class="fas fa-upload"></i>
-                                    Sell Surplus Energy
-                                </h3>
+                                <h3><i class="fas fa-upload"></i> Sell Surplus Energy</h3>
                                 <p>You have <span id="sellableSurplus">0.00</span> kW of surplus energy available for trading.</p>
                                 <div class="price"><i class="fas fa-coins"></i> Current Direct Trading Price: $<span id="directPrice">0.00</span>/kWh</div>
                                 <button class="btn btn-primary" id="sellEnergyBtn"><i class="fas fa-dollar-sign"></i> Sell Energy</button>
                             </div>
-                            
                             <div class="trading-card">
-                                <h3>
-                                    <i class="fas fa-download"></i>
-                                    Buy Energy
-                                </h3>
+                                <h3><i class="fas fa-download"></i> Buy Energy</h3>
                                 <p>Current market has <span id="availableEnergy">0.00</span> kW of energy available for purchase.</p>
                                 <div class="price"><i class="fas fa-coins"></i> Current Market Price: $<span id="marketPrice">0.00</span>/kWh</div>
                                 <button class="btn btn-primary" id="buyEnergyBtn"><i class="fas fa-shopping-cart"></i> Buy Energy</button>
@@ -161,7 +154,6 @@
                                 </div>
                                 <div id="powerConsumptionChart" class="plotly-graph"></div>
                             </div>
-                            
                             <div class="graph-card">
                                 <h3><i class="fas fa-chart-pie"></i> Energy Production Mix</h3>
                                 <div id="energyMixChart" class="plotly-graph"></div>
@@ -173,12 +165,11 @@
         </div>
     </div>
     
-    <!-- Add Household Modal -->
     <div class="modal" id="addHouseholdModal">
         <div class="modal-content">
             <div class="modal-header">
                 <h3><i class="fas fa-plus-circle"></i> Add New Household</h3>
-                <button class="close-modal">&times;</button>
+                <button class="close-modal">×</button>
             </div>
             <form id="addHouseholdForm">
                 <div class="form-group">
@@ -205,3 +196,54 @@
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const householdList = document.getElementById('householdList');
+            householdList.addEventListener('click', function(e) {
+                if (e.target.tagName === 'LI') {
+                    const householdId = e.target.getAttribute('data-id');
+                    fetch(`/household_data/${householdId}/`)
+                        .then(response => response.json())
+                        .then(data => {
+                            // Update Energy Data tab with correct field names
+                            document.getElementById('Voltage').textContent = data.voltage ? data.voltage.toFixed(2) : 'N/A';
+                            document.getElementById('Current').textContent = data.current ? data.current.toFixed(2) : 'N/A';
+                            document.getElementById('PowerConsumption').textContent = data.powerConsumption ? data.powerConsumption.toFixed(2) : 'N/A';
+                            document.getElementById('SolarPower').textContent = data.solarPower ? data.solarPower.toFixed(2) : 'N/A';
+                            document.getElementById('WindPower').textContent = data.windPower ? data.windPower.toFixed(2) : 'N/A';
+                            document.getElementById('GridSupply').textContent = data.gridSupply ? data.gridSupply.toFixed(2) : 'N/A';
+                            document.getElementById('OverloadCondition').textContent = data.overloadCondition === 1 ? 'Yes' : 'No';
+                            document.getElementById('TransformerFault').textContent = data.transformerFault === 1 ? 'Yes' : 'No';
+                            document.getElementById('Temperature').textContent = data.temperature ? data.temperature.toFixed(2) : 'N/A';
+                            document.getElementById('Humidity').textContent = data.humidity ? data.humidity.toFixed(2) : 'N/A';
+                            document.getElementById('ElectricityPrice').textContent = data.electricityPrice ? data.electricityPrice.toFixed(2) : 'N/A';
+                            document.getElementById('PredictedLoad').textContent = data.predictedLoad ? data.predictedLoad.toFixed(2) : 'N/A';
+                            // Update household title
+                            document.getElementById('householdTitle').textContent = `Household: ${householdId}`;
+                        })
+                        .catch(error => console.error('Error fetching household data:', error));
+                }
+            });
+
+            // Automatically load data for the first household (e.g., "H001") on page load
+            fetch('/household_data/H001/')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('Voltage').textContent = data.voltage ? data.voltage.toFixed(2) : 'N/A';
+                    document.getElementById('Current').textContent = data.current ? data.current.toFixed(2) : 'N/A';
+                    document.getElementById('PowerConsumption').textContent = data.powerConsumption ? data.powerConsumption.toFixed(2) : 'N/A';
+                    document.getElementById('SolarPower').textContent = data.solarPower ? data.solarPower.toFixed(2) : 'N/A';
+                    document.getElementById('WindPower').textContent = data.windPower ? data.windPower.toFixed(2) : 'N/A';
+                    document.getElementById('GridSupply').textContent = data.gridSupply ? data.gridSupply.toFixed(2) : 'N/A';
+                    document.getElementById('OverloadCondition').textContent = data.overloadCondition === 1 ? 'Yes' : 'No';
+                    document.getElementById('TransformerFault').textContent = data.transformerFault === 1 ? 'Yes' : 'No';
+                    document.getElementById('Temperature').textContent = data.temperature ? data.temperature.toFixed(2) : 'N/A';
+                    document.getElementById('Humidity').textContent = data.humidity ? data.humidity.toFixed(2) : 'N/A';
+                    document.getElementById('ElectricityPrice').textContent = data.electricityPrice ? data.electricityPrice.toFixed(2) : 'N/A';
+                    document.getElementById('PredictedLoad').textContent = data.predictedLoad ? data.predictedLoad.toFixed(2) : 'N/A';
+                    document.getElementById('householdTitle').textContent = 'Household: H001';
+                })
+                .catch(error => console.error('Error fetching household data:', error));
+        });
+    </script>
+</body>
+</html>
