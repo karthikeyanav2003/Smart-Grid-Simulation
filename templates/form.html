@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Household Data Collection</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #2c3e50;
+      --secondary-color: #27ae60;
+      --accent-color: #e74c3c;
+      --light-color: #ecf0f1;
+      --dark-color: #34495e;
+      --success-color: #2ecc71;
+      --warning-color: #f39c12;
+      --danger-color: #e74c3c;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background-color: var(--light-color);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+    .container {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 600px;
+      padding: 30px;
+    }
+    .form-title {
+      text-align: center;
+      color: var(--primary-color);
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+      position: relative;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--dark-color);
+      font-weight: bold;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 10px;
+      border: 1.5px solid var(--light-color);
+      border-radius: 5px;
+      font-size: 16px;
+      transition: border-color 0.3s;
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--secondary-color);
+    }
+    .form-buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+    .btn {
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+    .btn-submit {
+      background-color: var(--secondary-color);
+      color: white;
+    }
+    .btn-submit:hover {
+      background-color: #2ecc71;
+    }
+    .btn-reset {
+      background-color: var(--warning-color);
+      color: white;
+    }
+    .btn-reset:hover {
+      background-color: #d35400;
+    }
+    .btn-back {
+      background-color: var(--accent-color);
+      color: white;
+    }
+    .btn-back:hover {
+      background-color: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2 class="form-title">Household Data Collection</h2>
+    <!-- Notice there is no "action" attribute since we are using fetch -->
+    <form id="householdForm">
+      <!-- If using Django templates, include CSRF token (hidden input) -->
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="householdId">Household ID</label>
+        <input type="text" id="householdId" name="householdId" placeholder="Enter Household ID" required>
+      </div>
+      <div class="form-group">
+        <label for="voltage">Voltage (V)</label>
+        <input type="number" id="voltage" name="voltage" step="0.01" placeholder="Enter Voltage" required>
+      </div>
+      <div class="form-group">
+        <label for="current">Current (A)</label>
+        <input type="number" id="current" name="current" step="0.01" placeholder="Enter Current" required>
+      </div>
+      <div class="form-group">
+        <label for="powerConsumption">Power Consumption (kW)</label>
+        <input type="number" id="powerConsumption" name="powerConsumption" step="0.01" placeholder="Enter Power Consumption" required>
+      </div>
+      <div class="form-group">
+        <label for="solarPower">Solar Power (kW)</label>
+        <input type="number" id="solarPower" name="solarPower" step="0.01" placeholder="Enter Solar Power" required>
+      </div>
+      <div class="form-group">
+        <label for="windPower">Wind Power (kW)</label>
+        <input type="number" id="windPower" name="windPower" step="0.01" placeholder="Enter Wind Power" required>
+      </div>
+      <div class="form-group">
+        <label for="gridSupply">Grid Supply (kW)</label>
+        <input type="number" id="gridSupply" name="gridSupply" step="0.01" placeholder="Enter Grid Supply" required>
+      </div>
+      <div class="form-group">
+        <label for="overloadCondition">Overload Condition</label>
+        <select id="overloadCondition" name="overloadCondition" required>
+          <option value="">Select Overload Condition</option>
+          <option value="0">No Overload</option>
+          <option value="1">Overload</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="transformerFault">Transformer Fault</label>
+        <select id="transformerFault" name="transformerFault" required>
+          <option value="">Select Transformer Fault</option>
+          <option value="0">No Fault</option>
+          <option value="1">Fault Detected</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="temperature">Temperature (°C)</label>
+        <input type="number" id="temperature" name="temperature" step="0.01" placeholder="Enter Temperature" required>
+      </div>
+      <div class="form-group">
+        <label for="humidity">Humidity (%)</label>
+        <input type="number" id="humidity" name="humidity" step="0.01" placeholder="Enter Humidity" required>
+      </div>
+      <div class="form-group">
+        <label for="electricityPrice">Electricity Price ($/kWh)</label>
+        <input type="number" id="electricityPrice" name="electricityPrice" step="0.01" placeholder="Enter Electricity Price" required>
+      </div>
+      <div class="form-group">
+        <label for="predictedLoad">Predicted Load (kW)</label>
+        <input type="number" id="predictedLoad" name="predictedLoad" step="0.01" placeholder="Enter Predicted Load" required>
+      </div>
+      <div class="form-buttons">
+        <button type="button" class="btn btn-back" id="backButton">
+          <i class="fas fa-arrow-left"></i> Back
+        </button>
+        <button type="reset" class="btn btn-reset" id="resetButton">
+          <i class="fas fa-redo"></i> Reset
+        </button>
+        <button type="submit" class="btn btn-submit" id="submitButton">
+          <i class="fas fa-save"></i> Submit
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    // Function to get CSRF token from cookies (if needed)
+    function getCookie(name) {
+      let cookieValue = null;
+      if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let cookie of cookies) {
+          cookie = cookie.trim();
+          // Does this cookie string begin with the name we want?
+          if (cookie.substring(0, name.length + 1) === (name + '=')) {
+            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            break;
+          }
+        }
+      }
+      return cookieValue;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+      const form = document.getElementById('householdForm');
+      const backButton = document.getElementById('backButton');
+
+      // Back button functionality
+      backButton.addEventListener('click', function() {
+        window.history.back();
+      });
+
+      // Validation function
+      function validateFormData(data) {
+        const errors = [];
+
+        if (!data.householdId || data.householdId.trim() === '') {
+          errors.push('Household ID is required');
+        }
+
+        const numericFields = [
+          'voltage', 'current', 'powerConsumption',
+          'solarPower', 'windPower', 'gridSupply',
+          'temperature', 'electricityPrice', 'predictedLoad',
+          'humidity'
+        ];
+        numericFields.forEach(field => {
+          if (isNaN(data[field]) || data[field] < 0) {
+            errors.push(`${field} must be a non-negative number`);
+          }
+        });
+
+        if (data.humidity > 100) {
+          errors.push('Humidity must be between 0 and 100');
+        }
+
+        const binaryFields = ['overloadCondition', 'transformerFault'];
+        binaryFields.forEach(field => {
+          if (![0, 1].includes(data[field])) {
+            errors.push(`${field} must be 0 or 1`);
+          }
+        });
+
+        return errors;
+      }
+
+      form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        const formData = {
+          householdId: document.getElementById('householdId').value,
+          voltage: parseFloat(document.getElementById('voltage').value),
+          current: parseFloat(document.getElementById('current').value),
+          powerConsumption: parseFloat(document.getElementById('powerConsumption').value),
+          solarPower: parseFloat(document.getElementById('solarPower').value),
+          windPower: parseFloat(document.getElementById('windPower').value),
+          gridSupply: parseFloat(document.getElementById('gridSupply').value),
+          overloadCondition: parseInt(document.getElementById('overloadCondition').value),
+          transformerFault: parseInt(document.getElementById('transformerFault').value),
+          temperature: parseFloat(document.getElementById('temperature').value),
+          humidity: parseFloat(document.getElementById('humidity').value),
+          electricityPrice: parseFloat(document.getElementById('electricityPrice').value),
+          predictedLoad: parseFloat(document.getElementById('predictedLoad').value)
+        };
+
+        const validationErrors = validateFormData(formData);
+        if (validationErrors.length > 0) {
+          alert('Validation Errors:\n' + validationErrors.join('\n'));
+          return;
+        }
+
+        // Set up headers including CSRF if required
+        const headers = {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': getCookie('csrftoken') // Uncomment if CSRF protection is enabled
+        };
+
+        fetch('/add-household/', {
+          method: 'POST',
+          headers: headers,
+          body: JSON.stringify(formData)
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (data.status === 'success') {
+            alert('Household Data Submitted Successfully!');
+            form.reset();
+            window.location.href = '/main/';
+          } else {
+            alert('Error: ' + (data.message || 'Unknown error occurred'));
+          }
+        })
+        .catch(error => {
+          console.error('Submission Error:', error);
+          alert('An error occurred while submitting the data. Please try again.');
+        });
+      });
+    });
+  </script>
+</body>
+</html>
+<!-- End of templates/form.html -->
