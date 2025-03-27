@@ -1,1 +1,51 @@
 2025-03-25 23:18:50,720 - households.views - INFO - Successfully established MongoDB connection
+2025-03-26 10:37:05,721 - households.views - INFO - Successfully established MongoDB connection
+2025-03-26 10:37:33,005 - django.request - WARNING - Not Found: /favicon.ico
+2025-03-26 14:20:52,066 - households.views - INFO - Successfully established MongoDB connection
+2025-03-26 14:20:58,739 - django.request - WARNING - Not Found: /favicon.ico
+2025-03-26 21:38:53,679 - households.views - INFO - Successfully established MongoDB connection
+2025-03-26 21:39:19,253 - django.request - WARNING - Not Found: /favicon.ico
+2025-03-26 21:46:48,456 - django.request - WARNING - Not Found: /get_households/
+2025-03-26 21:46:52,488 - django.request - WARNING - Not Found: /get_households/
+2025-03-26 21:58:18,127 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-03-26 21:58:35,781 - households.views - INFO - Successfully established MongoDB connection
+2025-03-26 21:58:38,461 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-03-26 21:58:55,965 - households.views - INFO - Successfully established MongoDB connection
+2025-03-26 22:07:03,916 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-03-26 22:07:21,634 - households.views - INFO - Successfully established MongoDB connection
+2025-03-26 22:07:25,261 - django.request - WARNING - Not Found: /favicon.ico
+2025-03-26 22:07:29,801 - django.request - WARNING - Not Found: /get_households/
+2025-03-26 22:17:08,374 - households.views - INFO - search_households found 6 matches for query: ''
+2025-03-26 22:21:13,755 - households.views - INFO - search_households found 6 matches for query: ''
+2025-03-26 22:24:08,140 - households.views - INFO - search_households found 6 matches for query: ''
+2025-03-26 22:26:40,490 - households.views - INFO - search_households found 6 matches for query: ''
+2025-03-26 22:29:21,661 - households.views - INFO - search_households found 6 matches for query: ''
+2025-03-26 22:31:44,933 - households.views - INFO - search_households found 6 matches for query: ''
+2025-03-26 22:31:45,977 - households.views - INFO - search_households found 6 matches for query: ''
+2025-03-26 22:54:52,926 - households.views - INFO - Household data inserted successfully. ID: 46b3af0b-f7e2-4f4b-a1c5-815738ecb3e7
+2025-03-26 22:54:56,123 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-26 22:54:58,808 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-26 22:55:30,904 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-26 22:55:43,613 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-26 22:55:44,794 - django.request - WARNING - Not Found: /energy_graphs_view/H001/
+2025-03-26 22:55:50,940 - django.request - WARNING - Not Found: /energy_graphs_view/H001/
+2025-03-26 22:57:56,322 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-03-26 22:58:13,960 - households.views - INFO - Successfully established MongoDB connection
+2025-03-26 22:58:17,523 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-03-26 22:58:35,148 - households.views - INFO - Successfully established MongoDB connection
+2025-03-26 23:06:34,866 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-03-26 23:10:36,997 - households.views - INFO - Successfully established MongoDB connection
+2025-03-26 23:12:49,512 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-03-26 23:13:07,053 - households.views - INFO - Successfully established MongoDB connection
+2025-03-26 23:14:38,986 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-03-26 23:14:56,654 - households.views - INFO - Successfully established MongoDB connection
+2025-03-26 23:15:54,106 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-03-26 23:16:11,695 - households.views - INFO - Successfully established MongoDB connection
+2025-03-26 23:16:19,965 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-26 23:16:28,143 - households.views - INFO - search_households found 1 matches for query: 'H002'
+2025-03-26 23:16:29,853 - households.views - ERROR - Error in energy_graphs_view for household_id H002: Object of type Scatter is not JSON serializable
+2025-03-26 23:16:29,854 - django.request - ERROR - Internal Server Error: /energy_graphs_view/H002/
+2025-03-26 23:16:48,015 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-26 23:16:49,348 - households.views - ERROR - Error in energy_graphs_view for household_id H001: Object of type Scatter is not JSON serializable
+2025-03-26 23:16:49,348 - django.request - ERROR - Internal Server Error: /energy_graphs_view/H001/
+2025-03-27 08:53:05,363 - households.views - INFO - Successfully established MongoDB connection

@@ -2,250 +2,350 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Energy Trading Simulation Game</title>
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Energy Trading Simulation Game</title>
+  <!-- Plotly for charting -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <!-- Axios for AJAX requests -->
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>
-                <i class="fas fa-bolt"></i>
-                Energy Trading Simulation
-            </h1>
-        </div>
-    </header>
-    
+  <header>
     <div class="container">
-        <div class="dashboard">
-            <div class="sidebar">
-                <div class="search-container">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" class="search-bar" id="searchHouseholds" placeholder="Search households...">
-                    <button class="search-ok-btn" id="searchOkBtn">Search</button>
-                </div>
-                
-                <div class="households-header">
-                    <h2><i class="fas fa-home"></i> Households</h2>
-                    <div class="action-buttons">
-                        <a href="{% url 'add_household' %}" class="btn btn-primary" style="text-decoration: none; text-transform: uppercase;">
-                            <i class="fas fa-plus"></i> Add
-                        </a>                        
-                    </div>
-                </div>
-                
-                <div class="household-list-container">
-                    <ul class="household-list" id="householdList">
-                        {% for household in households %}
-                            <li data-id="{{ household }}">{{ household }}</li>
-                        {% endfor %}
-                    </ul>
-                </div>
-                
-                <div class="center-view-container">
-                    <button class="center-view-btn" id="viewButton"><i class="fas fa-eye"></i> View</button>
-                    <button class="center-view-btn" id="nextButton"><i class="fas fa-arrow-right"></i> Next</button>
-                </div>
-            </div>
-            
-            <div class="main-content">
-                <div class="household-details" id="householdDetails">
-                    <h2><i class="fas fa-house-user"></i> <span id="householdTitle">Household Details</span></h2>
-                    
-                    <div class="tabs">
-                        <div class="tab active" data-tab="energy"><i class="fas fa-plug"></i> Energy Data</div>
-                        <div class="tab" data-tab="graphs"><i class="fas fa-chart-line"></i> Energy Graphs</div>
-                        <div class="tab" data-tab="trading"><i class="fas fa-exchange-alt"></i> Trading Options</div>
-                    </div>
-                    
-                    <div class="tab-content active" id="energyTab">
-                        <div class="energy-data">
-                            <div class="card">
-                                <h3><i class="fas fa-bolt"></i> Voltage</h3>
-                                <div class="value" id="Voltage">0.00</div>
-                                <div class="unit">V</div>
-                            </div>
-                            <div class="card">
-                                <h3><i class="fas fa-wave-square"></i> Current</h3>
-                                <div class="value" id="Current">0.00</div>
-                                <div class="unit">A</div>
-                            </div>
-                            <div class="card">
-                                <h3><i class="fas fa-plug"></i> Power Consumption</h3>
-                                <div class="value" id="PowerConsumption">0.00</div>
-                                <div class="unit">kW</div>
-                            </div>
-                            <div class="card">
-                                <h3><i class="fas fa-sun icon-solar"></i> Solar Power</h3>
-                                <div class="value" id="SolarPower">0.00</div>
-                                <div class="unit">kW</div>
-                            </div>
-                            <div class="card">
-                                <h3><i class="fas fa-wind icon-wind"></i> Wind Power</h3>
-                                <div class="value" id="WindPower">0.00</div>
-                                <div class="unit">kW</div>
-                            </div>
-                            <div class="card">
-                                <h3><i class="fas fa-broadcast-tower icon-grid"></i> Grid Supply</h3>
-                                <div class="value" id="GridSupply">0.00</div>
-                                <div class="unit">kW</div>
-                            </div>
-                            <div class="card">
-                                <h3><i class="fas fa-exclamation-triangle icon-warning"></i> Overload</h3>
-                                <div class="value" id="OverloadCondition">No</div>
-                                <div class="unit">Status</div>
-                            </div>
-                            <div class="card">
-                                <h3><i class="fas fa-wrench icon-warning"></i> Transformer</h3>
-                                <div class="value" id="TransformerFault">No</div>
-                                <div class="unit">Status</div>
-                            </div>
-                            <div class="card">
-                                <h3><i class="fas fa-thermometer-half icon-temperature"></i> Temperature</h3>
-                                <div class="value" id="Temperature">0.00</div>
-                                <div class="unit">°C</div>
-                            </div>
-                            <div class="card">
-                                <h3><i class="fas fa-tint"></i> Humidity</h3>
-                                <div class="value" id="Humidity">0.00</div>
-                                <div class="unit">%</div>
-                            </div>
-                            <div class="card">
-                                <h3><i class="fas fa-tag icon-money"></i> Price</h3>
-                                <div class="value" id="ElectricityPrice">0.00</div>
-                                <div class="unit">$/kWh</div>
-                            </div>
-                            <div class="card">
-                                <h3><i class="fas fa-chart-bar"></i> Predicted Load</h3>
-                                <div class="value" id="PredictedLoad">0.00</div>
-                                <div class="unit">kW</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="tab-content" id="tradingTab">
-                        <div class="trading-options">
-                            <div class="trading-card">
-                                <h3><i class="fas fa-upload"></i> Sell Surplus Energy</h3>
-                                <p>You have <span id="sellableSurplus">0.00</span> kW of surplus energy available for trading.</p>
-                                <div class="price"><i class="fas fa-coins"></i> Current Direct Trading Price: $<span id="directPrice">0.00</span>/kWh</div>
-                                <button class="btn btn-primary" id="sellEnergyBtn"><i class="fas fa-dollar-sign"></i> Sell Energy</button>
-                            </div>
-                            <div class="trading-card">
-                                <h3><i class="fas fa-download"></i> Buy Energy</h3>
-                                <p>Current market has <span id="availableEnergy">0.00</span> kW of energy available for purchase.</p>
-                                <div class="price"><i class="fas fa-coins"></i> Current Market Price: $<span id="marketPrice">0.00</span>/kWh</div>
-                                <button class="btn btn-primary" id="buyEnergyBtn"><i class="fas fa-shopping-cart"></i> Buy Energy</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="tab-content" id="graphsTab">
-                        <div class="graphs-container">
-                            <div class="graph-card">
-                                <h3><i class="fas fa-chart-line"></i> Power Consumption Over Time</h3>
-                                <div class="graph-control-panel">
-                                    <div class="time-range">
-                                        <div class="time-btn active" data-range="day"><i class="fas fa-calendar-day"></i> Day</div>
-                                        <div class="time-btn" data-range="week"><i class="fas fa-calendar-week"></i> Week</div>
-                                        <div class="time-btn" data-range="month"><i class="fas fa-calendar-alt"></i> Month</div>
-                                    </div>
-                                </div>
-                                <div id="powerConsumptionChart" class="plotly-graph"></div>
-                            </div>
-                            <div class="graph-card">
-                                <h3><i class="fas fa-chart-pie"></i> Energy Production Mix</h3>
-                                <div id="energyMixChart" class="plotly-graph"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <h1>
+        <i class="fas fa-bolt"></i>
+        Energy Trading Simulation
+      </h1>
     </div>
-    
-    <div class="modal" id="addHouseholdModal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h3><i class="fas fa-plus-circle"></i> Add New Household</h3>
-                <button class="close-modal">×</button>
-            </div>
-            <form id="addHouseholdForm">
-                <div class="form-group">
-                    <label for="householdName">Household Name</label>
-                    <i class="fas fa-home"></i>
-                    <input type="text" id="householdName" required>
-                </div>
-                <div class="form-group">
-                    <label for="location">Location</label>
-                    <i class="fas fa-map-marker-alt"></i>
-                    <input type="text" id="location" required>
-                </div>
-                <div class="form-group">
-                    <label for="capacity">Energy Capacity (kW)</label>
-                    <i class="fas fa-battery-full icon-battery"></i>
-                    <input type="number" id="capacity" min="0" step="0.1" required>
-                </div>
-                <div class="form-buttons">
-                    <button type="button" class="btn btn-secondary close-modal-btn"><i class="fas fa-times"></i> Cancel</button>
-                    <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Add Household</button>
-                </div>
-            </form>
-        </div>
-    </div>
+  </header>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const householdList = document.getElementById('householdList');
-            householdList.addEventListener('click', function(e) {
-                if (e.target.tagName === 'LI') {
-                    const householdId = e.target.getAttribute('data-id');
-                    fetch(`/household_data/${householdId}/`)
-                        .then(response => response.json())
-                        .then(data => {
-                            // Update Energy Data tab with correct field names
-                            document.getElementById('Voltage').textContent = data.voltage ? data.voltage.toFixed(2) : 'N/A';
-                            document.getElementById('Current').textContent = data.current ? data.current.toFixed(2) : 'N/A';
-                            document.getElementById('PowerConsumption').textContent = data.powerConsumption ? data.powerConsumption.toFixed(2) : 'N/A';
-                            document.getElementById('SolarPower').textContent = data.solarPower ? data.solarPower.toFixed(2) : 'N/A';
-                            document.getElementById('WindPower').textContent = data.windPower ? data.windPower.toFixed(2) : 'N/A';
-                            document.getElementById('GridSupply').textContent = data.gridSupply ? data.gridSupply.toFixed(2) : 'N/A';
-                            document.getElementById('OverloadCondition').textContent = data.overloadCondition === 1 ? 'Yes' : 'No';
-                            document.getElementById('TransformerFault').textContent = data.transformerFault === 1 ? 'Yes' : 'No';
-                            document.getElementById('Temperature').textContent = data.temperature ? data.temperature.toFixed(2) : 'N/A';
-                            document.getElementById('Humidity').textContent = data.humidity ? data.humidity.toFixed(2) : 'N/A';
-                            document.getElementById('ElectricityPrice').textContent = data.electricityPrice ? data.electricityPrice.toFixed(2) : 'N/A';
-                            document.getElementById('PredictedLoad').textContent = data.predictedLoad ? data.predictedLoad.toFixed(2) : 'N/A';
-                            // Update household title
-                            document.getElementById('householdTitle').textContent = `Household: ${householdId}`;
-                        })
-                        .catch(error => console.error('Error fetching household data:', error));
-                }
+  <div class="container">
+    <div class="dashboard">
+      <div class="sidebar">
+        <!-- Search Container -->
+        <div class="search-container">
+          <i class="fas fa-search search-icon"></i>
+          <input type="text" class="search-bar" id="searchHouseholds" placeholder="Search households...">
+          <button class="search-ok-btn" id="searchOkBtn">Search</button>
+        </div>
+
+        <!-- Households Header -->
+        <div class="households-header">
+          <h2><i class="fas fa-home"></i> Households</h2>
+          <div class="action-buttons">
+            <a href="{% url 'add_household' %}" class="btn btn-primary" style="text-decoration: none; text-transform: uppercase;">
+              <i class="fas fa-plus"></i> Add
+            </a>
+          </div>
+        </div>
+
+        <!-- Household List Container -->
+        <div class="household-list-container">
+          <ul class="household-list" id="householdList">
+            <!-- Households will be dynamically populated here -->
+          </ul>
+        </div>
+
+        <!-- Navigation Button (Next) Centered -->
+        <div class="center-view-container" style="text-align: center;">
+          <button class="center-view-btn" id="nextButton" style="display: inline-block;">
+            <i class="fas fa-arrow-right"></i> Next
+          </button>
+        </div>
+      </div>
+
+      <!-- Main Content Area -->
+      <div class="main-content">
+        <div class="household-details" id="householdDetails">
+          <h2>
+            <i class="fas fa-house-user"></i> <span id="householdTitle">Household Details</span>
+          </h2>
+
+          <!-- Tabs Navigation -->
+          <div class="tabs">
+            <div class="tab active" data-tab="energy"><i class="fas fa-plug"></i> Energy Data</div>
+            <div class="tab" data-tab="graphs"><i class="fas fa-chart-line"></i> Energy Graphs</div>
+            <div class="tab" data-tab="trading"><i class="fas fa-exchange-alt"></i> Trading Options</div>
+          </div>
+
+          <!-- Energy Data Tab -->
+          <div class="tab-content active" id="energyTab">
+            <div class="energy-data">
+              <div class="card">
+                <h3><i class="fas fa-bolt"></i> Voltage</h3>
+                <div class="value" id="Voltage">0.00</div>
+                <div class="unit">V</div>
+              </div>
+              <div class="card">
+                <h3><i class="fas fa-wave-square"></i> Current</h3>
+                <div class="value" id="Current">0.00</div>
+                <div class="unit">A</div>
+              </div>
+              <div class="card">
+                <h3><i class="fas fa-plug"></i> Power Consumption</h3>
+                <div class="value" id="PowerConsumption">0.00</div>
+                <div class="unit">kW</div>
+              </div>
+              <div class="card">
+                <h3><i class="fas fa-sun icon-solar"></i> Solar Power</h3>
+                <div class="value" id="SolarPower">0.00</div>
+                <div class="unit">kW</div>
+              </div>
+              <div class="card">
+                <h3><i class="fas fa-wind icon-wind"></i> Wind Power</h3>
+                <div class="value" id="WindPower">0.00</div>
+                <div class="unit">kW</div>
+              </div>
+              <div class="card">
+                <h3><i class="fas fa-broadcast-tower icon-grid"></i> Grid Supply</h3>
+                <div class="value" id="GridSupply">0.00</div>
+                <div class="unit">kW</div>
+              </div>
+              <div class="card">
+                <h3><i class="fas fa-exclamation-triangle icon-warning"></i> Overload</h3>
+                <div class="value" id="OverloadCondition">No</div>
+                <div class="unit">Status</div>
+              </div>
+              <div class="card">
+                <h3><i class="fas fa-wrench icon-warning"></i> Transformer</h3>
+                <div class="value" id="TransformerFault">No</div>
+                <div class="unit">Status</div>
+              </div>
+              <div class="card">
+                <h3><i class="fas fa-thermometer-half icon-temperature"></i> Temperature</h3>
+                <div class="value" id="Temperature">0.00</div>
+                <div class="unit">°C</div>
+              </div>
+              <div class="card">
+                <h3><i class="fas fa-tint"></i> Humidity</h3>
+                <div class="value" id="Humidity">0.00</div>
+                <div class="unit">%</div>
+              </div>
+              <div class="card">
+                <h3><i class="fas fa-tag icon-money"></i> Price</h3>
+                <div class="value" id="ElectricityPrice">0.00</div>
+                <div class="unit">$/kWh</div>
+              </div>
+              <div class="card">
+                <h3><i class="fas fa-chart-bar"></i> Predicted Load</h3>
+                <div class="value" id="PredictedLoad">0.00</div>
+                <div class="unit">kW</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Trading Options Tab -->
+          <div class="tab-content" id="tradingTab">
+            <div class="trading-options">
+              <div class="trading-card">
+                <h3><i class="fas fa-upload"></i> Sell Surplus Energy</h3>
+                <p>You have <span id="sellableSurplus">0.00</span> kW of surplus energy available for trading.</p>
+                <div class="price"><i class="fas fa-coins"></i> Current Direct Trading Price: $<span id="directPrice">0.00</span>/kWh</div>
+                <button class="btn btn-primary" id="sellEnergyBtn"><i class="fas fa-dollar-sign"></i> Sell Energy</button>
+              </div>
+              <div class="trading-card">
+                <h3><i class="fas fa-download"></i> Buy Energy</h3>
+                <p>Current market has <span id="availableEnergy">0.00</span> kW of energy available for purchase.</p>
+                <div class="price"><i class="fas fa-coins"></i> Current Market Price: $<span id="marketPrice">0.00</span>/kWh</div>
+                <button class="btn btn-primary" id="buyEnergyBtn"><i class="fas fa-shopping-cart"></i> Buy Energy</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Graphs Tab -->
+          <div class="tab-content" id="graphsTab">
+            <div class="graphs-container">
+              <!-- Div for Bubble Chart (Temperature vs Humidity) -->
+              <div id="powerConsumptionChart" class="plotly-graph" style="height:400px;"></div>
+              <!-- Div for Bar Chart (Energy Sources Breakdown) -->
+              <div id="energyMixChart" class="plotly-graph" style="height:400px; margin-top:20px;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add Household Modal -->
+  <div class="modal" id="addHouseholdModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3><i class="fas fa-plus-circle"></i> Add New Household</h3>
+        <button class="close-modal">×</button>
+      </div>
+      <form id="addHouseholdForm">
+        <div class="form-group">
+          <label for="householdName">Household Name</label>
+          <i class="fas fa-home"></i>
+          <input type="text" id="householdName" required>
+        </div>
+        <div class="form-group">
+          <label for="location">Location</label>
+          <i class="fas fa-map-marker-alt"></i>
+          <input type="text" id="location" required>
+        </div>
+        <div class="form-group">
+          <label for="capacity">Energy Capacity (kW)</label>
+          <i class="fas fa-battery-full icon-battery"></i>
+          <input type="number" id="capacity" min="0" step="0.1" required>
+        </div>
+        <div class="form-buttons">
+          <button type="button" class="btn btn-secondary close-modal-btn"><i class="fas fa-times"></i> Cancel</button>
+          <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Add Household</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Client-side JavaScript for Dynamic Functionality -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // DOM Element References
+      const searchInput = document.getElementById('searchHouseholds');
+      const searchButton = document.getElementById('searchOkBtn');
+      const householdList = document.getElementById('householdList');
+      const nextButton = document.getElementById('nextButton');
+
+      // State Variables
+      let currentHouseholds = [];
+      let selectedHousehold = null;
+      let currentPageIndex = 0;
+
+      // Utility Function to Update Value with Error Handling
+      function updateValue(id, value, decimals = 2) {
+        const element = document.getElementById(id);
+        element.textContent = value !== null && value !== undefined 
+          ? (typeof value === 'number' ? value.toFixed(decimals) : value)
+          : 'N/A';
+      }
+
+      // Fetch Households from Backend (Updated endpoint)
+      async function fetchHouseholds(searchTerm = '') {
+        try {
+          const response = await axios.get('/search_households/', {
+            params: { query: searchTerm }
+          });
+          
+          currentHouseholds = response.data;
+          currentPageIndex = 0;
+          
+          // Clear and Repopulate Household List
+          householdList.innerHTML = '';
+          currentHouseholds.forEach((household, index) => {
+            // Create each list item as a clickable button with centered text and rounded corners
+            const li = document.createElement('li');
+            li.setAttribute('data-id', household);
+            li.textContent = household;
+            li.style.cursor = 'pointer';
+            li.style.textAlign = 'center';
+            li.style.width = '100%';
+            li.style.borderRadius = '8px';
+            li.style.padding = '8px';
+            li.style.marginBottom = '6px';
+            li.addEventListener('click', () => {
+              // Remove previous selection if any
+              const previousSelected = householdList.querySelector('.selected');
+              if (previousSelected) previousSelected.classList.remove('selected');
+              
+              // Mark this item as selected
+              li.classList.add('selected');
+              selectedHousehold = household;
+              
+              // Immediately fetch and display the household details
+              fetchHouseholdData(household);
+              // Also, fetch and plot the graphs for this household
+              plotGraphs(household);
             });
+            householdList.appendChild(li);
+          });
+        } catch (error) {
+          console.error('Error fetching households:', error);
+          alert('Failed to fetch households. Please try again.');
+        }
+      }
 
-            // Automatically load data for the first household (e.g., "H001") on page load
-            fetch('/household_data/H001/')
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById('Voltage').textContent = data.voltage ? data.voltage.toFixed(2) : 'N/A';
-                    document.getElementById('Current').textContent = data.current ? data.current.toFixed(2) : 'N/A';
-                    document.getElementById('PowerConsumption').textContent = data.powerConsumption ? data.powerConsumption.toFixed(2) : 'N/A';
-                    document.getElementById('SolarPower').textContent = data.solarPower ? data.solarPower.toFixed(2) : 'N/A';
-                    document.getElementById('WindPower').textContent = data.windPower ? data.windPower.toFixed(2) : 'N/A';
-                    document.getElementById('GridSupply').textContent = data.gridSupply ? data.gridSupply.toFixed(2) : 'N/A';
-                    document.getElementById('OverloadCondition').textContent = data.overloadCondition === 1 ? 'Yes' : 'No';
-                    document.getElementById('TransformerFault').textContent = data.transformerFault === 1 ? 'Yes' : 'No';
-                    document.getElementById('Temperature').textContent = data.temperature ? data.temperature.toFixed(2) : 'N/A';
-                    document.getElementById('Humidity').textContent = data.humidity ? data.humidity.toFixed(2) : 'N/A';
-                    document.getElementById('ElectricityPrice').textContent = data.electricityPrice ? data.electricityPrice.toFixed(2) : 'N/A';
-                    document.getElementById('PredictedLoad').textContent = data.predictedLoad ? data.predictedLoad.toFixed(2) : 'N/A';
-                    document.getElementById('householdTitle').textContent = 'Household: H001';
-                })
-                .catch(error => console.error('Error fetching household data:', error));
-        });
-    </script>
+      // Fetch Detailed Household Data
+      async function fetchHouseholdData(householdId) {
+        try {
+          const response = await axios.get(`/household_data/${householdId}/`);
+          const data = response.data;
+
+          // Update All Energy Data Fields
+          updateValue('Voltage', data.voltage);
+          updateValue('Current', data.current);
+          updateValue('PowerConsumption', data.powerConsumption);
+          updateValue('SolarPower', data.solarPower);
+          updateValue('WindPower', data.windPower);
+          updateValue('GridSupply', data.gridSupply);
+          
+          // Update Status Fields
+          document.getElementById('OverloadCondition').textContent = 
+            data.overloadCondition === 1 ? 'Yes' : 'No';
+          document.getElementById('TransformerFault').textContent = 
+            data.transformerFault === 1 ? 'Yes' : 'No';
+          
+          // Update Additional Fields
+          updateValue('Temperature', data.temperature);
+          updateValue('Humidity', data.humidity);
+          updateValue('ElectricityPrice', data.electricityPrice);
+          updateValue('PredictedLoad', data.predictedLoad);
+          
+          // Update Household Title
+          document.getElementById('householdTitle').textContent = `Household: ${householdId}`;
+        } catch (error) {
+          console.error('Error fetching household data:', error);
+          alert('Failed to fetch household details');
+        }
+      }
+
+      // Plot Graphs using Plotly
+      async function plotGraphs(householdId) {
+        try {
+          // Fetch graph configurations from the Django view (ensure the URL matches your routing)
+          const response = await axios.get(`/energy_graphs_view/${householdId}/`);
+          const graphs = response.data;
+          
+          // Plot Bubble Chart in the 'powerConsumptionChart' div
+          Plotly.newPlot('powerConsumptionChart', graphs.temperature_humidity_bubble.data, graphs.temperature_humidity_bubble.layout);
+          
+          // Plot Bar Chart in the 'energyMixChart' div
+          Plotly.newPlot('energyMixChart', graphs.power_sources_bar.data, graphs.power_sources_bar.layout);
+          
+          // You can similarly add plotting for other graphs if needed.
+        } catch (error) {
+          console.error('Error fetching graphs:', error);
+          alert('Failed to load graphs for this household.');
+        }
+      }
+
+      // Event Listeners
+      // Search Button
+      searchButton.addEventListener('click', () => {
+        const searchTerm = searchInput.value.trim();
+        fetchHouseholds(searchTerm);
+      });
+
+      // Search Input Enter Key Support
+      searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          const searchTerm = searchInput.value.trim();
+          fetchHouseholds(searchTerm);
+        }
+      });
+
+      // Next Button for Cycling Through Households (No action when clicked)
+      nextButton.addEventListener('click', () => {
+        // Do nothing
+      });
+
+      // Initial Load of Households
+      fetchHouseholds();
+    });
+  </script>
 </body>
 </html>

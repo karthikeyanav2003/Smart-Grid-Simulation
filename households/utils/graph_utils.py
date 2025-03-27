@@ -1,18 +1,17 @@
 import plotly.graph_objs as go
-import json
 
 def create_interactive_graphs(data):
     """
     Create interactive graphs for energy trading simulation using Plotly.
-    
+
     Parameters:
-    data (dict): Dictionary containing household energy data
-    
+        data (dict): Dictionary containing household energy data
+
     Returns:
-    dict: JSON-serializable dictionary of graph configurations
+        dict: JSON-serializable dictionary of graph configurations
     """
     graphs = {}
-    
+
     # 1. Temperature vs Humidity Bubble Chart
     bubble_trace = go.Scatter(
         x=[data['temperature']],
@@ -43,10 +42,10 @@ def create_interactive_graphs(data):
     # 2. Bar Chart - Power Sources
     power_sources = ['Power Consumption', 'Solar Power', 'Wind Power', 'Grid Supply']
     power_values = [
-        data['powerConsumption'], 
-        data['solarPower'], 
-        data['windPower'], 
-        data['gridSupply']
+        data.get('powerConsumption', 0),
+        data.get('solarPower', 0),
+        data.get('windPower', 0),
+        data.get('gridSupply', 0)
     ]
     
     bar_trace = go.Bar(
@@ -68,27 +67,22 @@ def create_interactive_graphs(data):
         'layout': bar_layout
     }
     
-    # 3. Heatmap - Condition Indicators
-    condition_data = [
-        ['Overload Condition', 'Transformer Fault'],
-        [int(data['overloadCondition']), int(data['transformerFault'])]
-    ]
-    
+    # 3. Heatmap - Grid Health Indicators
     heatmap_trace = go.Heatmap(
-        z=condition_data,
+        z=[[int(data.get('overloadCondition', 0)), int(data.get('transformerFault', 0))]],
         x=['Overload Condition', 'Transformer Fault'],
-        y=['Status'],
+        y=['Indicator'],
         colorscale=[[0, 'green'], [1, 'red']],
         hoverongaps=False,
-        text=condition_data,
+        text=[[f'{int(data.get("overloadCondition", 0))}', f'{int(data.get("transformerFault", 0))}']],
         texttemplate='%{text}',
-        textfont={"color":"white"}
+        textfont={"color": "white"}
     )
     
     heatmap_layout = go.Layout(
         title='Grid Health Indicators',
         xaxis={'title': 'Condition Type'},
-        yaxis={'title': 'Status'}
+        yaxis={'title': ''}
     )
     
     graphs['grid_health_heatmap'] = {
@@ -96,7 +90,7 @@ def create_interactive_graphs(data):
         'layout': heatmap_layout
     }
     
-    # 4. Line Chart - Energy Pricing vs Temperature
+    # 4. Line Chart - Electricity Pricing vs Temperature
     line_trace = go.Scatter(
         x=[data['temperature']],
         y=[data['electricityPrice']],
@@ -116,7 +110,7 @@ def create_interactive_graphs(data):
         'layout': line_layout
     }
     
-    # 5. Scatter Plot - Power Flow Analysis
+    # 5. Scatter Plot - Power Flow Analysis (Voltage vs Current)
     scatter_trace = go.Scatter(
         x=[data['current']],
         y=[data['voltage']],
