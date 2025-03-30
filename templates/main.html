@@ -4,23 +4,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Energy Trading Simulation Game</title>
-  <!-- Plotly for charting -->
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <title>Energy Grig Trading Game|Dashboard</title>
+  <!-- Chart.js for charting -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Custom CSS -->
   <link rel="stylesheet" href="{% static 'css/main.css' %}">
   <!-- Axios for AJAX requests -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <!-- Inline CSS for tab contents and graphs layout -->
+  <style>
+    .tab-content {
+      display: none;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    /* Graphs container uses grid with reduced gap and no scrolling */
+    .graphs-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-gap: 5px; /* Reduced gap */
+      overflow: hidden;
+    }
+    .graph-container {
+      background: #fff;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 8px;
+      width: 100%;
+      text-align: center;
+    }
+    .graph-container canvas {
+      /* Canvas width controlled by CSS (80% of container) and inline height */
+      width: 80% !important;
+      height: auto !important;
+    }
+    /* Specific rules for pie charts */
+    #overloadPieChart, #transformerPieChart {
+      width: 60% !important;
+    }
+    /* Highlight selected household id with rounded edges */
+    .household-list li.selected {
+      background: #f0f8ff; /* Light blue */
+      border: 2px solid #007bff;
+      border-radius: 8px;
+      padding: 8px;
+      text-align: center;
+      margin-bottom: 6px;
+    }
+  </style>
 </head>
 <body>
   <header>
     <div class="container">
-      <h1>
-        <i class="fas fa-bolt"></i>
-        Energy Trading Simulation
-      </h1>
+      <h1><i class="fas fa-bolt"></i> Energy Trading Simulation</h1>
     </div>
   </header>
 
@@ -47,16 +86,16 @@
         <!-- Household List Container -->
         <div class="household-list-container">
           <ul class="household-list" id="householdList">
-            <!-- Households will be dynamically populated here -->
+            <!-- Dynamically populated -->
           </ul>
         </div>
 
         <!-- Navigation Button (Next) Centered -->
         <div class="center-view-container" style="text-align: center;">
-          <button class="center-view-btn" id="nextButton" style="display: inline-block;">
+          <button class="center-view-btn" id="nextButton" style="display: inline-block;" onclick="window.location.href='report.html';">
             <i class="fas fa-arrow-right"></i> Next
           </button>
-        </div>
+        </div>        
       </div>
 
       <!-- Main Content Area -->
@@ -92,32 +131,32 @@
                 <div class="unit">kW</div>
               </div>
               <div class="card">
-                <h3><i class="fas fa-sun icon-solar"></i> Solar Power</h3>
+                <h3><i class="fas fa-sun"></i> Solar Power</h3>
                 <div class="value" id="SolarPower">0.00</div>
                 <div class="unit">kW</div>
               </div>
               <div class="card">
-                <h3><i class="fas fa-wind icon-wind"></i> Wind Power</h3>
+                <h3><i class="fas fa-wind"></i> Wind Power</h3>
                 <div class="value" id="WindPower">0.00</div>
                 <div class="unit">kW</div>
               </div>
               <div class="card">
-                <h3><i class="fas fa-broadcast-tower icon-grid"></i> Grid Supply</h3>
+                <h3><i class="fas fa-broadcast-tower"></i> Grid Supply</h3>
                 <div class="value" id="GridSupply">0.00</div>
                 <div class="unit">kW</div>
               </div>
               <div class="card">
-                <h3><i class="fas fa-exclamation-triangle icon-warning"></i> Overload</h3>
+                <h3><i class="fas fa-exclamation-triangle"></i> Overload</h3>
                 <div class="value" id="OverloadCondition">No</div>
                 <div class="unit">Status</div>
               </div>
               <div class="card">
-                <h3><i class="fas fa-wrench icon-warning"></i> Transformer</h3>
+                <h3><i class="fas fa-wrench"></i> Transformer</h3>
                 <div class="value" id="TransformerFault">No</div>
                 <div class="unit">Status</div>
               </div>
               <div class="card">
-                <h3><i class="fas fa-thermometer-half icon-temperature"></i> Temperature</h3>
+                <h3><i class="fas fa-thermometer-half"></i> Temperature</h3>
                 <div class="value" id="Temperature">0.00</div>
                 <div class="unit">°C</div>
               </div>
@@ -127,7 +166,7 @@
                 <div class="unit">%</div>
               </div>
               <div class="card">
-                <h3><i class="fas fa-tag icon-money"></i> Price</h3>
+                <h3><i class="fas fa-tag"></i> Price</h3>
                 <div class="value" id="ElectricityPrice">0.00</div>
                 <div class="unit">$/kWh</div>
               </div>
@@ -145,27 +184,53 @@
               <div class="trading-card">
                 <h3><i class="fas fa-upload"></i> Sell Surplus Energy</h3>
                 <p>You have <span id="sellableSurplus">0.00</span> kW of surplus energy available for trading.</p>
-                <div class="price"><i class="fas fa-coins"></i> Current Direct Trading Price: $<span id="directPrice">0.00</span>/kWh</div>
-                <button class="btn btn-primary" id="sellEnergyBtn"><i class="fas fa-dollar-sign"></i> Sell Energy</button>
+                <div class="price">
+                  <i class="fas fa-coins"></i> Current Direct Trading Price: $<span id="directPrice">0.00</span>/kWh
+                </div>
+                <button class="btn btn-primary" id="sellEnergyBtn">
+                  <i class="fas fa-dollar-sign"></i> Sell Energy
+                </button>
               </div>
               <div class="trading-card">
                 <h3><i class="fas fa-download"></i> Buy Energy</h3>
                 <p>Current market has <span id="availableEnergy">0.00</span> kW of energy available for purchase.</p>
-                <div class="price"><i class="fas fa-coins"></i> Current Market Price: $<span id="marketPrice">0.00</span>/kWh</div>
-                <button class="btn btn-primary" id="buyEnergyBtn"><i class="fas fa-shopping-cart"></i> Buy Energy</button>
+                <div class="price">
+                  <i class="fas fa-coins"></i> Current Market Price: $<span id="marketPrice">0.00</span>/kWh
+                </div>
+                <button class="btn btn-primary" id="buyEnergyBtn">
+                  <i class="fas fa-shopping-cart"></i> Buy Energy
+                </button>
               </div>
             </div>
           </div>
 
-          <!-- Graphs Tab -->
+          <!-- Graphs Tab (Grid layout for multiple graphs) -->
           <div class="tab-content" id="graphsTab">
             <div class="graphs-container">
-              <!-- Div for Bubble Chart (Temperature vs Humidity) -->
-              <div id="powerConsumptionChart" class="plotly-graph" style="height:400px;"></div>
-              <!-- Div for Bar Chart (Energy Sources Breakdown) -->
-              <div id="energyMixChart" class="plotly-graph" style="height:400px; margin-top:20px;"></div>
+              <!-- Dashboard Charts -->
+              <div class="graph-container">
+                <canvas id="solarWindChart" class="chartjs-graph" style="height:400px;"></canvas>
+              </div>
+              <div class="graph-container">
+                <canvas id="tempHumidityChart" class="chartjs-graph" style="height:400px;"></canvas>
+              </div>
+              <div class="graph-container">
+                <canvas id="overloadPieChart" class="chartjs-graph" style="height:300px;"></canvas>
+              </div>
+              <div class="graph-container">
+                <canvas id="transformerPieChart" class="chartjs-graph" style="height:300px;"></canvas>
+              </div>
+              <!-- Additional Graphs Plotted via AJAX -->
+              <div class="graph-container">
+                <!-- Bubble chart for Temperature vs Humidity with larger points -->
+                <canvas id="temperatureHumidityChart" class="chartjs-graph" style="height:400px;"></canvas>
+              </div>
+              <div class="graph-container">
+                <canvas id="energyMixChart" class="chartjs-graph" style="height:400px;"></canvas>
+              </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
@@ -191,12 +256,16 @@
         </div>
         <div class="form-group">
           <label for="capacity">Energy Capacity (kW)</label>
-          <i class="fas fa-battery-full icon-battery"></i>
+          <i class="fas fa-battery-full"></i>
           <input type="number" id="capacity" min="0" step="0.1" required>
         </div>
         <div class="form-buttons">
-          <button type="button" class="btn btn-secondary close-modal-btn"><i class="fas fa-times"></i> Cancel</button>
-          <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Add Household</button>
+          <button type="button" class="btn btn-secondary close-modal-btn">
+            <i class="fas fa-times"></i> Cancel
+          </button>
+          <button type="submit" class="btn btn-primary">
+            <i class="fas fa-plus"></i> Add Household
+          </button>
         </div>
       </form>
     </div>
@@ -211,12 +280,16 @@
       const householdList = document.getElementById('householdList');
       const nextButton = document.getElementById('nextButton');
 
+      // Global chart instances
+      let tempHumidityChart, energyMixChart;
+      let solarWindChart, tempHumidityChart2, overloadPieChart, transformerPieChart;
+
       // State Variables
       let currentHouseholds = [];
       let selectedHousehold = null;
       let currentPageIndex = 0;
 
-      // Utility Function to Update Value with Error Handling
+      // Update a value in the DOM with error handling
       function updateValue(id, value, decimals = 2) {
         const element = document.getElementById(id);
         element.textContent = value !== null && value !== undefined 
@@ -224,128 +297,354 @@
           : 'N/A';
       }
 
-      // Fetch Households from Backend (Updated endpoint)
+      // Case-sensitive binary search (no conversion to lower case)
+      function binarySearch(arr, target) {
+        let low = 0, high = arr.length - 1;
+        while (low <= high) {
+          const mid = Math.floor((low + high) / 2);
+          const midVal = arr[mid];
+          if (midVal === target) return mid;
+          else if (midVal < target) low = mid + 1;
+          else high = mid - 1;
+        }
+        return -1;
+      }
+
+      // Render household list
+      function renderHouseholdList(householdsArray) {
+        householdList.innerHTML = '';
+        householdsArray.forEach((household) => {
+          const li = document.createElement('li');
+          li.setAttribute('data-id', household);
+          li.textContent = household;
+          li.style.cursor = 'pointer';
+          li.style.textAlign = 'center';
+          li.style.width = '100%';
+          li.style.borderRadius = '8px';
+          li.style.padding = '8px';
+          li.style.marginBottom = '6px';
+          li.addEventListener('click', () => {
+            const previousSelected = householdList.querySelector('.selected');
+            if (previousSelected) previousSelected.classList.remove('selected');
+            li.classList.add('selected');
+            selectedHousehold = household;
+            fetchHouseholdData(household);
+            plotGraphs(household);
+          });
+          householdList.appendChild(li);
+        });
+      }
+
+      // Fetch households from backend
       async function fetchHouseholds(searchTerm = '') {
         try {
-          const response = await axios.get('/search_households/', {
-            params: { query: searchTerm }
-          });
-          
+          const response = await axios.get('/search_households/', { params: { query: searchTerm } });
           currentHouseholds = response.data;
+          currentHouseholds.sort((a, b) => a.localeCompare(b));
           currentPageIndex = 0;
-          
-          // Clear and Repopulate Household List
-          householdList.innerHTML = '';
-          currentHouseholds.forEach((household, index) => {
-            // Create each list item as a clickable button with centered text and rounded corners
-            const li = document.createElement('li');
-            li.setAttribute('data-id', household);
-            li.textContent = household;
-            li.style.cursor = 'pointer';
-            li.style.textAlign = 'center';
-            li.style.width = '100%';
-            li.style.borderRadius = '8px';
-            li.style.padding = '8px';
-            li.style.marginBottom = '6px';
-            li.addEventListener('click', () => {
-              // Remove previous selection if any
-              const previousSelected = householdList.querySelector('.selected');
-              if (previousSelected) previousSelected.classList.remove('selected');
-              
-              // Mark this item as selected
-              li.classList.add('selected');
-              selectedHousehold = household;
-              
-              // Immediately fetch and display the household details
-              fetchHouseholdData(household);
-              // Also, fetch and plot the graphs for this household
-              plotGraphs(household);
-            });
-            householdList.appendChild(li);
-          });
+          renderHouseholdList(currentHouseholds);
         } catch (error) {
           console.error('Error fetching households:', error);
           alert('Failed to fetch households. Please try again.');
         }
       }
 
-      // Fetch Detailed Household Data
+      // Fetch household data details
       async function fetchHouseholdData(householdId) {
         try {
           const response = await axios.get(`/household_data/${householdId}/`);
           const data = response.data;
-
-          // Update All Energy Data Fields
           updateValue('Voltage', data.voltage);
           updateValue('Current', data.current);
           updateValue('PowerConsumption', data.powerConsumption);
           updateValue('SolarPower', data.solarPower);
           updateValue('WindPower', data.windPower);
           updateValue('GridSupply', data.gridSupply);
-          
-          // Update Status Fields
-          document.getElementById('OverloadCondition').textContent = 
-            data.overloadCondition === 1 ? 'Yes' : 'No';
-          document.getElementById('TransformerFault').textContent = 
-            data.transformerFault === 1 ? 'Yes' : 'No';
-          
-          // Update Additional Fields
+          document.getElementById('OverloadCondition').textContent = data.overloadCondition === 1 ? 'Yes' : 'No';
+          document.getElementById('TransformerFault').textContent = data.transformerFault === 1 ? 'Yes' : 'No';
           updateValue('Temperature', data.temperature);
           updateValue('Humidity', data.humidity);
           updateValue('ElectricityPrice', data.electricityPrice);
           updateValue('PredictedLoad', data.predictedLoad);
-          
-          // Update Household Title
           document.getElementById('householdTitle').textContent = `Household: ${householdId}`;
+          updateGraphCharts();
         } catch (error) {
           console.error('Error fetching household data:', error);
           alert('Failed to fetch household details');
         }
       }
 
-      // Plot Graphs using Plotly
+      // Plot additional graphs using backend data
       async function plotGraphs(householdId) {
         try {
-          // Fetch graph configurations from the Django view (ensure the URL matches your routing)
           const response = await axios.get(`/energy_graphs_view/${householdId}/`);
           const graphs = response.data;
-          
-          // Plot Bubble Chart in the 'powerConsumptionChart' div
-          Plotly.newPlot('powerConsumptionChart', graphs.temperature_humidity_bubble.data, graphs.temperature_humidity_bubble.layout);
-          
-          // Plot Bar Chart in the 'energyMixChart' div
-          Plotly.newPlot('energyMixChart', graphs.power_sources_bar.data, graphs.power_sources_bar.layout);
-          
-          // You can similarly add plotting for other graphs if needed.
+          // Plot Bubble Chart for Temperature vs Humidity with larger points
+          if (graphs && graphs.temperature_humidity_bubble) {
+            const bubbleData = graphs.temperature_humidity_bubble.data;
+            // Increase bubble radius: instead of dividing by 10, use division by 3
+            bubbleData.forEach(point => {
+              // Assuming original point.r = powerConsumption/10,
+              // new bubble radius becomes (powerConsumption/3)
+              point.r = (point.r * 10) / 3;
+            });
+            const tempHumidityCtx = document.getElementById('temperatureHumidityChart').getContext('2d');
+            if (tempHumidityChart) { tempHumidityChart.destroy(); }
+            const bubbleConfig = {
+              type: 'bubble',
+              data: {
+                datasets: [{
+                  label: 'Temperature vs Humidity',
+                  data: bubbleData,
+                  backgroundColor: 'rgba(75,192,192,0.4)',
+                  borderColor: 'rgba(75,192,192,1)',
+                  borderWidth: 7   // Increased border width for even bolder points
+                }]
+              },
+              options: {
+                scales: {
+                  x: { title: { display: true, text: 'Temperature' } },
+                  y: { title: { display: true, text: 'Humidity' } }
+                }
+              }
+            };
+            tempHumidityChart = new Chart(tempHumidityCtx, bubbleConfig);
+          } else {
+            console.warn('Temperature vs Humidity bubble chart data is missing.');
+          }
+          // Plot Bar Chart for Energy Sources Breakdown
+          if (graphs && graphs.power_sources_bar) {
+            const barData = graphs.power_sources_bar.data;
+            const energyMixCtx = document.getElementById('energyMixChart').getContext('2d');
+            if (energyMixChart) { energyMixChart.destroy(); }
+            const barConfig = {
+              type: 'bar',
+              data: {
+                labels: barData.labels,
+                datasets: [{
+                  label: 'Energy Sources Breakdown',
+                  data: barData.values,
+                  backgroundColor: 'rgba(153,102,255,0.6)',
+                  borderColor: 'rgba(153,102,255,1)',
+                  borderWidth: 1
+                }]
+              },
+              options: {
+                scales: {
+                  y: {
+                    beginAtZero: true,
+                    title: { display: true, text: 'kW' }
+                  }
+                }
+              }
+            };
+            energyMixChart = new Chart(energyMixCtx, barConfig);
+          } else {
+            console.warn('Power sources bar chart data is missing.');
+          }
         } catch (error) {
           console.error('Error fetching graphs:', error);
           alert('Failed to load graphs for this household.');
         }
       }
 
-      // Event Listeners
-      // Search Button
+      // Update dashboard graphs using current values
+      function updateGraphCharts() {
+        const solarPower = parseFloat(document.getElementById('SolarPower').textContent) || 0;
+        const windPower = parseFloat(document.getElementById('WindPower').textContent) || 0;
+        const temperature = parseFloat(document.getElementById('Temperature').textContent) || 0;
+        const humidity = parseFloat(document.getElementById('Humidity').textContent) || 0;
+        const overloadStatus = document.getElementById('OverloadCondition').textContent.trim() === 'Yes' ? 1 : 0;
+        const transformerStatus = document.getElementById('TransformerFault').textContent.trim() === 'Yes' ? 1 : 0;
+        
+        // Chart 1: Solar and Wind Production (Bar Chart)
+        const ctxSolarWind = document.getElementById('solarWindChart').getContext('2d');
+        if (solarWindChart) { solarWindChart.destroy(); }
+        solarWindChart = new Chart(ctxSolarWind, {
+          type: 'bar',
+          data: {
+            labels: ['Solar Power (kW)', 'Wind Power (kW)'],
+            datasets: [{
+              label: 'Production',
+              data: [solarPower, windPower],
+              backgroundColor: [
+                'rgba(255, 204, 0, 0.6)',
+                'rgba(54, 162, 235, 0.6)'
+              ],
+              borderColor: [
+                'rgba(255, 204, 0, 1)',
+                'rgba(54, 162, 235, 1)'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'Solar and Wind Production' } },
+            scales: { y: { beginAtZero: true } }
+          }
+        });
+
+        // Chart 2: Temperature and Humidity (Bar Chart)
+        const ctxTempHumidity = document.getElementById('tempHumidityChart').getContext('2d');
+        if (tempHumidityChart2) { tempHumidityChart2.destroy(); }
+        tempHumidityChart2 = new Chart(ctxTempHumidity, {
+          type: 'bar',
+          data: {
+            labels: ['Temperature (°C)', 'Humidity (%)'],
+            datasets: [{
+              label: 'Value',
+              data: [temperature, humidity],
+              backgroundColor: [
+                'rgba(255, 87, 34, 0.6)',
+                'rgba(0, 150, 136, 0.6)'
+              ],
+              borderColor: [
+                'rgba(255, 87, 34, 1)',
+                'rgba(0, 150, 136, 1)'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: { title: { display: true, text: 'Temperature & Humidity' } },
+            scales: { y: { beginAtZero: false } }
+          }
+        });
+
+        // Chart 3: Overload Condition (Pie Chart)
+        const ctxOverload = document.getElementById('overloadPieChart').getContext('2d');
+        if (overloadPieChart) { overloadPieChart.destroy(); }
+        overloadPieChart = new Chart(ctxOverload, {
+          type: 'pie',
+          data: {
+            labels: ['Active', 'Inactive'],
+            datasets: [{
+              data: [overloadStatus, 1 - overloadStatus],
+              backgroundColor: [
+                'rgba(255, 99, 132, 0.7)',
+                'rgba(75, 192, 192, 0.7)'
+              ],
+              borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(75, 192, 192, 1)'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              title: { display: true, text: 'Overload Condition' },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    let label = context.label || '';
+                    let value = context.parsed;
+                    let percentage = Math.round(value * 100);
+                    return label + ': ' + percentage + '%';
+                  }
+                }
+              }
+            }
+          }
+        });
+
+        // Chart 4: Transformer Fault (Pie Chart)
+        const ctxTransformer = document.getElementById('transformerPieChart').getContext('2d');
+        if (transformerPieChart) { transformerPieChart.destroy(); }
+        transformerPieChart = new Chart(ctxTransformer, {
+          type: 'pie',
+          data: {
+            labels: ['Active', 'Inactive'],
+            datasets: [{
+              data: [transformerStatus, 1 - transformerStatus],
+              backgroundColor: [
+                'rgba(255, 159, 64, 0.7)',
+                'rgba(153, 102, 255, 0.7)'
+              ],
+              borderColor: [
+                'rgba(255, 159, 64, 1)',
+                'rgba(153, 102, 255, 1)'
+              ],
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              title: { display: true, text: 'Transformer Fault' },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    let label = context.label || '';
+                    let value = context.parsed;
+                    let percentage = Math.round(value * 100);
+                    return label + ': ' + percentage + '%';
+                  }
+                }
+              }
+            }
+          }
+        });
+      }
+
+      // Event listeners for search and navigation
       searchButton.addEventListener('click', () => {
         const searchTerm = searchInput.value.trim();
-        fetchHouseholds(searchTerm);
-      });
-
-      // Search Input Enter Key Support
-      searchInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          const searchTerm = searchInput.value.trim();
-          fetchHouseholds(searchTerm);
+        if (searchTerm === '') {
+          fetchHouseholds();
+        } else {
+          const index = binarySearch(currentHouseholds, searchTerm);
+          if (index !== -1) {
+            const foundHousehold = currentHouseholds[index];
+            renderHouseholdList([foundHousehold]);
+            householdList.firstChild.click();
+          } else {
+            alert("ID not present or invalid entry");
+          }
         }
       });
 
-      // Next Button for Cycling Through Households (No action when clicked)
-      nextButton.addEventListener('click', () => {
-        // Do nothing
+      searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          const searchTerm = searchInput.value.trim();
+          if (searchTerm === '') {
+            fetchHouseholds();
+          } else {
+            const index = binarySearch(currentHouseholds, searchTerm);
+            if (index !== -1) {
+              const foundHousehold = currentHouseholds[index];
+              renderHouseholdList([foundHousehold]);
+              householdList.firstChild.click();
+            } else {
+              alert("ID not present or invalid entry");
+            }
+          }
+        }
       });
 
-      // Initial Load of Households
+      nextButton.addEventListener('click', () => {
+        // Implement next household functionality if needed
+      });
+
+      // Tab switching logic
+      document.querySelectorAll('.tab').forEach(tab => {
+        tab.addEventListener('click', () => {
+          document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+          document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+          tab.classList.add('active');
+          const tabId = tab.getAttribute('data-tab');
+          document.getElementById(`${tabId}Tab`).classList.add('active');
+          if (tabId === 'graphs') updateGraphCharts();
+        });
+      });
+
+      // Initial load
       fetchHouseholds();
     });
   </script>
 </body>
 </html>
+<!-- End of HTML Document -->

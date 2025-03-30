@@ -1,0 +1,392 @@
+2025-03-28 22:23:39,127 - households.views - INFO - Successfully established robust MongoDB connection
+2025-03-28 22:24:39,873 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-03-28 22:24:39,873 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-28 22:24:57,974 - households.views - INFO - Successfully established robust MongoDB connection
+2025-03-28 22:28:38,587 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-03-28 22:28:38,587 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-28 22:28:56,579 - households.views - INFO - Successfully established robust MongoDB connection
+2025-03-28 22:30:43,943 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 22:30:45,735 - households.views - INFO - Generating graphs for household: H002
+2025-03-28 22:30:46,127 - households.views - WARNING - No data for H002. Available: ['H001', 'H002', 'H003', 'H004', 'H005', 'H006', 'H007']
+2025-03-28 22:30:46,127 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-28 22:30:52,559 - households.views - INFO - Generating graphs for household: H003
+2025-03-28 22:30:52,704 - households.views - WARNING - No data for H003. Available: ['H001', 'H002', 'H003', 'H004', 'H005', 'H006', 'H007']
+2025-03-28 22:30:52,704 - django.request - WARNING - Not Found: /energy_graphs_view/H003/
+2025-03-28 22:33:58,651 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-03-28 22:33:58,651 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-28 22:34:16,805 - households.views - INFO - MongoDB connection established
+2025-03-28 22:34:26,076 - households.views - INFO - Generating graphs for H003
+2025-03-28 22:34:26,113 - households.views - ERROR - Data retrieval error: 'timestamp'
+2025-03-28 22:34:26,113 - django.request - ERROR - Internal Server Error: /household_data/H003/
+2025-03-28 22:34:26,363 - django.request - WARNING - Not Found: /energy_graphs_view/H003/
+2025-03-28 22:34:32,412 - households.views - INFO - Generating graphs for H002
+2025-03-28 22:34:32,454 - households.views - ERROR - Data retrieval error: 'timestamp'
+2025-03-28 22:34:32,454 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-28 22:34:32,454 - django.request - ERROR - Internal Server Error: /household_data/H002/
+2025-03-28 22:34:44,260 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-03-28 22:34:44,262 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-28 22:35:27,152 - households.views - INFO - MongoDB connection established
+2025-03-28 22:35:31,862 - households.views - INFO - Generating graphs for H001
+2025-03-28 22:35:31,891 - households.views - ERROR - Data retrieval error: 'timestamp'
+2025-03-28 22:35:31,891 - django.request - ERROR - Internal Server Error: /household_data/H001/
+2025-03-28 22:35:32,132 - django.request - WARNING - Not Found: /energy_graphs_view/H001/
+2025-03-28 22:35:37,074 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-03-28 22:35:37,081 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-28 22:35:55,040 - households.views - INFO - Successfully established robust MongoDB connection
+2025-03-28 22:36:01,462 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 22:36:01,651 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 22:36:03,092 - households.views - INFO - Generating graphs for household: H002
+2025-03-28 22:36:03,512 - households.views - WARNING - No data for H002. Available: ['H001', 'H002', 'H003', 'H004', 'H005', 'H006', 'H007']
+2025-03-28 22:36:03,512 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-28 22:46:37,907 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-03-28 22:46:37,907 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-28 22:46:56,437 - households.views - INFO - Successfully established robust MongoDB connection
+2025-03-28 22:50:00,643 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-03-28 22:50:00,643 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-28 22:50:19,545 - households.views - INFO - Successfully established robust MongoDB connection
+2025-03-28 22:53:06,776 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 22:53:08,704 - households.views - INFO - Generating graphs for household: H001
+2025-03-28 22:53:09,050 - households.views - WARNING - No data for H001. Available: ['H001', 'H002', 'H003', 'H004', 'H005', 'H006', 'H007']
+2025-03-28 22:53:09,051 - django.request - WARNING - Not Found: /energy_graphs_view/H001/
+2025-03-28 22:54:03,639 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-28 23:06:16,752 - households.views - INFO - Successfully established robust MongoDB connection
+2025-03-28 23:07:12,741 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 23:07:14,665 - households.views - INFO - Generating graphs for household: H002
+2025-03-28 23:07:15,017 - households.views - WARNING - No data for H002. Available: ['H001', 'H002', 'H003', 'H004', 'H005', 'H006', 'H007']
+2025-03-28 23:07:15,017 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-28 23:11:45,992 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-03-28 23:11:45,992 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-28 23:12:04,263 - households.views - INFO - Successfully established robust MongoDB connection
+2025-03-28 23:13:14,071 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 23:13:14,212 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 23:13:14,333 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 23:13:14,542 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 23:13:15,458 - households.views - INFO - Generating graphs for household: H002
+2025-03-28 23:13:15,783 - households.views - WARNING - No data for H002. Available: ['H001', 'H002', 'H003', 'H004', 'H005', 'H006', 'H007']
+2025-03-28 23:13:15,783 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-28 23:24:27,861 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-30 10:37:29,994 - households.views - CRITICAL - Critical MongoDB Connection Failure: No replica set members match selector "Primary()", Timeout: 15.0s, Topology Description: <TopologyDescription id: 67e8d1824afe68f00ac3f049, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('household-shard-00-00.ipekb.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.05899999999992361>, <ServerDescription ('household-shard-00-01.ipekb.mongodb.net', 27017) server_type: Unknown, rtt: None>, <ServerDescription ('household-shard-00-02.ipekb.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('household-shard-00-02.ipekb.mongodb.net:27017: timed out')>]>
+2025-03-30 10:37:38,627 - households.views - INFO - Successfully established robust MongoDB connection
+2025-03-30 10:37:44,424 - django.request - WARNING - Not Found: /favicon.ico
+2025-03-30 10:37:48,039 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 10:37:52,356 - households.views - INFO - Generating graphs for household: H001
+2025-03-30 10:37:52,703 - households.views - WARNING - No data for H001. Available: ['H001', 'H002', 'H003', 'H004', 'H005', 'H006', 'H007']
+2025-03-30 10:37:52,703 - django.request - WARNING - Not Found: /energy_graphs_view/H001/
+2025-03-30 10:37:57,702 - households.views - INFO - Generating graphs for household: H004
+2025-03-30 10:37:57,851 - households.views - WARNING - No data for H004. Available: ['H001', 'H002', 'H003', 'H004', 'H005', 'H006', 'H007']
+2025-03-30 10:37:57,851 - django.request - WARNING - Not Found: /energy_graphs_view/H004/
+2025-03-30 10:39:21,010 - households.views - INFO - Generating graphs for household: H005
+2025-03-30 10:39:21,145 - households.views - WARNING - No data for H005. Available: ['H001', 'H002', 'H003', 'H004', 'H005', 'H006', 'H007']
+2025-03-30 10:39:21,145 - django.request - WARNING - Not Found: /energy_graphs_view/H005/
+2025-03-30 10:41:55,869 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 10:41:56,019 - households.views - WARNING - No data for H002. Available: ['H001', 'H002', 'H003', 'H004', 'H005', 'H006', 'H007']
+2025-03-30 10:41:56,019 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-30 10:48:31,504 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 10:48:39,953 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 10:49:10,423 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 10:50:09,297 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 10:50:09,579 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 10:50:09,863 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 10:50:09,863 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 10:50:10,108 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 10:50:11,345 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 10:50:11,591 - households.views - WARNING - No data for H002. Available: ['H001', 'H002', 'H003', 'H004', 'H005', 'H006', 'H007']
+2025-03-30 10:50:11,592 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-30 10:50:53,269 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-30 10:51:31,073 - households.views - INFO - Successfully established robust MongoDB connection
+2025-03-30 10:51:36,748 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 10:51:38,297 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 10:51:38,652 - households.views - WARNING - No data for H002. Available: ['H001', 'H002', 'H003', 'H004', 'H005', 'H006', 'H007']
+2025-03-30 10:51:38,652 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-30 10:53:23,813 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-03-30 10:53:23,813 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-30 10:53:56,471 - households.views - CRITICAL - Critical MongoDB Connection Failure: No replica set members match selector "Primary()", Timeout: 15.0s, Topology Description: <TopologyDescription id: 67e8d55dc501eaae2298b680, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('household-shard-00-00.ipekb.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.033999999999923605>, <ServerDescription ('household-shard-00-01.ipekb.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('household-shard-00-01.ipekb.mongodb.net:27017: timed out')>, <ServerDescription ('household-shard-00-02.ipekb.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.03419999999996435>]>
+2025-03-30 10:54:05,013 - households.views - INFO - Successfully established robust MongoDB connection
+2025-03-30 10:54:26,683 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 10:54:28,413 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 10:54:28,763 - households.views - WARNING - No data for H002. Available: ['H001', 'H002', 'H003', 'H004', 'H005', 'H006', 'H007']
+2025-03-30 10:54:28,763 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-30 10:58:14,917 - households.views - INFO - Generating graphs for household: H003
+2025-03-30 10:58:15,055 - households.views - WARNING - No data for H003. Available: ['H001', 'H002', 'H003', 'H004', 'H005', 'H006', 'H007']
+2025-03-30 10:58:15,055 - django.request - WARNING - Not Found: /energy_graphs_view/H003/
+2025-03-30 10:58:48,004 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-03-30 10:58:48,004 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-30 10:59:06,023 - households.views - INFO - Successfully established robust MongoDB connection
+2025-03-30 10:59:20,576 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 10:59:22,120 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 10:59:22,512 - households.views - WARNING - No data for H002. Available: ['H001', 'H002', 'H003', 'H004', 'H005', 'H006', 'H007']
+2025-03-30 10:59:22,512 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-30 11:15:10,115 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-30 12:41:56,350 - households.views - INFO - Successfully established robust MongoDB connection
+2025-03-30 12:42:43,848 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-03-30 12:42:43,851 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-30 12:43:03,059 - households.views - INFO - Successfully established robust MongoDB connection
+2025-03-30 12:43:09,621 - django.request - WARNING - Not Found: /favicon.ico
+2025-03-30 12:43:13,629 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 12:43:15,694 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 12:43:16,782 - households.views - WARNING - No data for H002. Available: ['H001', 'H002', 'H003', 'H004', 'H005', 'H006', 'H007']
+2025-03-30 12:43:16,782 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-30 12:45:16,923 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-03-30 12:45:16,923 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-30 12:45:34,809 - households.views - INFO - Successfully established robust MongoDB connection
+2025-03-30 12:45:59,527 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 12:46:01,188 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 14:35:57,987 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-30 18:51:24,256 - households.views - INFO - Successfully established robust MongoDB connection
+2025-03-30 18:52:22,152 - django.request - WARNING - Not Found: /favicon.ico
+2025-03-30 18:52:27,365 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 18:52:28,865 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 18:52:36,935 - households.views - INFO - Generating graphs for household: H001
+2025-03-30 18:52:40,505 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 19:28:08,563 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 19:28:08,723 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 19:28:12,351 - households.views - INFO - Generating graphs for household: H001
+2025-03-30 19:28:13,514 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 19:28:20,889 - households.views - INFO - Generating graphs for household: H001
+2025-03-30 19:28:29,677 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 19:30:03,975 - households.views - INFO - Generating graphs for household: H003
+2025-03-30 19:30:04,823 - households.views - INFO - Generating graphs for household: H004
+2025-03-30 19:30:05,959 - households.views - INFO - Generating graphs for household: H001
+2025-03-30 19:32:23,533 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 19:32:33,199 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 19:35:42,963 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 19:35:43,854 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 19:35:44,905 - households.views - INFO - Generating graphs for household: H001
+2025-03-30 19:39:21,956 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 19:39:27,923 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 19:39:32,603 - households.views - INFO - Generating graphs for household: H004
+2025-03-30 19:39:36,712 - households.views - INFO - Generating graphs for household: H005
+2025-03-30 19:40:24,551 - households.views - INFO - Generating graphs for household: H005
+2025-03-30 19:40:38,193 - households.views - INFO - Generating graphs for household: H006
+2025-03-30 19:40:41,454 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 19:40:44,984 - households.views - INFO - Generating graphs for household: H007
+2025-03-30 19:44:33,043 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 19:44:34,325 - households.views - INFO - Generating graphs for household: H001
+2025-03-30 19:44:41,346 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 19:45:46,502 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 19:45:49,291 - households.views - INFO - Generating graphs for household: H003
+2025-03-30 19:46:14,361 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 19:46:14,495 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 19:46:14,708 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 19:46:18,319 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 19:46:18,464 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 19:46:18,612 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 19:46:18,840 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 19:46:20,726 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 19:48:10,309 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 19:48:11,769 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 19:48:39,285 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 19:48:40,809 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 19:50:07,454 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 19:50:11,811 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 19:53:58,480 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 19:53:59,779 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 19:56:00,317 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 19:56:00,526 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 19:56:01,487 - households.views - INFO - Generating graphs for household: H003
+2025-03-30 19:56:12,280 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 19:56:13,367 - households.views - INFO - Generating graphs for household: H003
+2025-03-30 20:00:23,630 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 20:00:25,165 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 20:02:34,741 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-03-30 20:02:34,741 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-30 20:02:52,968 - households.views - INFO - Successfully established robust MongoDB connection
+2025-03-30 20:03:04,063 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 20:03:05,402 - households.views - INFO - Generating graphs for household: H001
+2025-03-30 20:06:32,805 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-03-30 20:06:32,805 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-30 20:06:51,161 - households.views - INFO - Successfully established robust MongoDB connection
+2025-03-30 20:09:24,067 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 20:09:25,682 - households.views - INFO - Generating graphs for household: H001
+2025-03-30 20:09:39,075 - households.views - INFO - Generating graphs for household: H005
+2025-03-30 20:09:58,275 - households.views - INFO - Generating graphs for household: H006
+2025-03-30 20:10:03,629 - households.views - INFO - Generating graphs for household: H004
+2025-03-30 20:13:59,656 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 20:14:02,639 - households.views - INFO - Generating graphs for household: H003
+2025-03-30 20:17:45,212 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 20:17:46,424 - households.views - INFO - Generating graphs for household: H003
+2025-03-30 20:21:30,961 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 20:21:32,137 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 20:21:38,830 - households.views - INFO - Generating graphs for household: H003
+2025-03-30 20:21:40,460 - households.views - INFO - Generating graphs for household: H004
+2025-03-30 20:21:44,175 - households.views - INFO - Generating graphs for household: H006
+2025-03-30 20:21:48,046 - households.views - INFO - Generating graphs for household: H007
+2025-03-30 20:22:09,252 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 20:22:11,029 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 20:22:15,955 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 20:23:53,867 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 20:23:58,654 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 20:24:35,683 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-30 20:24:41,937 - households.views - INFO - Generating graphs for household: H001
+2025-03-30 20:24:43,112 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 20:24:44,043 - households.views - INFO - Generating graphs for household: H003
+2025-03-30 20:24:44,908 - households.views - INFO - Generating graphs for household: H004
+2025-03-30 20:24:46,448 - households.views - INFO - Generating graphs for household: H006
+2025-03-30 20:24:47,299 - households.views - INFO - Generating graphs for household: H006
+2025-03-30 20:24:47,980 - households.views - INFO - Generating graphs for household: H007
+2025-03-30 20:27:15,064 - households.views - INFO - Household data inserted successfully. ID: e1554406-5cbf-4e89-b946-5ad492d9e55a
+2025-03-30 20:27:16,989 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 20:27:18,971 - households.views - INFO - Generating graphs for household: H008
+2025-03-30 20:28:06,230 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 21:53:18,207 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-30 22:03:03,805 - households.views - INFO - Successfully established robust MongoDB connection
+2025-03-30 22:03:20,983 - django.request - WARNING - Not Found: /favicon.ico
+2025-03-30 22:03:23,420 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:03:25,078 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 22:17:40,821 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:17:45,684 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:24:11,207 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:24:13,120 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 22:25:47,312 - households.views - INFO - Generating graphs for household: H004
+2025-03-30 22:25:48,884 - households.views - INFO - Generating graphs for household: H005
+2025-03-30 22:25:49,596 - households.views - INFO - Generating graphs for household: H006
+2025-03-30 22:25:50,338 - households.views - INFO - Generating graphs for household: H007
+2025-03-30 22:25:51,273 - households.views - INFO - Generating graphs for household: H007
+2025-03-30 22:25:52,073 - households.views - INFO - Generating graphs for household: H008
+2025-03-30 22:25:53,121 - households.views - INFO - Generating graphs for household: H003
+2025-03-30 22:38:42,994 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:38:43,810 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:38:43,940 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:38:44,104 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:38:44,337 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:38:55,170 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:42:26,304 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:43:16,085 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:43:25,520 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:45:53,440 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:45:54,875 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:45:55,014 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:45:55,148 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:45:55,303 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:48:39,113 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:48:39,916 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:48:40,069 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:48:40,224 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:48:40,374 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:48:40,495 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:48:40,670 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:52:48,013 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:53:28,168 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:53:34,803 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:53:56,761 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:53:58,530 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 22:54:36,899 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:54:44,492 - households.views - INFO - Generating graphs for household: H003
+2025-03-30 22:55:16,494 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 22:55:24,434 - households.views - INFO - Generating graphs for household: H004
+2025-03-30 23:00:18,632 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 23:00:22,563 - households.views - INFO - Generating graphs for household: H003
+2025-03-30 23:00:41,239 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 23:00:43,754 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 23:08:25,650 - django.request - ERROR - Internal Server Error: /main/
+Traceback (most recent call last):
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\energy_trading_game\households\views.py", line 185, in main_view
+    return render(request, 'main.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\defaulttags.py", line 446, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\resolvers.py", line 685, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'home' not found. 'home' is not a valid view function or pattern name.
+2025-03-30 23:08:38,078 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 23:08:46,794 - django.request - ERROR - Internal Server Error: /main/
+Traceback (most recent call last):
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "F:\energy_trading_game\households\views.py", line 185, in main_view
+    return render(request, 'main.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 62, in render_to_string
+    return template.render(context, request)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\backends\django.py", line 61, in render
+    return self.template.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 170, in render
+    return self._render(context)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 162, in _render
+    return self.nodelist.render(context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 938, in render
+    bit = node.render_annotated(context)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 905, in render_annotated
+    return self.render(context)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\defaulttags.py", line 446, in render
+    url = reverse(view_name, args=args, kwargs=kwargs, current_app=current_app)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\base.py", line 87, in reverse
+    return iri_to_uri(resolver._reverse_with_prefix(view, prefix, *args, **kwargs))
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\urls\resolvers.py", line 685, in _reverse_with_prefix
+    raise NoReverseMatch(msg)
+django.urls.exceptions.NoReverseMatch: Reverse for 'home' not found. 'home' is not a valid view function or pattern name.
+2025-03-30 23:09:32,162 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 23:15:11,273 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 23:15:46,756 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 23:16:13,638 - households.views - INFO - Generating graphs for household: H005
+2025-03-30 23:18:07,911 - households.views - INFO - Generating graphs for household: H004
+2025-03-30 23:18:08,736 - households.views - INFO - Generating graphs for household: H002
+2025-03-30 23:52:10,196 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 23:52:12,078 - django.request - WARNING - Not Found: /main/report.html
+2025-03-30 23:54:13,293 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-03-30 23:54:13,300 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-30 23:54:31,957 - households.views - INFO - Successfully established robust MongoDB connection
+2025-03-30 23:54:35,258 - django.request - WARNING - Not Found: /main/report.html
+2025-03-30 23:55:11,318 - households.views - INFO - search_households found 8 matches for query: ''
+2025-03-30 23:55:12,542 - django.request - WARNING - Not Found: /main/report.html
+2025-03-30 23:58:27,898 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-03-30 23:58:27,899 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-30 23:58:46,143 - households.views - INFO - Successfully established robust MongoDB connection
+2025-03-30 23:58:58,516 - django.request - WARNING - Not Found: /main/report.html
+2025-03-31 00:03:03,479 - django.request - WARNING - Not Found: /main/report.html
+2025-03-31 00:03:17,245 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-03-31 00:03:17,251 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-31 00:03:35,205 - households.views - INFO - Successfully established robust MongoDB connection
+2025-03-31 00:03:42,245 - django.request - WARNING - Not Found: /main/report.html
+2025-03-31 00:04:17,580 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-03-31 00:04:17,580 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-31 00:04:35,777 - households.views - INFO - Successfully established robust MongoDB connection
+2025-03-31 00:04:42,286 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-03-31 00:04:42,287 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-03-31 00:05:01,227 - households.views - INFO - Successfully established robust MongoDB connection

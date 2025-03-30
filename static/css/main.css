@@ -1,14 +1,16 @@
+/* New Color Palette & CSS Variables */
 :root {
-    --primary-color: #2c3e50;
-    --secondary-color: #27ae60;
-    --accent-color: #e74c3c;
-    --light-color: #ecf0f1;
-    --dark-color: #34495e;
-    --success-color: #2ecc71;
-    --warning-color: #f39c12;
-    --danger-color: #e74c3c;
+    --primary-color: #000000;         /* Black */
+    --secondary-color: #150050;       /* Navy/Dark Purple */
+    --accent-color: #3F0071;          /* Purple */
+    --light-color: #610094;           /* Vivid Purple */
+    --dark-color: #000000;            /* Black */
+    --success-color: #150050;         /* Navy/Dark Purple */
+    --warning-color: #3F0071;         /* Purple */
+    --danger-color: #610094;          /* Vivid Purple */
 }
 
+/* Global Styles */
 * {
     margin: 0;
     padding: 0;
@@ -51,6 +53,31 @@ header h1 {
 header h1 i {
     margin-right: 10px;
     color: #f1c40f;
+}
+
+/* Navigation Bar (New CSS) */
+.nav-navbar {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    background-color: var(--light-color);
+    padding: 10px 0;
+    margin: 0 0 20px 0;
+}
+
+.nav-navbar .nav-item {
+    margin: 0 15px;
+}
+
+.nav-navbar .nav-link {
+    text-decoration: none;
+    color: var(--dark-color);
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.nav-navbar .nav-link:hover {
+    color: var(--secondary-color);
 }
 
 /* Dashboard Layout */
@@ -723,7 +750,7 @@ header h1 i {
     }
 }
 
-/* Energy icons color theme */
+/* Energy Icons Color Theme */
 .icon-solar {
     color: #f39c12;
 }

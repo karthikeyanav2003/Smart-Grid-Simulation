@@ -7,25 +7,23 @@ urlpatterns = [
     # Admin site
     path('admin/', admin.site.urls),
 
-    # Home page (renders index.html)
+    # Home/Index page
     path('', TemplateView.as_view(template_name='index.html'), name='index'),
-
-    # Main simulation page; displays latest energy data, household list, and graphs
+    
+    # Main dashboard view
     path('main/', households_views.main_view, name='main'),
+    
+    # Main report page
+    path('main/report.html', TemplateView.as_view(template_name='report.html'), name='report'),
 
-    # Endpoint to fetch detailed data for a specific household.
-    # The household_id is passed as a URL parameter.
+    # Household data endpoints
     path('household_data/<str:household_id>/', households_views.household_data, name='household_data'),
-
-    # Endpoint for adding a new household record via form submission.
     path('add-household/', households_views.add_household, name='add_household'),
-
-    # Endpoint for searching households by their ID.
-    # This view should return a JSON list of matching household IDs.
     path('search_households/', households_views.search_households, name='search_households'),
-
-    # Endpoint for generating Plotly graphs for a given household.
-    # The energy_graphs_view function retrieves the latest household data,
-    # creates interactive graphs, and returns them as JSON.
+    
+    # Energy graphs view endpoint
     path('energy_graphs_view/<str:household_id>/', households_views.energy_graphs_view, name='energy_graphs_view'),
+    
+    # Optional: Debug endpoint to list all households
+    path('list_households/', households_views.list_households, name='list_households'),
 ]

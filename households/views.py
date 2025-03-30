@@ -6,23 +6,27 @@ from pymongo import MongoClient
 import uuid
 import json
 import logging
-from datetime import datetime
-from .utils.graph_utils import create_interactive_graphs  # Ensure this file exists in households/utils/
+from datetime import datetime, timedelta
 
-# Configure logging with detailed configuration; logs will be appended to household_views.log
+# Advanced Logging Configuration
 logging.basicConfig(
-    level=logging.INFO, 
+    level=logging.DEBUG,  # Increased to DEBUG for more comprehensive logging
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
-    filename='household_views.log',
+    filename='smart_grid_debug.log',
     filemode='a'
 )
 logger = logging.getLogger(__name__)
 
-# ------------------------------
-# MongoDB Connection Management
-# ------------------------------
+
 class MongoDBConnection:
-    """Robust MongoDB connection management with retry and error handling."""
+    """
+    Robust MongoDB Connection Management with Enhanced Error Handling
+    
+    Key Features:
+    - Singleton pattern
+    - Dynamic connection retry
+    - Comprehensive error tracking
+    """
     _instance = None
 
     def __new__(cls):
@@ -32,55 +36,123 @@ class MongoDBConnection:
         return cls._instance
 
     def _connect(self):
-        """Establish a MongoDB connection with comprehensive error handling."""
+        """
+        Establish a secure and resilient MongoDB connection.
+        """
         try:
-            self.client = MongoClient(
-                "mongodb+srv://vishwarprediscan:zT0K3JICskXrc44W@household.ipekb.mongodb.net/",
-                serverSelectionTimeoutMS=10000,  # 10-second timeout
-                socketTimeoutMS=10000
-            )
+            connection_params = {
+                "host": "mongodb+srv://vishwarprediscan:zT0K3JICskXrc44W@household.ipekb.mongodb.net/",
+                "serverSelectionTimeoutMS": 15000,  # Increased timeout
+                "socketTimeoutMS": 15000,
+                "connectTimeoutMS": 15000,
+                "retryWrites": True
+            }
+            self.client = MongoClient(**connection_params)
             self.db = self.client["Smartgrid"]
             self.collection = self.db["energydata"]
-            logger.info("Successfully established MongoDB connection")
+
+            # Verify connection
+            self.client.server_info()
+            logger.info("Successfully established robust MongoDB connection")
         except Exception as e:
-            logger.error(f"Critical MongoDB Connection Error: {e}")
-            raise ConnectionError(f"Cannot connect to MongoDB: {e}")
+            logger.critical(f"Critical MongoDB Connection Failure: {e}", exc_info=True)
+            raise ConnectionError(f"MongoDB Connection Error: {e}")
 
     def get_collection(self):
-        """Return the collection, reconnecting if necessary."""
-        if not hasattr(self, 'collection'):
-            self._connect()
-        return self.collection
+        """
+        Retrieve MongoDB collection with automatic reconnection.
+        """
+        max_retries = 3
+        for attempt in range(max_retries):
+            try:
+                if not hasattr(self, 'collection'):
+                    self._connect()
+                return self.collection
+            except Exception as e:
+                logger.warning(f"Collection retrieval attempt {attempt + 1} failed: {e}", exc_info=True)
+                if attempt == max_retries - 1:
+                    raise
 
-# Singleton instance of MongoDB connection.
+
 mongo_connection = MongoDBConnection()
 
-# ------------------------------
-# Views for the Application
-# ------------------------------
 
-def home(request):
-    """Render the home page (index.html)."""
-    return render(request, 'index.html')
-
-def main_view(request):
+def energy_graphs_view(request, household_id):
     """
-    Retrieve and display the latest household energy data.
-    Handles potential data retrieval errors gracefully.
+    Generates Chart.js data for energy graphs for the given household
+    without using timestamp filtering.
+
+    Returns JSON with:
+    - temperature_humidity_bubble: Data for a bubble chart (Temperature vs. Humidity)
+    - power_sources_bar: Data for a bar chart (Breakdown of energy sources: Solar, Wind, Grid)
     """
     try:
         collection = mongo_connection.get_collection()
-        latest_data = list(collection.find().sort('_id', -1).limit(10))
-        # Convert MongoDB ObjectId to string for JSON serialization.
-        for item in latest_data:
-            item['_id'] = str(item['_id'])
-        return render(request, 'main.html', {'data_list': latest_data})
+        logger.info(f"Generating graphs for household: {household_id}")
+
+        # Retrieve all available data for the household
+        household_data = list(collection.find({"householdId": household_id}))
+
+        if not household_data:
+            existing_households = list(collection.distinct('householdId'))
+            logger.warning(f"No data for {household_id}. Available: {existing_households}")
+            return JsonResponse({
+                'error': 'No data available',
+                'available_households': existing_households
+            }, status=404)
+
+        # Prepare Bubble Chart data (Temperature vs Humidity)
+        bubble_data = []
+        for entry in household_data:
+            bubble_data.append({
+                "x": entry.get("temperature", 0),
+                "y": entry.get("humidity", 0),
+                "r": entry.get("powerConsumption", 0) / 10  # scaling factor for bubble size
+            })
+
+        # Prepare Bar Chart data (Energy Sources Breakdown)
+        total_solar = sum(entry.get("solarPower", 0) for entry in household_data)
+        total_wind = sum(entry.get("windPower", 0) for entry in household_data)
+        total_grid = sum(entry.get("gridSupply", 0) for entry in household_data)
+        bar_data = {
+            "labels": ["Solar", "Wind", "Grid"],
+            "values": [total_solar, total_wind, total_grid]
+        }
+
+        graphs_data = {
+            "temperature_humidity_bubble": {
+                "data": bubble_data
+            },
+            "power_sources_bar": {
+                "data": bar_data
+            }
+        }
+
+        return JsonResponse(graphs_data, safe=False)
+
     except Exception as e:
-        logger.error(f"Data retrieval error in main_view: {e}")
-        return render(request, 'main.html', {
-            'error': 'Unable to fetch data. Please try again later.',
-            'error_details': str(e)
+        logger.error(f"Graph generation error for {household_id}: {e}", exc_info=True)
+        return JsonResponse({
+            'error': 'System error during graph generation',
+            'details': str(e)
+        }, status=500)
+
+
+def list_households(request):
+    """
+    Debug endpoint to list all households in the system.
+    """
+    try:
+        collection = mongo_connection.get_collection()
+        households = list(collection.distinct('householdId'))
+        return JsonResponse({
+            'total_households': len(households),
+            'households': households
         })
+    except Exception as e:
+        logger.error(f"Household listing error: {e}", exc_info=True)
+        return JsonResponse({'error': 'Could not retrieve households'}, status=500)
+
 
 def household_data(request, household_id):
     """
@@ -89,47 +161,50 @@ def household_data(request, household_id):
     """
     try:
         collection = mongo_connection.get_collection()
-        latest_data = collection.find_one(
-            {"householdId": household_id},
-            sort=[("_id", -1)]
-        )
+        latest_data = collection.find_one({"householdId": household_id}, sort=[("_id", -1)])
         if latest_data:
             latest_data['_id'] = str(latest_data['_id'])
             return JsonResponse(latest_data)
+        logger.warning(f"No data found for household {household_id}")
         return JsonResponse({
             'error': f'No data found for household {household_id}',
             'status': 'not_found'
         }, status=404)
     except Exception as e:
-        logger.error(f"Error retrieving household data for ID {household_id}: {e}")
+        logger.error(f"Error retrieving household data for ID {household_id}: {e}", exc_info=True)
         return JsonResponse({
             'error': 'An unexpected error occurred while fetching household data',
             'details': str(e)
         }, status=500)
 
+
+def main_view(request):
+    """
+    Render the main dashboard view.
+    """
+    return render(request, 'main.html')
+
+
 def form_view(request):
-    """Render the household data submission form."""
+    """
+    Render the household data submission form.
+    """
     return render(request, 'form.html')
+
 
 @csrf_exempt
 @require_http_methods(["GET", "POST"])
 def add_household(request):
     """
-    Handle household data submission.
-    Provides comprehensive validation and error handling.
+    Handle household data submission with comprehensive validation.
+    Supports multiple input formats and provides robust error handling.
     """
     if request.method == "GET":
         return render(request, 'form.html')
-    
+
     try:
-        # Flexibly handle different input formats.
-        data = (
-            json.loads(request.body)
-            if request.content_type == 'application/json'
-            else request.POST
-        )
-        
-        # Enhanced field validation.
+        data = json.loads(request.body) if request.content_type == 'application/json' else request.POST
+
         required_fields = [
             'householdId', 'voltage', 'current', 'powerConsumption',
             'solarPower', 'windPower', 'gridSupply', 'overloadCondition',
@@ -138,13 +213,13 @@ def add_household(request):
         ]
         missing_fields = [field for field in required_fields if field not in data or data[field] == ""]
         if missing_fields:
+            logger.debug(f"Missing fields in submission: {missing_fields}")
             return JsonResponse({
                 'status': 'error',
                 'message': f'Missing required fields: {", ".join(missing_fields)}'
             }, status=400)
-        
+
         try:
-            # Safe type conversion with error handling.
             household_data_dict = {
                 "_id": str(uuid.uuid4()),
                 "householdId": data.get("householdId"),
@@ -163,13 +238,13 @@ def add_household(request):
                 "timestamp": datetime.utcnow()
             }
         except ValueError as e:
+            logger.debug(f"Data conversion error: {e} | Data received: {data}")
             return JsonResponse({
                 'status': 'error',
                 'message': f'Invalid data format: {e}',
                 'problematic_fields': [field for field, value in data.items() if not _is_valid_numeric(value)]
             }, status=400)
-        
-        # Insert data into MongoDB.
+
         collection = mongo_connection.get_collection()
         collection.insert_one(household_data_dict)
         logger.info(f"Household data inserted successfully. ID: {household_data_dict['_id']}")
@@ -178,18 +253,19 @@ def add_household(request):
             'message': 'Household data added successfully',
             'household_id': household_data_dict['_id']
         }, status=201)
-    
+
     except Exception as e:
-        logger.error(f"Unexpected error in add_household: {e}")
+        logger.error(f"Unexpected error in add_household: {e}", exc_info=True)
         return JsonResponse({
             'status': 'error',
             'message': 'An unexpected system error occurred',
             'error_details': str(e)
         }, status=500)
 
+
 def _is_valid_numeric(value):
     """
-    Utility function to validate if a value can be converted to a numeric type.
+    Utility function to validate numeric convertibility.
     Helps identify problematic fields during data validation.
     """
     try:
@@ -198,44 +274,83 @@ def _is_valid_numeric(value):
     except (ValueError, TypeError):
         return False
 
-# ------------------------------
-# NEW: Search Households View
-# ------------------------------
+
 def search_households(request):
     """
-    Search for household documents in MongoDB by householdId (case-insensitive).
+    Search for household documents by householdId (case-insensitive).
     Returns a JSON list of matching household IDs.
     """
     try:
         query = request.GET.get('query', '')
         collection = mongo_connection.get_collection()
-        # Perform a case-insensitive regex search on the "householdId" field.
         cursor = collection.find({"householdId": {"$regex": query, "$options": "i"}})
         matching_ids = [doc["householdId"] for doc in cursor]
         logger.info(f"search_households found {len(matching_ids)} matches for query: '{query}'")
         return JsonResponse(matching_ids, safe=False)
     except Exception as e:
-        logger.error(f"Error in search_households: {e}")
-        return JsonResponse({"error": "An unexpected error occurred during search.", "details": str(e)}, status=500)
+        logger.error(f"Error in search_households: {e}", exc_info=True)
+        return JsonResponse({
+            "error": "An unexpected error occurred during search.",
+            "details": str(e)
+        }, status=500)
 
-# ------------------------------
-# NEW: Energy Graphs View
-# ------------------------------
-def energy_graphs_view(request, household_id):
+
+def plotGraphs(request, household_id):
     """
-    Retrieve the latest energy data for a household,
-    create interactive Plotly graphs using the provided utility,
-    and return the configurations as JSON.
+    This view is called via AJAX to fetch additional graph data.
+    It plots two graphs:
+    - A bubble chart for Temperature vs. Humidity.
+    - A bar chart for the breakdown of energy sources (Solar, Wind, Grid).
+    
+    Note: The canvas elements in the HTML must have IDs:
+          'temperatureHumidityBubbleChart' for the bubble chart and
+          'energyMixChart' for the bar chart.
     """
     try:
         collection = mongo_connection.get_collection()
-        data = collection.find_one({"householdId": household_id}, sort=[("_id", -1)])
-        if data:
-            data['_id'] = str(data['_id'])
-            graphs = create_interactive_graphs(data)
-            return JsonResponse(graphs)
-        else:
-            return JsonResponse({'error': f'No data found for household {household_id}'}, status=404)
+        logger.info(f"Plotting additional graphs for household: {household_id}")
+
+        household_data = list(collection.find({"householdId": household_id}))
+        if not household_data:
+            existing_households = list(collection.distinct('householdId'))
+            logger.warning(f"No data for {household_id}. Available: {existing_households}")
+            return JsonResponse({
+                'error': 'No data available',
+                'available_households': existing_households
+            }, status=404)
+
+        # Prepare bubble chart data: Temperature vs. Humidity.
+        bubble_data = []
+        for entry in household_data:
+            bubble_data.append({
+                "x": entry.get("temperature", 0),
+                "y": entry.get("humidity", 0),
+                "r": entry.get("powerConsumption", 0) / 10  # scaling factor
+            })
+
+        # Prepare bar chart data: Breakdown of energy sources.
+        total_solar = sum(entry.get("solarPower", 0) for entry in household_data)
+        total_wind = sum(entry.get("windPower", 0) for entry in household_data)
+        total_grid = sum(entry.get("gridSupply", 0) for entry in household_data)
+        bar_data = {
+            "labels": ["Solar", "Wind", "Grid"],
+            "values": [total_solar, total_wind, total_grid]
+        }
+
+        graphs_data = {
+            "temperature_humidity_bubble": {
+                "data": bubble_data
+            },
+            "power_sources_bar": {
+                "data": bar_data
+            }
+        }
+
+        return JsonResponse(graphs_data, safe=False)
+
     except Exception as e:
-        logger.error(f"Error in energy_graphs_view for household_id {household_id}: {e}")
-        return JsonResponse({'error': str(e)}, status=500)
+        logger.error(f"Graph plotting error for {household_id}: {e}", exc_info=True)
+        return JsonResponse({
+            'error': 'System error during graph plotting',
+            'details': str(e)
+        }, status=500)

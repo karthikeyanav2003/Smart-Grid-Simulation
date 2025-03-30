@@ -49,3 +49,365 @@
 2025-03-26 23:16:49,348 - households.views - ERROR - Error in energy_graphs_view for household_id H001: Object of type Scatter is not JSON serializable
 2025-03-26 23:16:49,348 - django.request - ERROR - Internal Server Error: /energy_graphs_view/H001/
 2025-03-27 08:53:05,363 - households.views - INFO - Successfully established MongoDB connection
+2025-03-27 14:51:59,594 - households.views - INFO - Successfully established MongoDB connection
+2025-03-27 14:52:10,210 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-27 14:52:13,472 - households.views - ERROR - Error in energy_graphs_view for household_id H002: Object of type Scatter is not JSON serializable
+2025-03-27 14:52:13,472 - django.request - ERROR - Internal Server Error: /energy_graphs_view/H002/
+2025-03-27 14:52:18,090 - households.views - ERROR - Error in energy_graphs_view for household_id H005: Object of type Scatter is not JSON serializable
+2025-03-27 14:52:18,101 - django.request - ERROR - Internal Server Error: /energy_graphs_view/H005/
+2025-03-28 14:27:55,213 - households.views - INFO - Successfully established MongoDB connection
+2025-03-28 14:27:59,949 - django.request - WARNING - Not Found: /favicon.ico
+2025-03-28 14:28:06,620 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 14:28:08,817 - households.views - ERROR - Error in energy_graphs_view for household_id H002: name 'create_interactive_graphs' is not defined
+2025-03-28 14:28:08,817 - django.request - ERROR - Internal Server Error: /energy_graphs_view/H002/
+2025-03-28 14:33:31,879 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-03-28 14:33:58,116 - households.views - INFO - Successfully established MongoDB connection
+2025-03-28 14:34:23,042 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-03-28 14:34:49,322 - households.views - INFO - Successfully established MongoDB connection
+2025-03-28 14:35:30,335 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 14:35:32,799 - django.request - WARNING - Not Found: /energy_graphs_view/H001/
+2025-03-28 14:35:45,601 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 14:35:48,188 - django.request - WARNING - Not Found: /energy_graphs_view/H001/
+2025-03-28 14:35:52,033 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-28 14:43:30,375 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-03-28 14:43:56,829 - households.views - INFO - Successfully established MongoDB connection
+2025-03-28 14:53:42,916 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 14:53:44,086 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 14:53:44,415 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 14:53:44,953 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 14:53:45,953 - django.request - WARNING - Not Found: /energy_graphs_view/H003/
+2025-03-28 14:53:52,636 - django.request - WARNING - Not Found: /energy_graphs_view/H005/
+2025-03-28 15:11:53,899 - households.views - INFO - search_households found 1 matches for query: 'H003'
+2025-03-28 15:33:00,654 - households.views - INFO - Successfully established MongoDB connection
+2025-03-28 15:33:12,558 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 15:33:14,552 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-28 15:33:17,133 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-28 15:33:34,805 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-28 15:39:08,895 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-03-28 15:39:35,071 - households.views - INFO - Successfully established MongoDB connection
+2025-03-28 15:39:41,886 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 15:39:45,124 - households.views - ERROR - Error in energy_graphs_view for household H002: Object of type Scatter is not JSON serializable
+2025-03-28 15:39:45,124 - django.request - ERROR - Internal Server Error: /energy_graphs_view/H002/
+2025-03-28 15:39:47,979 - households.views - ERROR - Error in energy_graphs_view for household H002: Object of type Scatter is not JSON serializable
+2025-03-28 15:39:47,979 - django.request - ERROR - Internal Server Error: /energy_graphs_view/H002/
+2025-03-28 15:42:55,953 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-03-28 15:43:22,346 - households.views - INFO - Successfully established MongoDB connection
+2025-03-28 15:43:28,455 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 15:43:31,289 - households.views - WARNING - No data found for household H002 in the last 24 hours.
+2025-03-28 15:43:31,290 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-28 15:43:34,208 - households.views - WARNING - No data found for household H002 in the last 24 hours.
+2025-03-28 15:43:34,208 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-28 15:47:06,153 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 15:47:09,562 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 15:47:14,083 - households.views - WARNING - No data found for household H002 in the last 24 hours.
+2025-03-28 15:47:14,083 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-28 15:47:16,826 - households.views - WARNING - No data found for household H002 in the last 24 hours.
+2025-03-28 15:47:16,826 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-28 15:47:35,570 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 15:47:39,674 - households.views - WARNING - No data found for household H002 in the last 24 hours.
+2025-03-28 15:47:39,674 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-28 15:47:59,568 - households.views - WARNING - No data found for household H002 in the last 24 hours.
+2025-03-28 15:47:59,568 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-28 15:48:02,730 - households.views - WARNING - No data found for household H006 in the last 24 hours.
+2025-03-28 15:48:02,730 - django.request - WARNING - Not Found: /energy_graphs_view/H006/
+2025-03-28 15:48:09,548 - households.views - INFO - search_households found 1 matches for query: 'h003'
+2025-03-28 15:48:10,456 - households.views - INFO - search_households found 1 matches for query: 'h003'
+2025-03-28 15:48:14,343 - households.views - INFO - search_households found 1 matches for query: 'H003'
+2025-03-28 15:50:42,815 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 15:51:19,755 - households.views - WARNING - No data found for household H003 in the last 24 hours.
+2025-03-28 15:51:19,755 - django.request - WARNING - Not Found: /energy_graphs_view/H003/
+2025-03-28 20:06:42,205 - households.views - INFO - Successfully established MongoDB connection
+2025-03-28 20:07:05,607 - django.request - WARNING - Not Found: /favicon.ico
+2025-03-28 20:07:29,134 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:08:18,927 - households.views - INFO - search_households found 1 matches for query: 'H002'
+2025-03-28 20:08:22,348 - households.views - INFO - search_households found 1 matches for query: 'H004'
+2025-03-28 20:08:25,937 - households.views - INFO - search_households found 0 matches for query: 'H009'
+2025-03-28 20:08:27,057 - households.views - INFO - search_households found 0 matches for query: 'H009'
+2025-03-28 20:08:28,348 - households.views - INFO - search_households found 0 matches for query: 'H009'
+2025-03-28 20:08:32,822 - households.views - INFO - search_households found 0 matches for query: 'H002923'
+2025-03-28 20:08:33,642 - households.views - INFO - search_households found 0 matches for query: 'H002923'
+2025-03-28 20:08:34,392 - households.views - INFO - search_households found 0 matches for query: 'H002923'
+2025-03-28 20:14:22,365 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:14:28,326 - households.views - WARNING - No data found for household H004 in the last 24 hours.
+2025-03-28 20:14:28,328 - django.request - WARNING - Not Found: /energy_graphs_view/H004/
+2025-03-28 20:14:31,697 - households.views - WARNING - No data found for household H004 in the last 24 hours.
+2025-03-28 20:14:31,697 - django.request - WARNING - Not Found: /energy_graphs_view/H004/
+2025-03-28 20:14:34,977 - households.views - WARNING - No data found for household H004 in the last 24 hours.
+2025-03-28 20:14:34,978 - django.request - WARNING - Not Found: /energy_graphs_view/H004/
+2025-03-28 20:14:49,090 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:14:50,021 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:14:50,173 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:14:50,403 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:14:51,635 - households.views - WARNING - No data found for household H003 in the last 24 hours.
+2025-03-28 20:14:51,635 - django.request - WARNING - Not Found: /energy_graphs_view/H003/
+2025-03-28 20:14:58,341 - households.views - WARNING - No data found for household H003 in the last 24 hours.
+2025-03-28 20:14:58,342 - django.request - WARNING - Not Found: /energy_graphs_view/H003/
+2025-03-28 20:17:08,832 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:17:10,116 - households.views - WARNING - No data found for household H001 in the last 24 hours.
+2025-03-28 20:17:10,116 - django.request - WARNING - Not Found: /energy_graphs_view/H001/
+2025-03-28 20:17:15,455 - households.views - WARNING - No data found for household H002 in the last 24 hours.
+2025-03-28 20:17:15,455 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-28 20:17:28,365 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:17:28,502 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:17:28,729 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:17:31,910 - households.views - INFO - search_households found 1 matches for query: 'H003'
+2025-03-28 20:17:33,117 - households.views - WARNING - No data found for household H003 in the last 24 hours.
+2025-03-28 20:17:33,117 - django.request - WARNING - Not Found: /energy_graphs_view/H003/
+2025-03-28 20:21:59,856 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:22:01,386 - households.views - WARNING - No data found for household H001 in the last 24 hours.
+2025-03-28 20:22:01,387 - django.request - WARNING - Not Found: /energy_graphs_view/H001/
+2025-03-28 20:22:47,468 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:22:47,649 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:22:48,333 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:22:48,461 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:22:48,690 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:22:51,397 - households.views - WARNING - No data found for household H002 in the last 24 hours.
+2025-03-28 20:22:51,397 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-28 20:22:54,438 - households.views - WARNING - No data found for household H002 in the last 24 hours.
+2025-03-28 20:22:54,438 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-28 20:22:57,398 - households.views - WARNING - No data found for household H002 in the last 24 hours.
+2025-03-28 20:22:57,398 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-28 20:25:15,642 - households.views - WARNING - No data found for household H006 in the last 24 hours.
+2025-03-28 20:25:15,642 - django.request - WARNING - Not Found: /energy_graphs_view/H006/
+2025-03-28 20:25:21,882 - households.views - WARNING - No data found for household H003 in the last 24 hours.
+2025-03-28 20:25:21,886 - django.request - WARNING - Not Found: /energy_graphs_view/H003/
+2025-03-28 20:34:53,959 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-03-28 20:35:11,465 - households.views - INFO - Successfully established MongoDB connection
+2025-03-28 20:35:17,428 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:35:17,684 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:35:20,247 - households.views - WARNING - No data found for household H004 in the last 24 hours.
+2025-03-28 20:35:20,247 - django.request - WARNING - Not Found: /energy_graphs_view/H004/
+2025-03-28 20:38:22,786 - households.views - INFO - Successfully established MongoDB connection
+2025-03-28 20:38:30,860 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:38:52,527 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:38:52,867 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:38:54,503 - households.views - ERROR - Error in energy_graphs_view for household H001: Object of type Scatter is not JSON serializable
+Traceback (most recent call last):
+  File "F:\energy_trading_game\households\views.py", line 237, in energy_graphs_view
+    return JsonResponse(graphs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\http\response.py", line 567, in __init__
+    data = json.dumps(data, cls=encoder, **json_dumps_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\serializers\json.py", line 105, in default
+    return super().default(o)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type Scatter is not JSON serializable
+2025-03-28 20:38:54,508 - django.request - ERROR - Internal Server Error: /energy_graphs_view/H001/
+2025-03-28 20:39:00,939 - households.views - ERROR - Error in energy_graphs_view for household H002: Object of type Scatter is not JSON serializable
+Traceback (most recent call last):
+  File "F:\energy_trading_game\households\views.py", line 237, in energy_graphs_view
+    return JsonResponse(graphs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\http\response.py", line 567, in __init__
+    data = json.dumps(data, cls=encoder, **json_dumps_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\serializers\json.py", line 105, in default
+    return super().default(o)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type Scatter is not JSON serializable
+2025-03-28 20:39:00,939 - django.request - ERROR - Internal Server Error: /energy_graphs_view/H002/
+2025-03-28 20:39:04,172 - households.views - ERROR - Error in energy_graphs_view for household H002: Object of type Scatter is not JSON serializable
+Traceback (most recent call last):
+  File "F:\energy_trading_game\households\views.py", line 237, in energy_graphs_view
+    return JsonResponse(graphs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\http\response.py", line 567, in __init__
+    data = json.dumps(data, cls=encoder, **json_dumps_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\serializers\json.py", line 105, in default
+    return super().default(o)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type Scatter is not JSON serializable
+2025-03-28 20:39:04,172 - django.request - ERROR - Internal Server Error: /energy_graphs_view/H002/
+2025-03-28 20:39:07,423 - households.views - ERROR - Error in energy_graphs_view for household H002: Object of type Scatter is not JSON serializable
+Traceback (most recent call last):
+  File "F:\energy_trading_game\households\views.py", line 237, in energy_graphs_view
+    return JsonResponse(graphs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\http\response.py", line 567, in __init__
+    data = json.dumps(data, cls=encoder, **json_dumps_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\serializers\json.py", line 105, in default
+    return super().default(o)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type Scatter is not JSON serializable
+2025-03-28 20:39:07,423 - django.request - ERROR - Internal Server Error: /energy_graphs_view/H002/
+2025-03-28 20:39:10,340 - households.views - ERROR - Error in energy_graphs_view for household H002: Object of type Scatter is not JSON serializable
+Traceback (most recent call last):
+  File "F:\energy_trading_game\households\views.py", line 237, in energy_graphs_view
+    return JsonResponse(graphs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\http\response.py", line 567, in __init__
+    data = json.dumps(data, cls=encoder, **json_dumps_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\serializers\json.py", line 105, in default
+    return super().default(o)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type Scatter is not JSON serializable
+2025-03-28 20:39:10,340 - django.request - ERROR - Internal Server Error: /energy_graphs_view/H002/
+2025-03-28 20:39:13,810 - households.views - ERROR - Error in energy_graphs_view for household H002: Object of type Scatter is not JSON serializable
+Traceback (most recent call last):
+  File "F:\energy_trading_game\households\views.py", line 237, in energy_graphs_view
+    return JsonResponse(graphs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\http\response.py", line 567, in __init__
+    data = json.dumps(data, cls=encoder, **json_dumps_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\serializers\json.py", line 105, in default
+    return super().default(o)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type Scatter is not JSON serializable
+2025-03-28 20:39:13,810 - django.request - ERROR - Internal Server Error: /energy_graphs_view/H002/
+2025-03-28 20:39:23,310 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-03-28 20:39:40,997 - households.views - INFO - Successfully established MongoDB connection
+2025-03-28 20:42:09,955 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:42:10,213 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:42:16,404 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:42:22,608 - households.views - WARNING - No data found for household H003 in the last 24 hours.
+2025-03-28 20:42:22,608 - django.request - WARNING - Not Found: /energy_graphs_view/H003/
+2025-03-28 20:42:25,575 - households.views - WARNING - No data found for household H003 in the last 24 hours.
+2025-03-28 20:42:25,575 - django.request - WARNING - Not Found: /energy_graphs_view/H003/
+2025-03-28 20:42:30,377 - households.views - WARNING - No data found for household H002 in the last 24 hours.
+2025-03-28 20:42:30,378 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-28 20:42:34,312 - households.views - WARNING - No data found for household H002 in the last 24 hours.
+2025-03-28 20:42:34,316 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-28 20:42:43,609 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:45:01,529 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:45:01,779 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:45:02,015 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:45:06,914 - households.views - WARNING - No data found for household H002 in the last 24 hours.
+2025-03-28 20:45:06,916 - django.request - WARNING - Not Found: /energy_graphs_view/H002/
+2025-03-28 20:45:14,063 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:46:01,514 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:46:01,629 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:46:01,790 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:46:01,982 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:48:48,050 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:48:48,177 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:48:48,347 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:48:48,496 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:48:48,697 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:48:52,162 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:48:56,735 - households.views - WARNING - No data found for household H003 in the last 24 hours.
+2025-03-28 20:48:56,736 - django.request - WARNING - Not Found: /energy_graphs_view/H003/
+2025-03-28 20:56:07,317 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:56:07,462 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:56:07,599 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:56:07,825 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:56:08,964 - households.views - WARNING - No data found for household H001 in the last 24 hours.
+2025-03-28 20:56:08,964 - django.request - WARNING - Not Found: /energy_graphs_view/H001/
+2025-03-28 20:56:30,188 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-03-28 20:56:48,019 - households.views - INFO - Successfully established MongoDB connection
+2025-03-28 20:56:51,440 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:56:51,822 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 20:56:53,109 - households.views - ERROR - Error in energy_graphs_view for household H003: Object of type Scatter is not JSON serializable
+Traceback (most recent call last):
+  File "F:\energy_trading_game\households\views.py", line 227, in energy_graphs_view
+    return JsonResponse(graphs)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\http\response.py", line 567, in __init__
+    data = json.dumps(data, cls=encoder, **json_dumps_params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\serializers\json.py", line 105, in default
+    return super().default(o)
+           ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\json\encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type Scatter is not JSON serializable
+2025-03-28 20:56:53,113 - django.request - ERROR - Internal Server Error: /energy_graphs_view/H003/
+2025-03-28 21:50:46,614 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-03-28 21:51:04,311 - households.views - INFO - Successfully established MongoDB connection
+2025-03-28 21:52:13,452 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 21:52:15,434 - households.views - WARNING - No data found for household H001
+2025-03-28 21:52:15,434 - django.request - WARNING - Not Found: /energy_graphs_view/H001/
+2025-03-28 21:52:23,491 - households.views - WARNING - No data found for household H003
+2025-03-28 21:52:23,491 - django.request - WARNING - Not Found: /energy_graphs_view/H003/
+2025-03-28 22:05:09,026 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-03-28 22:05:26,466 - households.views - INFO - Successfully established MongoDB connection
+2025-03-28 22:05:38,202 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-03-28 22:05:55,637 - households.views - INFO - Successfully established MongoDB connection
+2025-03-28 22:14:59,652 - django.request - WARNING - Not Found: /favicon.ico
+2025-03-28 22:15:04,474 - households.views - INFO - search_households found 7 matches for query: ''
+2025-03-28 22:15:06,337 - households.views - WARNING - No data found for household H001
+2025-03-28 22:15:06,337 - django.request - WARNING - Not Found: /energy_graphs_view/H001/
+2025-03-28 22:22:32,980 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-03-28 22:22:50,860 - households.views - INFO - Successfully established MongoDB connection
+2025-03-28 22:23:21,021 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-03-28 22:35:01,772 - households.views - INFO - Successfully established MongoDB connection
+2025-03-28 22:35:09,342 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
