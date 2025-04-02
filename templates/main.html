@@ -54,6 +54,18 @@
       text-align: center;
       margin-bottom: 6px;
     }
+    /* New styling for navigation buttons */
+    .nav-buttons {
+      text-align: center;
+      margin-top: 10px;
+    }
+    .nav-buttons button {
+      display: inline-block;
+      padding: 8px 12px;
+      font-size: 0.8em; /* Reduced size */
+      margin: 0 5px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -90,12 +102,15 @@
           </ul>
         </div>
 
-        <!-- Navigation Button (Next) Centered -->
-        <div class="center-view-container" style="text-align: center;">
-          <button class="center-view-btn" id="nextButton" style="display: inline-block;" onclick="window.location.href='report.html';">
+        <!-- Navigation Buttons Row -->
+        <div class="nav-buttons">
+          <button class="center-view-btn" id="nextButton" onclick="window.location.href='report.html';">
             <i class="fas fa-arrow-right"></i> Next
           </button>
-        </div>        
+          <button class="center-view-btn" id="deleteButton" onclick="deleteHousehold();">
+            <i class="fas fa-trash"></i> Delete
+          </button>
+        </div>
       </div>
 
       <!-- Main Content Area -->
@@ -154,7 +169,7 @@
                 <h3><i class="fas fa-wrench"></i> Transformer</h3>
                 <div class="value" id="TransformerFault">No</div>
                 <div class="unit">Status</div>
-              </div>
+              </div> 
               <div class="card">
                 <h3><i class="fas fa-thermometer-half"></i> Temperature</h3>
                 <div class="value" id="Temperature">0.00</div>
@@ -625,9 +640,16 @@
         }
       });
 
+      // Next button event listener remains unchanged
       nextButton.addEventListener('click', () => {
         // Implement next household functionality if needed
       });
+
+      // Delete button function
+      window.deleteHousehold = function() {
+        // Placeholder for delete action, e.g., an AJAX request to delete the household.
+        alert('Delete button clicked. Implement delete functionality.');
+      };
 
       // Tab switching logic
       document.querySelectorAll('.tab').forEach(tab => {

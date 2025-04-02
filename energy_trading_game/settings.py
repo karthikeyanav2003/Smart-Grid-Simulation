@@ -14,6 +14,7 @@ from pathlib import Path
 import os
 from pymongo import MongoClient
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -45,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'households',
     'trading', 
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -109,3 +111,5 @@ USE_TZ = True
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+

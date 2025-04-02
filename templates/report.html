@@ -3,13 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Energy Grig Trading Game|Analytics</title>
+  <title>Energy Grid Trading Game | Analytics</title>
+  <!-- Import the new font: Roboto -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary-color: #000000;         /* Black */
+      --secondary-color: #150050;       /* Navy/Dark Purple */
+      --accent-color: #3F0071;          /* Purple */
+      --light-color: #610094;           /* Vivid Purple */
+      --dark-color: #000000;            /* Black */
+      --success-color: #150050;         /* Navy/Dark Purple */
+      --warning-color: #3F0071;         /* Purple */
+      --danger-color: #610094;          /* Vivid Purple */
+    }
+    
+    /* Global Styles */
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      box-sizing: border-box;
+      font-family: 'Roboto', sans-serif;
     }
     
     body {
@@ -18,9 +32,8 @@
       color: #333;
     }
     
-    /* Header: removed white background */
+    /* Header styling */
     header {
-      /* background-color removed so header is transparent */
       padding: 15px 20px;
       border-radius: 8px;
       margin-bottom: 20px;
@@ -45,7 +58,7 @@
       font-size: 24px;
     }
     
-    /* Navigation bar on right side of header */
+    /* Navbar styling */
     .navbar ul {
       list-style: none;
       display: flex;
@@ -78,29 +91,15 @@
       background-color: white;
       border-radius: 8px;
       padding: 15px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
       border-top: 4px solid #ccc;
     }
     
-    .stat-card.surplus {
-      border-top-color: #2a9d8f;
-    }
-    
-    .stat-card.deficit {
-      border-top-color: #e63946;
-    }
-    
-    .stat-card.trading {
-      border-top-color: #457b9d;
-    }
-    
-    .stat-card.market {
-      border-top-color: #f4a261;
-    }
-    
-    .stat-card.utility {
-      border-top-color: #a8dadc;
-    }
+    .stat-card.surplus { border-top-color: #2a9d8f; }
+    .stat-card.deficit { border-top-color: #e63946; }
+    .stat-card.trading { border-top-color: #457b9d; }
+    .stat-card.market { border-top-color: #f4a261; }
+    .stat-card.utility { border-top-color: #a8dadc; }
     
     .stat-title {
       display: flex;
@@ -110,20 +109,11 @@
       margin-bottom: 8px;
     }
     
-    .stat-title i {
-      margin-right: 5px;
-    }
+    .stat-title i { margin-right: 5px; }
     
-    .stat-value {
-      font-size: 24px;
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
+    .stat-value { font-size: 24px; font-weight: bold; margin-bottom: 5px; }
     
-    .stat-subtitle {
-      font-size: 12px;
-      color: #6c757d;
-    }
+    .stat-subtitle { font-size: 12px; color: #6c757d; }
     
     .content-container {
       display: grid;
@@ -133,16 +123,14 @@
     }
     
     @media (min-width: 992px) {
-      .content-container {
-        grid-template-columns: 2fr 1fr;
-      }
+      .content-container { grid-template-columns: 2fr 1fr; }
     }
     
     .panel {
       background-color: white;
       border-radius: 8px;
       padding: 15px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
     
     .panel-header {
@@ -154,16 +142,8 @@
       border-bottom: 1px solid #e9ecef;
     }
     
-    .panel-title {
-      font-size: 18px;
-      font-weight: bold;
-      display: flex;
-      align-items: center;
-    }
-    
-    .panel-title i {
-      margin-right: 8px;
-    }
+    .panel-title { font-size: 18px; font-weight: bold; display: flex; align-items: center; }
+    .panel-title i { margin-right: 8px; }
     
     .info-text {
       font-size: 13px;
@@ -172,15 +152,9 @@
       align-items: center;
     }
     
-    .info-text i {
-      margin-right: 5px;
-      font-size: 14px;
-    }
+    .info-text i { margin-right: 5px; font-size: 14px; }
     
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
+    table { width: 100%; border-collapse: collapse; }
     
     th, td {
       padding: 10px 15px;
@@ -194,25 +168,12 @@
       background-color: #f8f9fa;
     }
     
-    tr:last-child td {
-      border-bottom: none;
-    }
+    tr:last-child td { border-bottom: none; }
     
-    .positive {
-      color: #2a9d8f;
-    }
-    
-    .negative {
-      color: #e63946;
-    }
-    
-    .status-allowed {
-      color: #2a9d8f;
-    }
-    
-    .status-not-allowed {
-      color: #e63946;
-    }
+    .positive { color: #2a9d8f; }
+    .negative { color: #e63946; }
+    .status-allowed { color: #2a9d8f; }
+    .status-not-allowed { color: #e63946; }
     
     .pagination {
       display: flex;
@@ -231,10 +192,7 @@
       transition: all 0.2s;
     }
     
-    .pagination button:hover {
-      background-color: #f8f9fa;
-    }
-    
+    .pagination button:hover { background-color: #f8f9fa; }
     .pagination button.active {
       background-color: #457b9d;
       color: white;
@@ -273,14 +231,11 @@
       cursor: pointer;
       border-radius: 4px;
       font-weight: 500;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
       transition: all 0.2s;
     }
     
-    .bottom-navigation button:hover {
-      background-color: #457b9d;
-    }
-    
+    .bottom-navigation button:hover { background-color: #457b9d; }
     .bottom-navigation button:disabled {
       opacity: 0.5;
       cursor: not-allowed;
@@ -293,7 +248,6 @@
       <div class="header-icon">⚡</div>
       <h1>Analytics Report</h1>
     </div>
-    <!-- Navigation Bar on right side of header -->
     <nav class="navbar">
       <ul>
         <li><a href="#">Home</a></li>
@@ -306,48 +260,37 @@
   
   <div class="stats-container">
     <div class="stat-card surplus">
-      <div class="stat-title">
-        <i>⊕</i> Total Surplus Energy
-      </div>
+      <div class="stat-title"><i>⊕</i> Total Surplus Energy</div>
       <div class="stat-value">450 kWh</div>
       <div class="stat-subtitle">Available for trading</div>
     </div>
     
     <div class="stat-card deficit">
-      <div class="stat-title">
-        <i>⊖</i> Total Required Energy
-      </div>
+      <div class="stat-title"><i>⊖</i> Total Required Energy</div>
       <div class="stat-value">320 kWh</div>
       <div class="stat-subtitle">Energy deficit</div>
     </div>
     
     <div class="stat-card trading">
-      <div class="stat-title">
-        <i>⚙</i> Trading Allowed
-      </div>
-      <div class="stat-value">3 out of 5</div>
+      <div class="stat-title"><i>⚙</i> Trading Allowed</div>
+      <!-- The count here is updated dynamically -->
+      <div id="tradingAllowedCount" class="stat-value">0 out of 0</div>
       <div class="stat-subtitle">Active participants</div>
     </div>
     
     <div class="stat-card market">
-      <div class="stat-title">
-        <i>💲</i> Average Price
-      </div>
+      <div class="stat-title"><i>💲</i> Average Price</div>
       <div class="stat-value">$0.14/kWh</div>
       <div class="stat-subtitle">Market rate</div>
     </div>
     
     <div class="stat-card utility">
-      <div class="stat-title">
-        <i>⚡</i> Grid Purchase Price 
-      </div>
+      <div class="stat-title"><i>⚡</i> Grid Purchase Price</div>
       <div class="stat-value">$0.10/kWh</div>
       <div class="stat-subtitle">Utility rate</div>
     </div>
     <div class="stat-card utility">
-      <div class="stat-title">
-        <i>⚡</i> Grid Sell Price
-      </div>
+      <div class="stat-title"><i>⚡</i> Grid Sell Price</div>
       <div class="stat-value">$0.20/kWh</div>
       <div class="stat-subtitle">Utility rate</div>
     </div>
@@ -356,11 +299,8 @@
   <div class="content-container">
     <div class="panel">
       <div class="panel-header">
-        <div class="panel-title">
-          <i>🏠</i> Grid Participants
-        </div>
+        <div class="panel-title"><i>🏠</i> Grid Participants</div>
       </div>
-      
       <div class="table-responsive">
         <table>
           <thead>
@@ -373,78 +313,21 @@
               <th>Actions</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>H001</td>
-              <td class="positive">+75.2</td>
-              <td class="status-allowed">Allowed</td>
-              <td>$0.12</td>
-              <td>Producer</td>
-              <td class="checkbox-container">
-                <input type="checkbox" checked>
-              </td>
-            </tr>
-            <tr>
-              <td>H002</td>
-              <td class="negative">-45.0</td>
-              <td class="status-allowed">Allowed</td>
-              <td>$0.15</td>
-              <td>Consumer</td>
-              <td class="checkbox-container">
-                <input type="checkbox" checked>
-              </td>
-            </tr>
-            <tr>
-              <td>H003</td>
-              <td class="positive">+120.8</td>
-              <td class="status-allowed">Allowed</td>
-              <td>$0.11</td>
-              <td>Producer</td>
-              <td class="checkbox-container">
-                <input type="checkbox" checked>
-              </td>
-            </tr>
-            <tr>
-              <td>H004</td>
-              <td class="negative">-55.2</td>
-              <td class="status-not-allowed">Not Allowed</td>
-              <td>$0.16</td>
-              <td>Consumer</td>
-              <td class="checkbox-container">
-                <input type="checkbox">
-              </td>
-            </tr>
-            <tr>
-              <td>H005</td>
-              <td class="positive">+85.5</td>
-              <td class="status-not-allowed">Not Allowed</td>
-              <td>$0.13</td>
-              <td>Producer</td>
-              <td class="checkbox-container">
-                <input type="checkbox">
-              </td>
-            </tr>
+          <tbody id="energyTableBody">
+            <!-- Energy data rows will be dynamically inserted here -->
           </tbody>
         </table>
       </div>
-      
       <div class="pagination">
-        <button disabled>Previous</button>
-        <button class="active">1</button>
-        <button>2</button>
-        <button>Next</button>
+        <button class="active">Analyse</button>
       </div>
     </div>
     
     <div class="panel">
       <div class="panel-header">
-        <div class="panel-title">
-          <i>📊</i> Trading Statistics
-        </div>
+        <div class="panel-title"><i>📊</i> Trading Statistics</div>
       </div>
-      
       <div id="trading-charts">
-        <!-- Chart placeholders -->
         <div style="width: 100%; height: 150px; background-color: #f8f9fa; border-radius: 8px; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; color: #6c757d;">
           Energy Balance Chart
         </div>
@@ -455,8 +338,61 @@
     </div>
   </div>
   
-  <!-- Bottom navigation remains if needed -->
-  <div class="bottom-navigation">
-  </div>
+  <div class="bottom-navigation"></div>
+  
+  <script>
+    // Function to update the Trading Allowed count
+    function updateTradingAllowedCount() {
+      const checkboxes = document.querySelectorAll('#energyTableBody tr input[type="checkbox"]');
+      let allowedCount = 0;
+      checkboxes.forEach(chk => {
+        if(chk.checked) allowedCount++;
+      });
+      const total = checkboxes.length;
+      document.getElementById('tradingAllowedCount').innerText = `${allowedCount} out of ${total}`;
+    }
+    
+    // When the page loads, fetch energy data from the Django endpoint
+    document.addEventListener("DOMContentLoaded", function () {
+      fetch('/main/energy-summary/')  // Ensure this matches your URL configuration
+        .then(response => response.json())
+        .then(data => {
+          const tableBody = document.getElementById("energyTableBody");
+          tableBody.innerHTML = "";
+          if (data.energy_data && data.energy_data.length > 0) {
+            data.energy_data.forEach(item => {
+              const price = "N/A"; // Adjust if price data is available later
+              const surplusClass = item["Surplus Energy (kWh)"] > 0 ? "positive" : "negative";
+              const statusClass = item["Trading Status"] === "Allowed" ? "status-allowed" : "status-not-allowed";
+              tableBody.innerHTML += `
+                <tr>
+                  <td>${item["House Hold ID"]}</td>
+                  <td class="${surplusClass}">${item["Surplus Energy (kWh)"]}</td>
+                  <td class="${statusClass}">${item["Trading Status"]}</td>
+                  <td>${price}</td>
+                  <td>${item["Role"]}</td>
+                  <td class="checkbox-container">
+                    <input type="checkbox" ${item["Trading Status"] === "Allowed" ? "checked" : ""}>
+                  </td>
+                </tr>`;
+            });
+          } else {
+            tableBody.innerHTML = "<tr><td colspan='6'>No data available</td></tr>";
+          }
+          // Update the trading allowed count after data is loaded
+          updateTradingAllowedCount();
+          // Attach event listeners to all checkboxes to update count when toggled
+          document.querySelectorAll('#energyTableBody tr input[type="checkbox"]').forEach(chk => {
+            chk.addEventListener('change', updateTradingAllowedCount);
+          });
+        })
+        .catch(error => {
+          console.error("Error fetching energy data:", error);
+          document.getElementById("energyTableBody").innerHTML = "<tr><td colspan='6'>Error loading data</td></tr>";
+          // In case of error, reset the trading allowed count
+          document.getElementById('tradingAllowedCount').innerText = "0 out of 0";
+        });
+    });
+  </script>
 </body>
 </html>

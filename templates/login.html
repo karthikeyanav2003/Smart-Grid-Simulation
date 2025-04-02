@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Energy Grid Trading - Login</title>
+  <style>
+    :root {
+      --primary-color: #2ecc71;
+      --secondary-color: #27ae60;
+      --background-color: #f9f9f9;
+      --text-color: #333;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+      --error-color: #e74c3c;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background-color: var(--background-color);
+      color: var(--text-color);
+      min-height: 100vh;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #login-page {
+      max-width: 400px;
+      width: 100%;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px var(--shadow-color);
+      padding: 30px;
+    }
+    .logo {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    .logo span {
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+    .form-title {
+      text-align: center;
+      color: var(--primary-color);
+      margin-bottom: 25px;
+      font-size: 28px;
+    }
+    .form-subtitle {
+      text-align: center;
+      margin-bottom: 30px;
+      color: #777;
+      font-size: 14px;
+    }
+    .input-group {
+      margin-bottom: 20px;
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+    .input-group input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+      transition: border-color 0.3s;
+    }
+    .input-group input:focus {
+      outline: none;
+      border-color: var(--primary-color);
+    }
+    .btn {
+      width: 100%;
+      padding: 12px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 600;
+      transition: background-color 0.3s;
+    }
+    .btn:hover {
+      background-color: var(--secondary-color);
+    }
+    .form-footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    .form-footer a {
+      color: var(--primary-color);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    .form-footer a:hover {
+      text-decoration: underline;
+    }
+    .error-message {
+      color: var(--error-color);
+      font-size: 14px;
+      margin-top: 5px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="login-page">
+    <div class="logo">
+      <span>⚡ Energy Grid Trading</span>
+    </div>
+    <h1 class="form-title">Login</h1>
+    <p class="form-subtitle">Sign in to access your energy trading dashboard</p>
+    <form id="login" action="#" method="post">
+      <div class="input-group">
+        <label for="login-username">Username</label>
+        <input type="text" id="login-username" name="username" placeholder="Enter your username" required>
+        <p class="error-message" id="login-username-error">Please enter a valid username</p>
+      </div>
+      <div class="input-group">
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" name="password" placeholder="Enter your password" required>
+        <p class="error-message" id="login-password-error">Please enter your password</p>
+      </div>
+      <button type="submit" class="btn">Log In</button>
+    </form>
+    <div class="form-footer">
+      <p>New to Energy Grid Trading? <a href="signup.html">Sign up here</a></p>
+    </div>
+  </div>
+  <script>
+    // Simple login validation demo (replace with real validation logic)
+    document.getElementById('login').addEventListener('submit', function(e) {
+      e.preventDefault();
+      let valid = true;
+      const username = document.getElementById('login-username').value;
+      const password = document.getElementById('login-password').value;
+      
+      // Reset error messages
+      document.querySelectorAll('.error-message').forEach(elem => {
+        elem.style.display = 'none';
+      });
+      
+      if (!username) {
+        document.getElementById('login-username-error').style.display = 'block';
+        valid = false;
+      }
+      if (!password) {
+        document.getElementById('login-password-error').style.display = 'block';
+        valid = false;
+      }
+      
+      if (valid) {
+        alert('Login successful! Welcome to Energy Grid Trading.');
+        // Implement further logic here...
+      }
+    });
+  </script>
+</body>
+</html>
