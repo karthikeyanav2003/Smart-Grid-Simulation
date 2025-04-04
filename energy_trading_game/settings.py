@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
+    os.path.join(BASE_DIR, 'templates'),
 ]
 
 # Application definition
@@ -81,8 +82,9 @@ WSGI_APPLICATION = 'energy_trading_game.wsgi.application'
 
 
 # Database: MongoDB Configuration
-MONGO_CLIENT = MongoClient("mongodb+srv://vishwarprediscan:zT0K3JICskXrc44W@household.ipekb.mongodb.net/")
-MONGO_DB = MONGO_CLIENT["Smartgrid"]  # Your database name
+MONGO_URI = "mongodb+srv://vishwarprediscan:zT0K3JICskXrc44W@household.ipekb.mongodb.net/"
+MONGO_DB_NAME = "Smartgrid"
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [

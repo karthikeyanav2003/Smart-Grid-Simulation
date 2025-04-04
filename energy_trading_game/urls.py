@@ -3,6 +3,7 @@ from django.urls import path
 from django.views.generic import TemplateView
 from households import views as households_views
 from trading import views as trading_views  # Import from the correct module
+from django.urls import include
 urlpatterns = [
     # Admin site
     path('admin/', admin.site.urls),
@@ -22,4 +23,5 @@ urlpatterns = [
     path('energy_graphs_view/<str:household_id>/', households_views.energy_graphs_view, name='energy_graphs_view'),
     # Optional: Debug endpoint to list all households
     path('list_households/', households_views.list_households, name='list_households'),
+    path('users/', include('users.urls')),
 ]
