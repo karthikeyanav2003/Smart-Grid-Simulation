@@ -5,8 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Energy Grid Trading - Signup</title>
-  
-  <!-- Link CSS -->
   <link rel="stylesheet" href="{% static 'css/signup.css' %}">
 </head>
 <body>
@@ -38,7 +36,15 @@
         </div>
       </div>
     </div>
-    
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
     <!-- Form Container -->
     <div class="form-container">
       <!-- Progress Bar -->
@@ -47,12 +53,8 @@
         <div class="step active" id="step1">1</div>
         <div class="step" id="step2">2</div>
       </div>
-
-      <!-- Signup Form (2-Step) -->
       <form id="signupForm" action="{% url 'signup' %}" method="post">
         {% csrf_token %}
-        <input type="hidden" id="csrf_token" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
-
         <!-- Step 1: Personal Information -->
         <div class="form-step active" id="formStep1">
           <h2 class="form-title">Personal Information</h2>
@@ -60,54 +62,53 @@
             <div class="input-group">
               <label for="firstname">First Name</label>
               <input type="text" id="firstname" name="firstname" placeholder="Your first name" required>
-              <p class="error-message" id="firstname-error" style="display: none;">Please enter your first name</p>
+              <p class="error-message" id="firstname-error">Please enter your first name</p>
             </div>
             <div class="input-group">
               <label for="lastname">Last Name</label>
               <input type="text" id="lastname" name="lastname" placeholder="Your last name" required>
-              <p class="error-message" id="lastname-error" style="display: none;">Please enter your last name</p>
+              <p class="error-message" id="lastname-error">Please enter your last name</p>
             </div>
           </div>
           <div class="input-group">
             <label for="email">Email Address</label>
             <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
             <span class="input-group-icon">✉️</span>
-            <p class="error-message" id="email-error" style="display: none;">Please enter a valid email address</p>
+            <p class="error-message" id="email-error">Please enter a valid email address</p>
           </div>
           <div class="input-group">
             <label for="dob">Date of Birth</label>
             <input type="date" id="dob" name="dob" required>
-            <p class="error-message" id="dob-error" style="display: none;">Please enter a valid date of birth</p>
+            <p class="error-message" id="dob-error">Please enter a valid date of birth</p>
           </div>
           <div class="btn-container">
             <button type="button" class="btn btn-next" id="toStep2">Continue</button>
           </div>
         </div>
-
         <!-- Step 2: Account Security -->
         <div class="form-step" id="formStep2">
           <h2 class="form-title">Create Your Account</h2>
           <div class="input-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" placeholder="Choose a unique username" required>
+            <label for="signup-username">Username</label>
+            <input type="text" id="signup-username" name="username" placeholder="Choose a unique username" required>
             <span class="input-group-icon">👤</span>
-            <p class="error-message" id="username-error" style="display: none;">Username must be at least 4 characters</p>
+            <p class="error-message" id="username-error">Username must be at least 4 characters</p>
           </div>
           <div class="input-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" placeholder="Create a strong password" required>
+            <label for="signup-password">Password</label>
+            <input type="password" id="signup-password" name="password" placeholder="Create a strong password" required>
             <span class="input-group-icon">🔒</span>
             <div class="password-strength">
               <div class="password-strength-fill" id="passwordStrength"></div>
             </div>
             <p class="password-feedback" id="passwordFeedback"></p>
-            <p class="error-message" id="password-error" style="display: none;">Password must be at least 8 characters</p>
+            <p class="error-message" id="password-error">Password must be at least 8 characters</p>
           </div>
           <div class="input-group">
-            <label for="confirm_password">Confirm Password</label>
-            <input type="password" id="confirm_password" name="confirm_password" placeholder="Confirm your password" required>
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirm_password" placeholder="Confirm your password" required>
             <span class="input-group-icon">🔒</span>
-            <p class="error-message" id="confirm-password-error" style="display: none;">Passwords do not match</p>
+            <p class="error-message" id="confirm-password-error">Passwords do not match</p>
           </div>
           <div class="btn-container">
             <button type="button" class="btn btn-back" id="backToStep1">Back</button>
@@ -115,15 +116,12 @@
           </div>
         </div>
       </form>
-
       <div class="form-footer">
         <p>Already have an account? <a href="{% url 'login' %}">Log in here</a></p>
       </div>
     </div>
   </div>
-
-  <!-- Link JavaScript -->
   <script src="{% static 'js/signup.js' %}"></script>
-
 </body>
 </html>
+  

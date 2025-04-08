@@ -2305,3 +2305,431 @@ django.template.exceptions.TemplateDoesNotExist: users/login.html
 2025-04-04 02:19:48,408 - django.request - WARNING - Not Found: /users/signup/check_email/
 2025-04-04 02:19:48,911 - django.request - WARNING - Not Found: /users/signup/check_email/
 2025-04-04 02:19:49,045 - django.request - WARNING - Not Found: /users/signup/check_email/
+2025-04-06 20:52:41,337 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 20:52:41,743 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 20:53:04,035 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-06 20:53:04,036 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 20:53:06,906 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 20:53:09,319 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 20:54:39,281 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-06 20:54:39,283 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 20:54:43,255 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 20:54:43,734 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 20:55:02,700 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-06 20:55:02,702 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 20:55:07,953 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 20:55:09,339 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 20:55:34,801 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-06 20:55:34,802 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 20:55:37,884 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 20:55:38,280 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 20:55:40,023 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-06 20:55:48,154 - django.request - ERROR - Internal Server Error: /users/login/
+Traceback (most recent call last):
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py", line 63, in login_view
+    return render(request, 'users/login.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: users/login.html
+2025-04-06 20:55:57,984 - django.request - ERROR - Internal Server Error: /users/signup/
+Traceback (most recent call last):
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\views\decorators\csrf.py", line 54, in wrapped_view
+    return view_func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py", line 50, in signup_view
+    return render(request, 'users/signup.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: users/signup.html
+2025-04-06 20:58:07,240 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 20:58:14,608 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 20:58:15,055 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 20:58:18,705 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-06 20:58:25,547 - django.request - WARNING - Not Found: /users/
+2025-04-06 20:58:31,282 - django.request - ERROR - Internal Server Error: /users/login/
+Traceback (most recent call last):
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 181, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py", line 63, in login_view
+    return render(request, 'users/login.html')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: users/login.html
+2025-04-06 20:59:34,297 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-06 20:59:34,298 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 20:59:37,072 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 20:59:38,463 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 20:59:40,799 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-06 20:59:40,800 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 20:59:42,583 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 20:59:45,404 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 21:00:29,822 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-06 21:00:29,823 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 21:00:33,639 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 21:00:35,071 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 21:01:05,437 - django.request - WARNING - Not Found: /users/signup/{% url 'signup' %}
+2025-04-06 21:01:07,459 - django.request - WARNING - Not Found: /users/signup/login.html
+2025-04-06 21:01:53,640 - django.request - WARNING - Not Found: /users/signup/login.html
+2025-04-06 21:01:57,868 - django.request - WARNING - Not Found: /users/signup/{% url 'signup' %}
+2025-04-06 21:07:25,752 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-06 21:07:25,754 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 21:07:28,634 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 21:07:28,991 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 21:07:30,328 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-06 21:07:30,329 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 21:07:32,262 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 21:07:33,712 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 21:07:37,069 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-06 21:07:37,070 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 21:07:39,773 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 21:07:40,160 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 21:07:43,547 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-06 21:07:43,548 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 21:07:46,294 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 21:07:47,686 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 21:09:46,110 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 21:09:46,456 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 21:10:41,575 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\urls.py changed, reloading.
+2025-04-06 21:10:41,577 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 21:10:42,151 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\urls.py changed, reloading.
+2025-04-06 21:10:42,152 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 21:10:43,606 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 21:10:44,268 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 21:10:45,294 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 21:10:45,659 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 21:18:37,465 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-06 21:18:37,466 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 21:18:38,389 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-06 21:18:38,390 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 21:18:41,153 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 21:18:41,420 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 21:18:42,773 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 21:18:43,588 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 21:18:46,942 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-06 21:18:46,943 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 21:18:47,180 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-06 21:18:47,180 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 21:18:48,742 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 21:18:50,758 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 21:18:51,198 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 21:18:53,274 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 21:19:24,182 - django.request - WARNING - Not Found: /signup/
+2025-04-06 21:19:24,672 - django.request - WARNING - Not Found: /signup/
+2025-04-06 21:19:25,163 - django.request - WARNING - Not Found: /signup/
+2025-04-06 21:19:25,301 - django.request - WARNING - Not Found: /signup/
+2025-04-06 21:19:25,441 - django.request - WARNING - Not Found: /signup/
+2025-04-06 21:19:50,055 - django.request - WARNING - Not Found: /signup/
+2025-04-06 21:19:50,615 - django.request - WARNING - Not Found: /signup/
+2025-04-06 21:19:50,767 - django.request - WARNING - Not Found: /signup/
+2025-04-06 21:19:50,994 - django.request - WARNING - Not Found: /signup/
+2025-04-06 21:21:17,284 - django.request - WARNING - Not Found: /signup/
+2025-04-06 21:21:18,789 - django.request - WARNING - Not Found: /signup/
+2025-04-06 21:21:18,933 - django.request - WARNING - Not Found: /signup/
+2025-04-06 21:21:19,045 - django.request - WARNING - Not Found: /signup/
+2025-04-06 21:21:19,157 - django.request - WARNING - Not Found: /signup/
+2025-04-06 21:21:19,276 - django.request - WARNING - Not Found: /signup/
+2025-04-06 21:21:19,486 - django.request - WARNING - Not Found: /signup/
+2025-04-06 21:22:45,997 - django.request - WARNING - Not Found: /signup/
+2025-04-06 21:22:46,350 - django.request - WARNING - Not Found: /signup/
+2025-04-06 21:22:46,481 - django.request - WARNING - Not Found: /signup/
+2025-04-06 21:22:46,597 - django.request - WARNING - Not Found: /signup/
+2025-04-06 21:22:46,693 - django.request - WARNING - Not Found: /signup/
+2025-04-06 21:22:46,798 - django.request - WARNING - Not Found: /signup/
+2025-04-06 21:22:46,902 - django.request - WARNING - Not Found: /signup/
+2025-04-06 21:22:46,997 - django.request - WARNING - Not Found: /signup/
+2025-04-06 21:23:43,737 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-06 21:23:43,738 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 21:23:44,172 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-06 21:23:44,173 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 21:23:46,664 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 21:23:46,925 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 21:23:48,303 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 21:23:49,031 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 21:23:59,596 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-06 21:23:59,598 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 21:23:59,894 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-06 21:23:59,894 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 21:24:01,360 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 21:24:02,816 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 21:24:03,623 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 21:24:03,997 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 21:24:06,369 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-06 21:24:06,371 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 21:24:07,223 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-06 21:24:07,223 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 21:24:08,044 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 21:24:08,408 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 21:24:08,967 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 21:24:09,343 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 21:24:23,965 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-06 21:24:23,966 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 21:24:24,081 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-06 21:24:24,081 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-06 21:24:25,848 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 21:24:25,876 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-06 21:24:27,230 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 21:24:28,321 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-06 21:28:21,349 - django.request - WARNING - Not Found: /signup/
+2025-04-07 22:16:19,449 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-07 22:16:19,836 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-07 22:26:04,858 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-07 22:26:04,859 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-07 22:26:06,636 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-07 22:26:07,026 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-07 22:26:10,570 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-07 22:26:10,570 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-07 22:26:12,395 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-07 22:26:12,768 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-07 22:26:21,412 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-07 22:26:21,413 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-07 22:26:24,113 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-07 22:26:24,464 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-07 22:26:27,825 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-07 22:26:27,825 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-07 22:26:29,489 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-07 22:26:30,879 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-07 22:26:37,487 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-07 22:26:37,487 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-07 22:26:39,176 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-07 22:26:40,587 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-07 22:26:49,013 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-07 22:26:49,013 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-07 22:26:50,779 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-07 22:26:52,176 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-07 22:26:55,481 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-07 22:26:55,481 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-07 22:26:57,189 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-07 22:26:58,577 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-07 22:27:06,019 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-07 22:27:06,020 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-07 22:27:07,841 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-07 22:27:08,224 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-07 22:27:10,694 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-07 22:27:10,695 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-07 22:27:12,398 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-07 22:27:12,766 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-07 22:27:15,868 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-07 22:28:54,231 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-07 22:28:54,231 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-07 22:28:57,866 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-07 22:28:59,237 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-07 22:29:03,732 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-07 22:29:03,733 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-07 22:29:06,573 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-07 22:29:06,978 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-07 22:29:10,453 - django.utils.autoreload - INFO - D:\Projects\Sem 8\DA Lab\energy_trading_game\users\views.py changed, reloading.
+2025-04-07 22:29:10,454 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-07 22:29:12,187 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-07 22:29:12,535 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-08 09:31:47,283 - households.views - CRITICAL - Critical MongoDB Connection Failure: household-shard-00-01.ipekb.mongodb.net:27017: timed out
+Traceback (most recent call last):
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1278, in _get_socket
+    sock_info = self.sockets.popleft()
+                ^^^^^^^^^^^^^^^^^^^^^^
+IndexError: pop from an empty deque
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1180, in connect
+    sock = _configured_socket(self.address, self.opts)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 988, in _configured_socket
+    sock = _create_connection(address, options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 972, in _create_connection
+    raise err
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 965, in _create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Projects\Sem 8\DA Lab\energy_trading_game\households\views.py", line 55, in _connect
+    self.client.server_info()
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1875, in server_info
+    return self.admin.command("buildinfo",
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\database.py", line 736, in command
+    with self.__client._socket_for_reads(
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1327, in _socket_for_reads
+    with self._get_socket(server, session) as sock_info:
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1246, in _get_socket
+    with server.get_socket(
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1231, in get_socket
+    sock_info = self._get_socket(all_credentials)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1281, in _get_socket
+    sock_info = self.connect(all_credentials)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1187, in connect
+    _raise_connection_failure(self.address, error)
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 277, in _raise_connection_failure
+    raise NetworkTimeout(msg)
+pymongo.errors.NetworkTimeout: household-shard-00-01.ipekb.mongodb.net:27017: timed out
+2025-04-08 09:31:48,294 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-08 09:32:03,722 - trading.views - CRITICAL - MongoDB Connection Error: household-shard-00-01.ipekb.mongodb.net:27017: timed out
+Traceback (most recent call last):
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1278, in _get_socket
+    sock_info = self.sockets.popleft()
+                ^^^^^^^^^^^^^^^^^^^^^^
+IndexError: pop from an empty deque
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1180, in connect
+    sock = _configured_socket(self.address, self.opts)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 988, in _configured_socket
+    sock = _create_connection(address, options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 972, in _create_connection
+    raise err
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 965, in _create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Projects\Sem 8\DA Lab\energy_trading_game\trading\views.py", line 42, in _connect
+    self.client.server_info()  # Verify connection
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1875, in server_info
+    return self.admin.command("buildinfo",
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\database.py", line 736, in command
+    with self.__client._socket_for_reads(
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1327, in _socket_for_reads
+    with self._get_socket(server, session) as sock_info:
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1246, in _get_socket
+    with server.get_socket(
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1231, in get_socket
+    sock_info = self._get_socket(all_credentials)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1281, in _get_socket
+    sock_info = self.connect(all_credentials)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1187, in connect
+    _raise_connection_failure(self.address, error)
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 277, in _raise_connection_failure
+    raise NetworkTimeout(msg)
+pymongo.errors.NetworkTimeout: household-shard-00-01.ipekb.mongodb.net:27017: timed out
+2025-04-08 09:32:57,182 - households.views - CRITICAL - Critical MongoDB Connection Failure: household-shard-00-01.ipekb.mongodb.net:27017: timed out
+Traceback (most recent call last):
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1278, in _get_socket
+    sock_info = self.sockets.popleft()
+                ^^^^^^^^^^^^^^^^^^^^^^
+IndexError: pop from an empty deque
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1180, in connect
+    sock = _configured_socket(self.address, self.opts)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 988, in _configured_socket
+    sock = _create_connection(address, options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 972, in _create_connection
+    raise err
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 965, in _create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\Projects\Sem 8\DA Lab\energy_trading_game\households\views.py", line 55, in _connect
+    self.client.server_info()
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1875, in server_info
+    return self.admin.command("buildinfo",
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\database.py", line 736, in command
+    with self.__client._socket_for_reads(
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1327, in _socket_for_reads
+    with self._get_socket(server, session) as sock_info:
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1246, in _get_socket
+    with server.get_socket(
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1231, in get_socket
+    sock_info = self._get_socket(all_credentials)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1281, in _get_socket
+    sock_info = self.connect(all_credentials)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1187, in connect
+    _raise_connection_failure(self.address, error)
+  File "C:\Users\karth\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 277, in _raise_connection_failure
+    raise NetworkTimeout(msg)
+pymongo.errors.NetworkTimeout: household-shard-00-01.ipekb.mongodb.net:27017: timed out
+2025-04-08 09:32:58,007 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-08 09:32:58,840 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-08 09:33:19,432 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-08 09:33:21,679 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-08 09:35:20,829 - asyncio - DEBUG - Using proactor: IocpProactor
