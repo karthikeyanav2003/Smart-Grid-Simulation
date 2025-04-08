@@ -12,8 +12,6 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 import os
-from pymongo import MongoClient
-
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +26,6 @@ SECRET_KEY = 'django-insecure-edgcd&u4#y=b!z@z=@0q_w15=9%v8^x8ro+)^9k%0mkbz_#axu
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Static files settings
 STATIC_URL = '/static/'
@@ -80,11 +77,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'energy_trading_game.wsgi.application'
 
+# Database: Using SQLite for Django's built-in features.
+# Although the main application data is stored in MongoDB Atlas,
+# Django requires a valid relational database for its ORM-dependent features.
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',  # Correct database engine (SQLite)
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 
-# Database: MongoDB Configuration
+# MongoDB Atlas configuration (for PyMongo usage)
 MONGO_URI = "mongodb+srv://vishwarprediscan:zT0K3JICskXrc44W@household.ipekb.mongodb.net/"
 MONGO_DB_NAME = "Smartgrid"
-
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
@@ -113,5 +118,3 @@ USE_TZ = True
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-

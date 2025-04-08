@@ -1,25 +1,14 @@
-from django.shortcuts import render
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render, redirect
+from django.views.decorators.csrf import csrf_protect
 from django.conf import settings
 from pymongo import MongoClient
-from django.contrib.auth.hashers import make_password
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login, logout
-from django.contrib import messages
-from flask import Flask, request, jsonify, redirect, render_template
-import re
-from datetime import datetime
-import bcrypt
-from werkzeug.security import generate_password_hash
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_protect
 from pymongo.errors import DuplicateKeyError
-from bson.objectid import ObjectId
+from django.contrib import messages
+from django.contrib.auth import logout
 import hashlib
 import datetime
+from bson import ObjectId
+
 # Connect to MongoDB using settings
 client = MongoClient(settings.MONGO_URI)
 db = client[settings.MONGO_DB_NAME]
@@ -27,9 +16,7 @@ users_collection = db["users"]
 
 @csrf_protect
 def signup_view(request):
-    """Process the signup form submission"""
     if request.method == 'POST':
-        # Extract form data
         firstname = request.POST.get('firstname')
         lastname = request.POST.get('lastname')
         email = request.POST.get('email')
@@ -38,7 +25,6 @@ def signup_view(request):
         password = request.POST.get('password')
         confirm_password = request.POST.get('confirm_password')
         
-        # Validate form data
         if not all([firstname, lastname, email, dob, username, password, confirm_password]):
             messages.error(request, "All fields are required.")
             return render(request, 'signup.html')
@@ -55,20 +41,16 @@ def signup_view(request):
             messages.error(request, "Password must be at least 8 characters.")
             return render(request, 'signup.html')
         
-        # Check if email already exists
         if users_collection.find_one({'email': email}):
             messages.error(request, "Email already exists. Please use a different email or login.")
             return render(request, 'signup.html')
         
-        # Check if username already exists
         if users_collection.find_one({'username': username}):
             messages.error(request, "Username already exists. Please choose a different username.")
             return render(request, 'signup.html')
         
-        # Hash the password for security
         hashed_password = hashlib.sha256(password.encode()).hexdigest()
         
-        # Create user document
         user_data = {
             'firstname': firstname,
             'lastname': lastname,
@@ -81,16 +63,13 @@ def signup_view(request):
         }
         
         try:
-            # Insert the user document
             result = users_collection.insert_one(user_data)
-            
             if result.inserted_id:
                 messages.success(request, "Account created successfully! You can now log in.")
                 return redirect('login')
             else:
                 messages.error(request, "Failed to create account. Please try again.")
                 return render(request, 'signup.html')
-                
         except DuplicateKeyError:
             messages.error(request, "An account with this email or username already exists.")
             return render(request, 'signup.html')
@@ -98,49 +77,90 @@ def signup_view(request):
             messages.error(request, f"An error occurred: {str(e)}")
             return render(request, 'signup.html')
     
-    # If not POST, redirect to signup page
     return render(request, 'signup.html')
+
 
 @csrf_protect
 def login_view(request):
-    """Process login form submission"""
     if request.method == 'POST':
-        email = request.POST.get('email')
+        username = request.POST.get('username')
         password = request.POST.get('password')
         
-        if not email or not password:
-            messages.error(request, "Email and password are required.")
+        if not username or not password:
+            messages.error(request, "Username and password are required.")
             return render(request, 'login.html')
         
-        # Hash the password for comparison
         hashed_password = hashlib.sha256(password.encode()).hexdigest()
         
-        # Find the user
         user = users_collection.find_one({
-            'email': email,
+            'username': username,
             'password': hashed_password
         })
         
         if user:
-            # Update last login time
             users_collection.update_one(
                 {'_id': user['_id']},
                 {'$set': {'last_login': datetime.datetime.now()}}
             )
-            
-            # Set session data
             request.session['user_id'] = str(user['_id'])
             request.session['username'] = user['username']
             
             messages.success(request, f"Welcome back, {user['firstname']}!")
-            return redirect('dashboard')  # Redirect to dashboard after login
+            return redirect('main')  # ✅ Redirects to main view
         else:
-            messages.error(request, "Invalid email or password.")
+            messages.error(request, "Invalid username or password.")
             return render(request, 'login.html')
     
-    # If not POST, render login page
     return render(request, 'login.html')
-    
+
+
 def logout_view(request):
     logout(request)
-    return redirect('login')  # Redirect to login page after logout
+    messages.success(request, "You have been successfully logged out.")
+    return redirect('login')
+
+
+def is_authenticated(request):
+    user_id = request.session.get('user_id')
+    if not user_id:
+        return False
+    
+    try:
+        user = users_collection.find_one({'_id': ObjectId(user_id)})
+        return user is not None
+    except:
+        return False
+
+
+def login_required(view_func):
+    def wrapped_view(request, *args, **kwargs):
+        if not is_authenticated(request):
+            messages.warning(request, "Please log in to access this page.")
+            return redirect('login')
+        return view_func(request, *args, **kwargs)
+    return wrapped_view
+
+
+@login_required
+def main_view(request):
+    """
+    Display the main dashboard after login.
+    Accessible only to authenticated users.
+    """
+    username = request.session.get('username')
+    user = users_collection.find_one({'username': username})
+
+    if not user:
+        messages.error(request, "User not found. Please log in again.")
+        return redirect('login')
+
+    context = {
+        'firstname': user.get('firstname', ''),
+        'lastname': user.get('lastname', ''),
+        'username': user['username'],
+        'email': user['email'],
+        'last_login': user.get('last_login'),
+        'dob': user.get('dob'),
+    }
+
+    return render(request, 'main.html', context)
