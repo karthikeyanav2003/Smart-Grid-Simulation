@@ -14,19 +14,6 @@
 
 </head>
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home" class="dark-theme">
-    
-    <!-- page navbar -->
-    <nav class="page-navbar" data-spy="affix" data-offset-top="10">
-        <ul class="nav-navbar container">
-            <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-            <li class="nav-item"><a href="{% url 'main' %}" class="nav-link">Dashboard</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Analysis</a></li>
-            <li class="nav-item"><a href="#" class="nav-link">Report</a></li>
-                </div>
-            </li>
-        </ul>
-    </nav><!-- end of page navbar -->
-
     <div class="theme-selector">
         <a href="javascript:void(0)" class="spinner">
             <i class="ti-paint-bucket"></i>
@@ -43,7 +30,7 @@
         <div class="header-content">
             <h1 class="header-title">Smart Grid Energy Game</h1>
             <p class="header-subtitle">Using the Concept of Game Theory as a Full Stack Application</p>
-            <a href="{% url 'main' %}" class="btn btn-theme-color modal-toggle">
+            <a href="{% url 'login' %}" class="btn btn-theme-color modal-toggle">
                 <i class="ti-control-play text-danger"></i> Start Game
             </a>
             
