@@ -3370,3 +3370,669 @@ django.db.utils.OperationalError: no such table: django_session
 2025-04-08 15:05:41,983 - asyncio - DEBUG - Using proactor: IocpProactor
 2025-04-08 15:05:56,678 - households.views - INFO - Successfully established robust MongoDB connection
 2025-04-08 15:06:09,904 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-08 15:50:46,102 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-04-08 15:50:46,108 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-08 15:51:00,661 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-08 15:51:13,870 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-08 15:51:30,873 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-08 15:51:36,917 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-08 19:21:26,158 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-08 19:21:34,804 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-08 19:29:51,338 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-08 19:30:07,650 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-08 19:30:23,800 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-08 19:32:01,591 - households.views - INFO - Generating graphs for household: H002
+2025-04-08 19:32:02,430 - households.views - INFO - Generating graphs for household: H004
+2025-04-08 19:35:51,634 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-08 19:35:54,114 - households.views - INFO - Generating graphs for household: H004
+2025-04-08 19:35:55,033 - households.views - INFO - Generating graphs for household: H005
+2025-04-08 19:35:56,495 - trading.views - DEBUG - Household H001: total_production=0.4, power_consumption=0.0, surplus_energy=0.4
+2025-04-08 19:35:56,532 - trading.views - DEBUG - Household H002: total_production=0.4, power_consumption=0.0, surplus_energy=0.4
+2025-04-08 19:35:56,566 - trading.views - DEBUG - Household H003: total_production=0.5, power_consumption=0.0, surplus_energy=0.5
+2025-04-08 19:35:56,566 - trading.views - INFO - Critical grid condition detected. Trading disabled.
+2025-04-08 19:35:56,603 - trading.views - DEBUG - Household H004: total_production=0.37, power_consumption=0.0, surplus_energy=0.37
+2025-04-08 19:35:56,639 - trading.views - DEBUG - Household H005: total_production=0.7, power_consumption=0.0, surplus_energy=0.7
+2025-04-08 19:35:56,675 - trading.views - DEBUG - Household H006: total_production=3.0, power_consumption=0.0, surplus_energy=3.0
+2025-04-08 19:35:56,704 - trading.views - DEBUG - Household H007: total_production=8.1, power_consumption=0.0, surplus_energy=8.1
+2025-04-08 19:35:56,704 - trading.views - INFO - Critical grid condition detected. Trading disabled.
+2025-04-08 19:35:56,747 - trading.views - DEBUG - Household H008: total_production=8.1, power_consumption=0.0, surplus_energy=8.1
+2025-04-08 19:35:56,747 - trading.views - INFO - Critical grid condition detected. Trading disabled.
+2025-04-08 19:35:56,779 - trading.views - DEBUG - Household H009: total_production=0.5, power_consumption=0.0, surplus_energy=0.5
+2025-04-08 19:35:56,779 - trading.views - INFO - Critical grid condition detected. Trading disabled.
+2025-04-08 19:35:56,812 - trading.views - DEBUG - Household H010: total_production=1.8, power_consumption=0.0, surplus_energy=1.8
+2025-04-08 19:38:23,909 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-08 19:38:27,207 - trading.views - DEBUG - Household H001: total_production=0.4, power_consumption=0.0, surplus_energy=0.4
+2025-04-08 19:38:27,246 - trading.views - DEBUG - Household H002: total_production=0.4, power_consumption=0.0, surplus_energy=0.4
+2025-04-08 19:38:27,283 - trading.views - DEBUG - Household H003: total_production=0.5, power_consumption=0.0, surplus_energy=0.5
+2025-04-08 19:38:27,283 - trading.views - INFO - Critical grid condition detected. Trading disabled.
+2025-04-08 19:38:27,320 - trading.views - DEBUG - Household H004: total_production=0.37, power_consumption=0.0, surplus_energy=0.37
+2025-04-08 19:38:27,354 - trading.views - DEBUG - Household H005: total_production=0.7, power_consumption=0.0, surplus_energy=0.7
+2025-04-08 19:38:27,389 - trading.views - DEBUG - Household H006: total_production=3.0, power_consumption=0.0, surplus_energy=3.0
+2025-04-08 19:38:27,424 - trading.views - DEBUG - Household H007: total_production=8.1, power_consumption=0.0, surplus_energy=8.1
+2025-04-08 19:38:27,424 - trading.views - INFO - Critical grid condition detected. Trading disabled.
+2025-04-08 19:38:27,464 - trading.views - DEBUG - Household H008: total_production=8.1, power_consumption=0.0, surplus_energy=8.1
+2025-04-08 19:38:27,464 - trading.views - INFO - Critical grid condition detected. Trading disabled.
+2025-04-08 19:38:27,499 - trading.views - DEBUG - Household H009: total_production=0.5, power_consumption=0.0, surplus_energy=0.5
+2025-04-08 19:38:27,499 - trading.views - INFO - Critical grid condition detected. Trading disabled.
+2025-04-08 19:38:27,535 - trading.views - DEBUG - Household H010: total_production=1.8, power_consumption=0.0, surplus_energy=1.8
+2025-04-08 19:40:31,913 - households.views - INFO - Generating graphs for household: H003
+2025-04-08 19:40:32,861 - households.views - INFO - Generating graphs for household: H004
+2025-04-08 19:40:33,701 - households.views - INFO - Generating graphs for household: H005
+2025-04-08 19:40:49,206 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-08 20:04:20,884 - django.request - WARNING - Not Found: /api/household-data/
+2025-04-08 20:11:13,927 - django.request - WARNING - Not Found: /api/household-data/
+2025-04-08 20:13:26,220 - trading.views - DEBUG - Household H001: total_production=0.4, power_consumption=0.0, surplus_energy=0.4
+2025-04-08 20:13:26,260 - trading.views - DEBUG - Household H002: total_production=0.4, power_consumption=0.0, surplus_energy=0.4
+2025-04-08 20:13:26,298 - trading.views - DEBUG - Household H003: total_production=0.5, power_consumption=0.0, surplus_energy=0.5
+2025-04-08 20:13:26,298 - trading.views - INFO - Critical grid condition detected. Trading disabled.
+2025-04-08 20:13:26,337 - trading.views - DEBUG - Household H004: total_production=0.37, power_consumption=0.0, surplus_energy=0.37
+2025-04-08 20:13:26,376 - trading.views - DEBUG - Household H005: total_production=0.7, power_consumption=0.0, surplus_energy=0.7
+2025-04-08 20:13:26,407 - trading.views - DEBUG - Household H006: total_production=3.0, power_consumption=0.0, surplus_energy=3.0
+2025-04-08 20:13:26,451 - trading.views - DEBUG - Household H007: total_production=8.1, power_consumption=0.0, surplus_energy=8.1
+2025-04-08 20:13:26,451 - trading.views - INFO - Critical grid condition detected. Trading disabled.
+2025-04-08 20:13:26,487 - trading.views - DEBUG - Household H008: total_production=8.1, power_consumption=0.0, surplus_energy=8.1
+2025-04-08 20:13:26,487 - trading.views - INFO - Critical grid condition detected. Trading disabled.
+2025-04-08 20:13:26,528 - trading.views - DEBUG - Household H009: total_production=0.5, power_consumption=0.0, surplus_energy=0.5
+2025-04-08 20:13:26,528 - trading.views - INFO - Critical grid condition detected. Trading disabled.
+2025-04-08 20:13:26,570 - trading.views - DEBUG - Household H010: total_production=1.8, power_consumption=0.0, surplus_energy=1.8
+2025-04-08 20:26:06,519 - trading.views - DEBUG - Household H001: total_production=0.4, power_consumption=0.0, surplus_energy=0.4
+2025-04-08 20:26:06,558 - trading.views - DEBUG - Household H002: total_production=0.4, power_consumption=0.0, surplus_energy=0.4
+2025-04-08 20:26:06,595 - trading.views - DEBUG - Household H003: total_production=0.5, power_consumption=0.0, surplus_energy=0.5
+2025-04-08 20:26:06,595 - trading.views - INFO - Critical grid condition detected. Trading disabled.
+2025-04-08 20:26:06,632 - trading.views - DEBUG - Household H004: total_production=0.37, power_consumption=0.0, surplus_energy=0.37
+2025-04-08 20:26:06,675 - trading.views - DEBUG - Household H005: total_production=0.7, power_consumption=0.0, surplus_energy=0.7
+2025-04-08 20:26:06,716 - trading.views - DEBUG - Household H006: total_production=3.0, power_consumption=0.0, surplus_energy=3.0
+2025-04-08 20:26:06,755 - trading.views - DEBUG - Household H007: total_production=8.1, power_consumption=0.0, surplus_energy=8.1
+2025-04-08 20:26:06,755 - trading.views - INFO - Critical grid condition detected. Trading disabled.
+2025-04-08 20:26:06,796 - trading.views - DEBUG - Household H008: total_production=8.1, power_consumption=0.0, surplus_energy=8.1
+2025-04-08 20:26:06,796 - trading.views - INFO - Critical grid condition detected. Trading disabled.
+2025-04-08 20:26:06,833 - trading.views - DEBUG - Household H009: total_production=0.5, power_consumption=0.0, surplus_energy=0.5
+2025-04-08 20:26:06,833 - trading.views - INFO - Critical grid condition detected. Trading disabled.
+2025-04-08 20:26:06,870 - trading.views - DEBUG - Household H010: total_production=1.8, power_consumption=0.0, surplus_energy=1.8
+2025-04-08 21:59:49,635 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-08 21:59:49,640 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-08 22:00:00,052 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-08 22:00:28,880 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-08 22:00:28,882 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-08 22:00:38,704 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-08 22:00:45,619 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-08 22:00:45,619 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-08 22:00:55,593 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-08 22:01:01,298 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-08 22:01:01,298 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-08 22:01:12,981 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-08 22:01:22,492 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-08 22:01:22,492 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-08 22:01:32,339 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-08 22:03:54,289 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-08 22:03:54,290 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-08 22:04:04,284 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-08 22:08:31,503 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-08 22:10:53,666 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-08 22:10:53,666 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-08 22:11:03,621 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-08 22:12:15,024 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-04-08 22:12:15,024 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-08 22:12:24,833 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-08 22:13:01,111 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-08 22:13:16,131 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-08 22:13:21,823 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-08 22:50:18,008 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-08 22:50:18,009 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-08 22:50:27,828 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-08 22:56:48,993 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-04-08 22:56:48,995 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-08 22:57:02,916 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-04-08 22:57:02,917 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-08 22:57:09,218 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-04-08 22:57:09,218 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-08 22:57:25,695 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-04-08 22:57:25,700 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-08 23:00:26,387 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-08 23:00:44,845 - households.views - INFO - Generating graphs for household: H003
+2025-04-08 23:00:45,919 - households.views - INFO - Generating graphs for household: H006
+2025-04-08 23:00:47,996 - households.views - INFO - Generating graphs for household: H009
+2025-04-08 23:00:48,823 - households.views - INFO - Generating graphs for household: H010
+2025-04-08 23:00:49,742 - households.views - INFO - Generating graphs for household: H004
+2025-04-08 23:07:07,100 - households.views - INFO - Generating graphs for household: H003
+2025-04-08 23:08:52,099 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-08 23:08:52,099 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-08 23:09:47,764 - households.views - INFO - Generating graphs for household: H003
+2025-04-08 23:33:10,985 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-09 14:36:21,290 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-09 14:38:23,437 - households.views - INFO - Generating graphs for household: H002
+2025-04-09 14:38:25,001 - households.views - INFO - Generating graphs for household: H005
+2025-04-09 14:38:26,497 - households.views - INFO - Generating graphs for household: H009
+2025-04-09 14:38:31,188 - households.views - INFO - Generating graphs for household: H010
+2025-04-09 14:38:32,580 - households.views - INFO - Generating graphs for household: H007
+2025-04-09 15:48:19,353 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 16:12:58,821 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-11 16:13:10,389 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-11 16:13:25,801 - households.views - INFO - Generating graphs for household: H009
+2025-04-11 16:37:28,831 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 19:10:09,855 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-11 19:28:00,180 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 19:38:59,419 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-11 20:01:23,251 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 20:02:10,481 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-11 20:02:24,526 - households.views - INFO - Generating graphs for household: H006
+2025-04-11 20:02:25,523 - households.views - INFO - Generating graphs for household: H003
+2025-04-11 20:14:00,667 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-11 20:14:00,670 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 20:14:31,123 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-11 20:14:31,124 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 20:15:31,521 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-11 20:17:06,991 - households.views - INFO - Generating graphs for household: H008
+2025-04-11 20:23:00,005 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-11 20:23:00,005 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 20:25:57,331 - households.views - INFO - Generating graphs for household: H005
+2025-04-11 20:25:58,286 - households.views - INFO - Generating graphs for household: H003
+2025-04-11 20:25:59,275 - households.views - INFO - Generating graphs for household: H007
+2025-04-11 20:26:27,895 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-11 20:26:27,897 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 20:26:57,296 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-11 20:26:57,296 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 20:31:04,867 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-11 20:31:04,867 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 20:35:25,529 - households.views - INFO - Generating graphs for household: H004
+2025-04-11 20:35:26,697 - households.views - INFO - Generating graphs for household: H007
+2025-04-11 20:35:27,635 - households.views - INFO - Generating graphs for household: H009
+2025-04-11 20:36:20,528 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-11 20:36:20,528 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 20:43:25,354 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-11 20:43:25,354 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 20:45:18,344 - households.views - INFO - Generating graphs for household: H007
+2025-04-11 20:45:19,208 - households.views - INFO - Generating graphs for household: H002
+2025-04-11 20:45:20,963 - households.views - INFO - Generating graphs for household: H008
+2025-04-11 20:45:22,397 - households.views - INFO - Generating graphs for household: H010
+2025-04-11 20:45:39,032 - households.views - INFO - Generating graphs for household: H007
+2025-04-11 21:27:15,629 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-11 21:27:15,630 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 21:28:13,244 - households.views - INFO - Generating graphs for household: H006
+2025-04-11 21:28:14,151 - households.views - INFO - Generating graphs for household: H008
+2025-04-11 21:28:15,468 - households.views - INFO - Generating graphs for household: H005
+2025-04-11 21:28:16,317 - households.views - INFO - Generating graphs for household: H003
+2025-04-11 21:28:17,179 - households.views - INFO - Generating graphs for household: H009
+2025-04-11 21:30:40,997 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-04-11 21:30:40,998 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 21:34:27,096 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-04-11 21:34:27,096 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 21:35:56,538 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-11 21:35:56,538 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 21:39:47,540 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-04-11 21:39:47,540 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 21:57:31,368 - households.views - CRITICAL - Critical MongoDB Connection Failure: household-shard-00-02.ipekb.mongodb.net:27017: timed out
+Traceback (most recent call last):
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1278, in _get_socket
+    sock_info = self.sockets.popleft()
+                ^^^^^^^^^^^^^^^^^^^^^^
+IndexError: pop from an empty deque
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1180, in connect
+    sock = _configured_socket(self.address, self.opts)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 988, in _configured_socket
+    sock = _create_connection(address, options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 972, in _create_connection
+    raise err
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 965, in _create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\energy_trading_game\households\views.py", line 55, in _connect
+    self.client.server_info()
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1875, in server_info
+    return self.admin.command("buildinfo",
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\database.py", line 736, in command
+    with self.__client._socket_for_reads(
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1327, in _socket_for_reads
+    with self._get_socket(server, session) as sock_info:
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1246, in _get_socket
+    with server.get_socket(
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1231, in get_socket
+    sock_info = self._get_socket(all_credentials)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1281, in _get_socket
+    sock_info = self.connect(all_credentials)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1187, in connect
+    _raise_connection_failure(self.address, error)
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 277, in _raise_connection_failure
+    raise NetworkTimeout(msg)
+pymongo.errors.NetworkTimeout: household-shard-00-02.ipekb.mongodb.net:27017: timed out
+2025-04-11 21:57:39,906 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-11 21:57:56,416 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-11 21:57:56,417 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 21:58:06,297 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-11 21:58:14,826 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-11 21:59:52,529 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-04-11 21:59:52,529 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 22:02:34,887 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-04-11 22:02:34,889 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 22:03:07,375 - trading.views - CRITICAL - MongoDB Connection Error: household-shard-00-02.ipekb.mongodb.net:27017: timed out
+Traceback (most recent call last):
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1278, in _get_socket
+    sock_info = self.sockets.popleft()
+                ^^^^^^^^^^^^^^^^^^^^^^
+IndexError: pop from an empty deque
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1180, in connect
+    sock = _configured_socket(self.address, self.opts)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 988, in _configured_socket
+    sock = _create_connection(address, options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 972, in _create_connection
+    raise err
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 965, in _create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\energy_trading_game\trading\views.py", line 42, in _connect
+    self.client.server_info()  # Verify connection
+    ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1875, in server_info
+    return self.admin.command("buildinfo",
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\database.py", line 736, in command
+    with self.__client._socket_for_reads(
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1327, in _socket_for_reads
+    with self._get_socket(server, session) as sock_info:
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1246, in _get_socket
+    with server.get_socket(
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1231, in get_socket
+    sock_info = self._get_socket(all_credentials)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1281, in _get_socket
+    sock_info = self.connect(all_credentials)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1187, in connect
+    _raise_connection_failure(self.address, error)
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 277, in _raise_connection_failure
+    raise NetworkTimeout(msg)
+pymongo.errors.NetworkTimeout: household-shard-00-02.ipekb.mongodb.net:27017: timed out
+2025-04-11 22:03:15,893 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-11 22:11:03,273 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-04-11 22:11:03,273 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 22:11:21,359 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-11 22:14:04,408 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-11 22:14:04,408 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 22:15:08,282 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-11 22:15:08,282 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 22:18:25,539 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-11 22:18:25,540 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 22:21:19,121 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-04-11 22:21:19,121 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 22:21:32,339 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-11 22:21:32,339 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 22:22:28,986 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-11 22:22:28,986 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 22:24:02,277 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\settings.py changed, reloading.
+2025-04-11 22:24:02,277 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 22:25:52,700 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 22:29:12,970 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-04-11 22:29:12,970 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 22:30:42,281 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-11 22:30:42,289 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 22:32:50,664 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-04-11 22:32:50,664 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 22:40:35,768 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-11 22:40:35,773 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-11 23:05:31,902 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 10:41:48,195 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-12 10:48:09,764 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-04-12 10:48:09,765 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 11:04:09,904 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-12 11:04:09,905 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 11:06:00,251 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\models.py changed, reloading.
+2025-04-12 11:06:00,251 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 11:11:06,552 - django.request - ERROR - Internal Server Error: /main/report.html
+Traceback (most recent call last):
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 470, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loaders\base.py", line 29, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 531, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 16: 'static'. Did you forget to register or load this tag?
+2025-04-12 11:11:07,644 - django.request - ERROR - Internal Server Error: /main/report.html
+Traceback (most recent call last):
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 470, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loaders\base.py", line 29, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 531, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 16: 'static'. Did you forget to register or load this tag?
+2025-04-12 11:11:08,348 - django.request - ERROR - Internal Server Error: /main/report.html
+Traceback (most recent call last):
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 470, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loaders\base.py", line 29, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 531, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 16: 'static'. Did you forget to register or load this tag?
+2025-04-12 11:11:08,771 - django.request - ERROR - Internal Server Error: /main/report.html
+Traceback (most recent call last):
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 470, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\exception.py", line 47, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\core\handlers\base.py", line 204, in _get_response
+    response = response.render()
+               ^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\response.py", line 105, in render
+    self.content = self.rendered_content
+                   ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\response.py", line 81, in rendered_content
+    template = self.resolve_template(self.template_name)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\response.py", line 63, in resolve_template
+    return select_template(template, using=self.using)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loader.py", line 42, in select_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\backends\django.py", line 34, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\engine.py", line 143, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\engine.py", line 125, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\loaders\base.py", line 29, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 155, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 193, in compile_nodelist
+    return parser.parse()
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 472, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\template\base.py", line 531, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 16: 'static'. Did you forget to register or load this tag?
+2025-04-12 11:25:57,054 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 11:28:53,800 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 11:29:13,772 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 11:30:23,196 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 12:24:11,470 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-04-12 12:24:11,479 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 12:24:47,030 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-12 12:24:56,039 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-12 12:26:19,926 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-04-12 12:26:19,926 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 12:44:58,145 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-12 12:44:58,146 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 12:52:28,595 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-12 12:52:28,603 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 13:06:52,591 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-12 13:06:52,592 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 13:19:58,739 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\models.py changed, reloading.
+2025-04-12 13:19:58,740 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 13:20:12,786 - django.utils.autoreload - INFO - F:\energy_trading_game\households\views.py changed, reloading.
+2025-04-12 13:20:12,787 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 13:21:42,856 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-12 13:21:42,857 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 13:22:11,909 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-04-12 13:22:11,910 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 13:22:34,923 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-12 13:22:34,923 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 13:22:45,721 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-12 13:22:54,323 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-12 13:27:06,823 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 16:32:56,705 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-12 16:33:06,173 - trading.views - INFO - Successfully connected to MongoDB
+2025-04-12 16:33:41,736 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-12 16:33:48,752 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-12 16:33:50,387 - households.views - INFO - Generating graphs for household: H009
+2025-04-12 16:33:51,388 - households.views - INFO - Generating graphs for household: H007
+2025-04-12 16:37:55,900 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-12 16:37:55,901 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 16:38:05,948 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-12 16:38:31,687 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-12 16:38:31,688 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 16:38:41,522 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-12 16:39:18,525 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-04-12 16:39:18,526 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 16:39:28,735 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-12 16:39:47,429 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-12 16:39:47,430 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 16:39:57,348 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-12 19:32:12,653 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-12 19:32:12,659 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 19:32:22,716 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-12 19:42:06,212 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-12 19:42:06,214 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 19:42:16,264 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-12 19:42:25,648 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-12 19:42:25,649 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 19:42:35,791 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-12 19:42:52,158 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-12 19:42:52,158 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 19:43:02,152 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-12 19:46:21,426 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-12 19:46:21,428 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 19:46:31,474 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-12 19:46:47,420 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-12 19:46:47,420 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 19:46:57,425 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-12 19:47:04,319 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 19:48:12,768 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-12 19:48:15,443 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 19:50:06,711 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-12 19:52:50,724 - households.views - CRITICAL - Critical MongoDB Connection Failure: No replica set members match selector "Primary()", Timeout: 15.0s, Topology Description: <TopologyDescription id: 67fa772b38f3127baa09ec36, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('household-shard-00-00.ipekb.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.03479999999981374>, <ServerDescription ('household-shard-00-01.ipekb.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.03479999999981374>, <ServerDescription ('household-shard-00-02.ipekb.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('household-shard-00-02.ipekb.mongodb.net:27017: timed out')>]>
+Traceback (most recent call last):
+  File "F:\energy_trading_game\households\views.py", line 55, in _connect
+    self.client.server_info()
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1875, in server_info
+    return self.admin.command("buildinfo",
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\database.py", line 736, in command
+    with self.__client._socket_for_reads(
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1325, in _socket_for_reads
+    server = self._select_server(read_preference, session)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1278, in _select_server
+    server = topology.select_server(server_selector)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\topology.py", line 241, in select_server
+    return random.choice(self.select_servers(selector,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\topology.py", line 199, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\topology.py", line 215, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: No replica set members match selector "Primary()", Timeout: 15.0s, Topology Description: <TopologyDescription id: 67fa772b38f3127baa09ec36, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('household-shard-00-00.ipekb.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.03479999999981374>, <ServerDescription ('household-shard-00-01.ipekb.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.03479999999981374>, <ServerDescription ('household-shard-00-02.ipekb.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('household-shard-00-02.ipekb.mongodb.net:27017: timed out')>]>
+2025-04-12 19:52:59,205 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-12 19:55:09,700 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 19:55:22,136 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-12 19:55:44,660 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-12 19:56:33,187 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-12 19:56:34,393 - households.views - INFO - Generating graphs for household: H004
+2025-04-12 19:56:35,262 - households.views - INFO - Generating graphs for household: H006
+2025-04-12 19:56:36,184 - households.views - INFO - Generating graphs for household: H008
+2025-04-12 19:56:37,044 - households.views - INFO - Generating graphs for household: H009
+2025-04-12 19:56:38,379 - households.views - INFO - Generating graphs for household: H007
+2025-04-12 19:56:39,994 - households.views - INFO - Generating graphs for household: H004
+2025-04-12 19:56:41,542 - households.views - INFO - Generating graphs for household: H003
+2025-04-12 19:56:42,238 - households.views - INFO - Generating graphs for household: H006
+2025-04-12 19:56:43,044 - households.views - INFO - Generating graphs for household: H008
+2025-04-12 19:57:44,440 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-12 19:57:44,440 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 19:57:54,493 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-12 20:03:05,883 - households.views - INFO - Successfully established robust MongoDB connection
