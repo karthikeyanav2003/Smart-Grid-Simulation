@@ -1,11 +1,11 @@
 :root {
-  --primary-color: #2ecc71;
-  --secondary-color: #27ae60;
-  --background-color: #f9f9f9;
-  --text-color: #333;
+  --primary-color: #F2506E;      /* Vibrant Pinkish Red */
+  --secondary-color: #9E91F2;    /* Soft Purple */
+  --background-color: #99E2F2;   /* Soft Aqua Blue */
+  --text-color: #333;            /* Kept original for readability */
   --shadow-color: rgba(0, 0, 0, 0.1);
-  --accent-color: #3498db;
-  --error-color: #e74c3c;
+  --accent-color: #9CF25E;       /* Bright Lime Green */
+  --error-color: #F2506E;        /* Match primary for consistency */
 }
 * {
   margin: 0;

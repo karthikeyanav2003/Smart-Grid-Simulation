@@ -21,9 +21,7 @@ urlpatterns = [
     path('main/report/', TemplateView.as_view(template_name='report.html'), name='report'),
     path('main/report.html', TemplateView.as_view(template_name='report.html'), name='report_html'),
 
-    # Energy summary JSON endpoint (used in graphs/analytics)
-    path('main/energy-summary/', trading_views.energy_summary, name='energy_summary'),
-
+    
     # Household-related operations
     path('household_data/<str:household_id>/', households_views.household_data, name='household_data'),
     path('add-household/', households_views.add_household, name='add_household'),
