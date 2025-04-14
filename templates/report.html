@@ -1,4 +1,3 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,15 +6,511 @@
   <title>Energy Grid Trading Game | Analytics</title>
   <!-- Import Roboto font -->
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <!-- Import Chart.js for interactive charts -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
   <!-- Import Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Import custom CSS for styling -->  
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="{% static 'css/report.css' %}">
-
+  
+  <style>
+    /* Base styles */
+    :root {
+      --primary-color: #2a9d8f;
+      --secondary-color: #e9c46a;
+      --danger-color: #e63946;
+      --success-color: #2a9d8f;
+      --warning-color: #e9c46a;
+      --text-color: #293241;
+      --light-color: #f8f9fa;
+      --dark-color: #293241;
+      --border-color: #e0e0e0;
+      --hover-color: #f1f1f1;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-color: #f5f5f5;
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+    
+    /* Header styles */
+    header {
+      background-color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    .header-left {
+      display: flex;
+      align-items: center;
+    }
+    
+    .header-icon {
+      font-size: 1.8rem;
+      margin-right: 0.8rem;
+      color: var(--primary-color);
+    }
+    
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 500;
+    }
+    
+    .navbar ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+    
+    .navbar a {
+      text-decoration: none;
+      color: var(--text-color);
+      padding: 0.5rem 0.8rem;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+    }
+    
+    .navbar a:hover {
+      background-color: var(--hover-color);
+    }
+    
+    .navbar a.active {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    
+    /* Alert container */
+    .alert-container {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      z-index: 1100;
+      width: 300px;
+      max-width: 90%;
+    }
+    
+    .alert {
+      padding: 1rem;
+      margin-bottom: 1rem;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      animation: slide-in 0.3s ease;
+    }
+    
+    .alert.success {
+      background-color: #d4edda;
+      color: #155724;
+      border-left: 4px solid #155724;
+    }
+    
+    .alert.error {
+      background-color: #f8d7da;
+      color: #721c24;
+      border-left: 4px solid #721c24;
+    }
+    
+    .alert.warning {
+      background-color: #fff3cd;
+      color: #856404;
+      border-left: 4px solid #856404;
+    }
+    
+    @keyframes slide-in {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    
+    /* Content container */
+    .content-container {
+      padding: 2rem;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    @media (min-width: 1200px) {
+нах      .content-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    /* Panel styles */
+    .panel {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+    
+    .panel-header {
+      padding: 1.2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-color);
+    }
+    
+    .panel-title {
+      font-size: 1.2rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .panel-title i {
+      color: var(--primary-color);
+    }
+    
+    /* Filter container */
+    .filter-container {
+      padding: 1rem 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border-bottom: 1px solid var(--border-color);
+      background-color: #fafafa;
+    }
+    
+    .filter-label {
+      font-size: 0.9rem;
+      color: #666;
+    }
+    
+    .filter-select {
+      padding: 0.5rem;
+      border-radius: 4px;
+      border: 1px solid var(--border-color);
+      font-size: 0.9rem;
+      outline: none;
+      cursor: pointer;
+    }
+    
+    /* Table styles */
+    .table-responsive {
+      overflow-x: auto;
+      padding: 1.2rem;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    
+    th, td {
+      padding: 0.5rem 0.8rem;
+      text-align: left;
+      border-bottom: 1px solid var(--border-color);
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+    
+    th {
+      font-weight: 500;
+      background-color: #fafafa;
+    }
+    
+    tr:hover {
+      background-color: #f9f9f9;
+    }
+    
+    .positive {
+      color: var(--success-color);
+    }
+    
+    .negative {
+      color: var(--danger-color);
+    }
+    
+    .status-allowed {
+      background-color: rgba(42, 157, 143, 0.1);
+      color: var(--success-color);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    
+    .status-not-allowed {
+      background-color: rgba(230, 57, 70, 0.1);
+      color: var(--danger-color);
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    
+    .action-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      padding: 0.25rem;
+      margin-right: 0.5rem;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+    }
+    
+    .action-btn:hover {
+      background-color: #f5f5f5;
+    }
+    
+    .action-btn.edit {
+      color: #2196f3;
+    }
+    
+    .action-btn.delete {
+      color: var(--danger-color);
+    }
+    
+    /* Hide columns on small screens */
+    @media (max-width: 768px) {
+      th:nth-child(3), td:nth-child(3), /* Efficiency */
+      th:nth-child(4), td:nth-child(4), /* Overload Risk */
+      th:nth-child(5), td:nth-child(5), /* Adjusted Cost */
+      th:nth-child(6), td:nth-child(6), /* No Fault */
+      th:nth-child(7), td:nth-child(7) { /* Both Faults */
+        display: none;
+      }
+    }
+    
+    /* Pagination */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1.2rem;
+      border-top: 1px solid var(--border-color);
+    }
+    
+    .pagination button {
+      background: none;
+      border: 1px solid var(--border-color);
+      cursor: pointer;
+      padding: 0.5rem 0.8rem;
+      border-radius: 4px;
+      transition: all 0.2s;
+    }
+    
+    .pagination button:hover:not(:disabled) {
+      background-color: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+    
+    .pagination button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    
+    .pagination button.active {
+      background-color: var(--primary-color);
+      color: white;
+      border-color: var(--primary-color);
+    }
+    
+    .pagination-ellipsis {
+      margin: 0 0.5rem;
+    }
+    
+    /* Summary cards */
+    .stats-container {
+      grid-column: 1 / -1;
+      margin-bottom: 2rem;
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      overflow-x: auto;
+    }
+    
+    .summary-cards {
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 2rem;
+      padding: 1.2rem;
+    }
+    
+    .summary-card {
+      background-color: #ffffff;
+      border-radius: 8px;
+      padding: 1rem;
+      text-align: center;
+      transition: transform 0.2s;
+      min-width: 150px;
+      flex: 0 0 auto;
+    }
+    
+    .summary-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    }
+    
+    .summary-title {
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 0.5rem;
+    }
+    
+    .summary-value {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--dark-color);
+    }
+    
+    .summary-subtitle {
+      font-size: 0.8rem;
+      color: #888;
+      margin-top: 0.25rem;
+    }
+    
+    /* Action buttons */
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      padding: 1rem;
+      border-top: 1px solid var(--border-color);
+    }
+    
+    .action-buttons button {
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      background-color: var(--primary-color);
+      color: white;
+      transition: background-color 0.2s;
+    }
+    
+    .action-buttons button:hover {
+      background-color: #238b7f;
+    }
+    
+    /* Modal styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 1200;
+    }
+    
+    .modal-content {
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      width: 90%;
+      max-width: 500px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    
+    .close-btn {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #999;
+    }
+    
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-size: 0.9rem;
+      color: #666;
+    }
+    
+    .form-control {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      font-size: 1rem;
+      outline: none;
+    }
+    
+    .form-control:focus {
+      border-color: var(--primary-color);
+    }
+    
+    .form-control:disabled {
+      background-color: #f5f5f5;
+      cursor: not-allowed;
+    }
+    
+    .form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .btn {
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    
+    .btn-secondary {
+      background-color: #f5f5f5;
+      color: var(--dark-color);
+    }
+    
+    .btn:hover {
+      opacity: 0.9;
+    }
+    
+    /* Loader */
+    .loader {
+      border: 4px solid #f3f3f3;
+      border-top: 4px solid var(--primary-color);
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 1rem auto;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    
+    .text-center {
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -25,21 +520,68 @@
     </div>
     <nav class="navbar">
       <ul>
-        <li><a href="#"><i class="fa fa-home"></i> Home</a></li>
-        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li><a href="#"><i class="fa fa-chart-bar"></i> Analysis</a></li>
-        <li><a href="#"><i class="fa fa-file-alt"></i> Report</a></li>
+        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
+        <li><a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+        <li><a href="#"><i class="fas fa-chart-bar"></i> Analysis</a></li>
+        <li><a href="#" class="active"><i class="fas fa-file-alt"></i> Report</a></li>
       </ul>
     </nav>
   </header>
-   <div class="content-container">
-    <div class="panel">
-      <div class="panel-header">
-        <div class="panel-title"><i class="fa fa-home"></i> Grid Participants</div>
-        <div class="search-container">
-          <i class="fa fa-search search-icon"></i>
-          <input type="text" id="searchInput" class="search-input" placeholder="Search participants...">
+  
+  <!-- Alert container -->
+  <div id="alert-container" class="alert-container"></div>
+  
+  <div class="content-container">
+    <div class="stats-container">
+      <div class="summary-cards">
+        <div class="summary-card">
+          <div class="summary-title">
+            <i>⊕</i> Total Surplus Energy
+          </div>
+          <div class="summary-value" id="totalSurplusEnergy">0 kWh</div>
+          <div class="summary-subtitle">Available for trading</div>
         </div>
+        <div class="summary-card">
+          <div class="summary-title">
+            <i>⊖</i> Total Required Energy
+          </div>
+          <div class="summary-value" id="totalRequiredEnergy">0 kWh</div>
+          <div class="summary-subtitle">Energy deficit</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-title">
+            <i>⚙</i> Trading Allowed
+          </div>
+          <div class="summary-value" id="tradingAllowed">0 out of 0</div>
+          <div class="summary-subtitle">Active participants</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-title">
+            <i>💲</i> Average Price
+          </div>
+          <div class="summary-value" id="averagePrice">$0.00/kWh</div>
+          <div class="summary-subtitle">Market rate</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-title">
+            <i>⚡</i> Grid Purchase Price
+          </div>
+          <div class="summary-value" id="gridPurchasePrice">$0.10/kWh</div>
+          <div class="summary-subtitle">Utility rate</div>
+        </div>
+        <div class="summary-card">
+          <div class="summary-title">
+            <i>⚡</i> Grid Sell Price
+          </div>
+          <div class="summary-value" id="gridSellPrice">$0.20/kWh</div>
+          <div class="summary-subtitle">Utility rate</div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="panel" style="grid-column: 1 / -1;">
+      <div class="panel-header">
+        <div class="panel-title"><i class="fas fa-home"></i> Grid Participants</div>
       </div>
       
       <div class="filter-container">
@@ -48,7 +590,7 @@
           <option value="all">All Roles</option>
           <option value="Producer">Producer</option>
           <option value="Consumer">Consumer</option>
-          <option value="Prosumer">Prosumer</option>
+          <option value="Balanced">Balanced</option>
         </select>
         <select id="statusFilter" class="filter-select">
           <option value="all">All Status</option>
@@ -61,18 +603,21 @@
         <table>
           <thead>
             <tr>
-              <th>Household ID</th>
-              <th>Surplus Energy (kWh)</th>
-              <th>Trading Status</th>
-              <th>Price ($/kWh)</th>
-              <th>Role</th>
-              <th>Actions</th>
+              <th style="width: 10%;">Household ID</th>
+              <th style="width: 15%;">Net Power (kW)</th>
+              <th style="width: 10%;">Efficiency (%)</th>
+              <th style="width: 10%;">Overload Risk</th>
+              <th style="width: 10%;">Adjusted Cost</th>
+              <th style="width: 10%;">No Fault</th>
+              <th style="width: 10%;">Both Faults</th>
+              <th style="width: 10%;">Role</th>
+              <th style="width: 10%;">Trading Status</th>
+              <th style="width: 15%;">Actions</th>
             </tr>
           </thead>
           <tbody id="energyTableBody">
-            <!-- Energy data rows will be dynamically inserted here -->
             <tr>
-              <td colspan="6" class="text-center">
+              <td colspan="10" class="text-center">
                 <div class="loader"></div>
                 <p>Loading data...</p>
               </td>
@@ -81,42 +626,22 @@
         </table>
       </div>
       <div class="pagination">
-        <button id="prevPage" disabled><i class="fa fa-chevron-left"></i></button>
-        <button class="active">1</button>
-        <button>2</button>
-        <button>3</button>
-        <button id="nextPage"><i class="fa fa-chevron-right"></i></button>
+        <button id="prevPage" disabled><i class="fas fa-chevron-left"></i></button>
+        <span id="paginationNumbers"></span>
+        <button id="nextPage"><i class="fas fa-chevron-right"></i></button>
+      </div>
+      <div class="action-buttons">
+        <button id="twoPlayerGame">2 Player Game</button>
+        <button id="threePlayerGame">3 Player Game</button>
+        <button id="analyse">Analyse</button>
       </div>
     </div>
-    
-    <div class="panel">
-      <div class="panel-header">
-        <div class="panel-title"><i class="fa fa-chart-bar"></i> Trading Statistics</div>
-        <div class="info-text">
-          <i class="fa fa-info-circle"></i> Real-time visualization
-        </div>
-      </div>
-      <div id="trading-charts">
-        <div class="chart-container">
-          <canvas id="energyBalanceChart"></canvas>
-        </div>
-        <div class="chart-container">
-          <canvas id="tradingStatusChart"></canvas>
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <div class="bottom-navigation">
-    <button id="analyzeBtn"><i class="fa fa-play"></i> Run Analysis</button>
-    <button id="exportBtn"><i class="fa fa-download"></i> Export Report</button>
-    <button id="optimizeBtn"><i class="fa fa-cog"></i> Optimize Trading</button>
   </div>
   
   <!-- Modal for editing participant -->
   <div id="editModal" class="modal">
     <div class="modal-content">
-      <span class="close-btn">&times;</span>
+      <span class="close-btn">×</span>
       <h2>Edit Participant</h2>
       <form id="editForm">
         <input type="hidden" id="editId">
@@ -125,26 +650,41 @@
           <input type="text" id="editHouseholdId" class="form-control" disabled>
         </div>
         <div class="form-group">
-          <label for="editSurplus">Surplus Energy (kWh)</label>
-          <input type="number" step="0.01" id="editSurplus" class="form-control">
+          <label for="editNetPower">Net Power (kW)</label>
+          <input type="number" step="0.01" id="editNetPower" class="form-control">
         </div>
         <div class="form-group">
-          <label for="editStatus">Trading Status</label>
-          <select id="editStatus" class="form-control">
-            <option value="Allowed">Allowed</option>
-            <option value="Not Allowed">Not Allowed</option>
+          <label for="editEfficiency">Efficiency (%)</label>
+          <input type="number" step="0.01" id="editEfficiency" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="editOverloadRisk">Overload Risk</label>
+          <input type="number" step="0.01" id="editOverloadRisk" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="editAdjCost">Adjusted Cost</label>
+          <input type="number" step="0.01" id="edit(ILAdjCost" class="form-control">
+        </div>
+        <div class="form-group">
+          <label for="editNoFault">No Fault</label>
+          <select id="editNoFault" class="form-control">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="editPrice">Price ($/kWh)</label>
-          <input type="number" step="0.01" id="editPrice" class="form-control">
+          <label for="editBothFaults">Both Faults</label>
+          <select id="editBothFaults" class="form-control">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="editRole">Role</label>
           <select id="editRole" class="form-control">
             <option value="Producer">Producer</option>
             <option value="Consumer">Consumer</option>
-            <option value="Prosumer">Prosumer</option>
+            <option value="Balanced">Balanced</option>
           </select>
         </div>
         <div class="form-actions">
@@ -158,7 +698,7 @@
   <!-- Modal for adding new participant -->
   <div id="addModal" class="modal">
     <div class="modal-content">
-      <span class="close-btn">&times;</span>
+      <span class="close-btn">×</span>
       <h2>Add New Participant</h2>
       <form id="addForm">
         <div class="form-group">
@@ -166,26 +706,41 @@
           <input type="text" id="addHouseholdId" class="form-control" required>
         </div>
         <div class="form-group">
-          <label for="addSurplus">Surplus Energy (kWh)</label>
-          <input type="number" step="0.01" id="addSurplus" class="form-control" required>
+          <label for="addNetPower">Net Power (kW)</label>
+          <input type="number" step="0.01" id="addNetPower" class="form-control" required>
         </div>
         <div class="form-group">
-          <label for="addStatus">Trading Status</label>
-          <select id="addStatus" class="form-control">
-            <option value="Allowed">Allowed</option>
-            <option value="Not Allowed">Not Allowed</option>
+          <label for="addEfficiency">Efficiency (%)</label>
+          <input type="number" step="0.01" id="addEfficiency" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="addOverloadRisk">Overload Risk</label>
+          <input type="number" step="0.01" id="addOverloadRisk" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="addAdjCost">Adjusted Cost</label>
+          <input type="number" step="0.01" id="addAdjCost" class="form-control" required>
+        </div>
+        <div class="form-group">
+          <label for="addNoFault">No Fault</label>
+          <select id="addNoFault" class="form-control">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
           </select>
         </div>
         <div class="form-group">
-          <label for="addPrice">Price ($/kWh)</label>
-          <input type="number" step="0.01" id="addPrice" class="form-control" required>
+          <label for="addBothFaults">Both Faults</label>
+          <select id="addBothFaults" class="form-control">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+          </select>
         </div>
         <div class="form-group">
           <label for="addRole">Role</label>
           <select id="addRole" class="form-control">
             <option value="Producer">Producer</option>
             <option value="Consumer">Consumer</option>
-            <option value="Prosumer">Prosumer</option>
+            <option value="Balanced">Balanced</option>
           </select>
         </div>
         <div class="form-actions">
@@ -199,7 +754,7 @@
   <!-- Confirm delete modal -->
   <div id="deleteModal" class="modal">
     <div class="modal-content">
-      <span class="close-btn">&times;</span>
+      <span class="close-btn">×</span>
       <h2>Confirm Deletion</h2>
       <p>Are you sure you want to remove this participant from the grid?</p>
       <input type="hidden" id="deleteId">
@@ -210,41 +765,27 @@
     </div>
   </div>
   
-  <!-- Floating add button -->
-  <div class="float-btn" id="addParticipantBtn">
-    <i class="fa fa-plus"></i>
-  </div>
-  
   <script>
-    // Sample data for demonstration
-    const sampleData = [
-      { id: 1, householdId: "H001", surplusEnergy: 150, tradingStatus: "Allowed", price: 0.15, role: "Producer" },
-      { id: 2, householdId: "H002", surplusEnergy: -75, tradingStatus: "Allowed", price: 0.12, role: "Consumer" },
-      { id: 3, householdId: "H003", surplusEnergy: 200, tradingStatus: "Not Allowed", price: 0.14, role: "Producer" },
-      { id: 4, householdId: "H004", surplusEnergy: -120, tradingStatus: "Allowed", price: 0.13, role: "Consumer" },
-      { id: 5, householdId: "H005", surplusEnergy: 50, tradingStatus: "Allowed", price: 0.16, role: "Prosumer" },
-      { id: 6, householdId: "H006", surplusEnergy: -25, tradingStatus: "Not Allowed", price: 0.11, role: "Consumer" },
-      { id: 7, householdId: "H007", surplusEnergy: 100, tradingStatus: "Allowed", price: 0.15, role: "Producer" },
-      { id: 8, householdId: "H008", surplusEnergy: -100, tradingStatus: "Allowed", price: 0.14, role: "Consumer" },
-      { id: 9, householdId: "H009", surplusEnergy: 75, tradingStatus: "Not Allowed", price: 0.17, role: "Prosumer" }
-    ];
-    
     // Global variables
-    let currentData = [...sampleData];
+    let currentData = [];
     let currentPage = 1;
     const itemsPerPage = 5;
     
     // DOM Elements
     const energyTableBody = document.getElementById("energyTableBody");
-    const searchInput = document.getElementById("searchInput");
     const roleFilter = document.getElementById("roleFilter");
     const statusFilter = document.getElementById("statusFilter");
     const prevPageBtn = document.getElementById("prevPage");
     const nextPageBtn = document.getElementById("nextPage");
-    const analyzeBtn = document.getElementById("analyzeBtn");
-    const exportBtn = document.getElementById("exportBtn");
-    const optimizeBtn = document.getElementById("optimizeBtn");
-    const addParticipantBtn = document.getElementById("addParticipantBtn");
+    const paginationNumbers = document.getElementById("paginationNumbers");
+    
+    // Summary card elements
+    const totalSurplusEnergyElem = document.getElementById("totalSurplusEnergy");
+    const totalRequiredEnergyElem = document.getElementById("totalRequiredEnergy");
+    const tradingAllowedElem = document.getElementById("tradingAllowed");
+    const averagePriceElem = document.getElementById("averagePrice");
+    const gridPurchasePriceElem = document.getElementById("gridPurchasePrice");
+    const gridSellPriceElem = document.getElementById("gridSellPrice");
     
     // Modal elements
     const editModal = document.getElementById("editModal");
@@ -252,8 +793,7 @@
     const deleteModal = document.getElementById("deleteModal");
     const editForm = document.getElementById("editForm");
     const addForm = document.getElementById("addForm");
-    const closeButtons = document.getElementById("close-btn");
-    // Modal elements (continued)
+    const closeButtons = document.querySelectorAll(".close-btn");
     const cancelEditBtn = document.getElementById("cancelEdit");
     const cancelAddBtn = document.getElementById("cancelAdd");
     const cancelDeleteBtn = document.getElementById("cancelDelete");
@@ -261,517 +801,333 @@
     
     // Initialize the application
     document.addEventListener("DOMContentLoaded", function() {
-      // Initialize charts
-      initializeCharts();
-      
-      // Render the initial table data
-      updateTableData();
-      
-      // Update summary statistics
-      updateSummaryStats();
-      
-      // Set up event listeners
+      fetchGridData();
       setupEventListeners();
     });
     
-    // Function to initialize charts
-    function initializeCharts() {
-      // Energy Balance Chart
-      const energyBalanceCtx = document.getElementById('energyBalanceChart').getContext('2d');
-      const energyBalanceChart = new Chart(energyBalanceCtx, {
-        type: 'bar',
-        data: {
-          labels: ['Surplus', 'Deficit', 'Net Balance'],
-          datasets: [{
-            label: 'Energy (kWh)',
-            data: [575, -320, 255],
-            backgroundColor: [
-              'rgba(42, 157, 143, 0.7)',
-              'rgba(230, 57, 70, 0.7)',
-              'rgba(69, 123, 157, 0.7)'
-            ],
-            borderColor: [
-              'rgba(42, 157, 143, 1)',
-              'rgba(230, 57, 70, 1)',
-              'rgba(69, 123, 157, 1)'
-            ],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          scales: {
-            y: {
-              beginAtZero: true,
-              title: {
-                display: true,
-                text: 'Energy (kWh)'
-              }
-            }
-          },
-          plugins: {
-            legend: {
-              display: false
-            },
-            title: {
-              display: true,
-              text: 'Energy Balance Summary'
-            }
-          }
-        }
-      });
+    // Fetch data from the server
+    function fetchGridData() {
+      energyTableBody.innerHTML = `
+        <tr>
+          <td colspan="10" class="text-center">
+            <div class="loader"></div>
+            <p>Loading data...</p>
+          </td>
+        </tr>
+      `;
       
-      // Trading Status Chart
-      const tradingStatusCtx = document.getElementById('tradingStatusChart').getContext('2d');
-      const tradingStatusChart = new Chart(tradingStatusCtx, {
-        type: 'pie',
-        data: {
-          labels: ['Allowed', 'Not Allowed'],
-          datasets: [{
-            data: [6, 3],
-            backgroundColor: [
-              'rgba(42, 157, 143, 0.7)',
-              'rgba(230, 57, 70, 0.7)'
-            ],
-            borderColor: [
-              'rgba(42, 157, 143, 1)',
-              'rgba(230, 57, 70, 1)'
-            ],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: {
-              position: 'bottom'
-            },
-            title: {
-              display: true,
-              text: 'Trading Status Distribution'
-            }
+      fetch('/api/energy-trading/data/')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
           }
-        }
-      });
+          return response.json();
+        })
+        .then(data => {
+          if (data.error) {
+            throw new Error(data.error);
+          }
+          currentData = data.map((item, index) => ({
+            id: index + 1,
+            householdId: item.household_id || `Unknown-${index}`,
+            netPower: item.NetPower,
+            efficiency: item.Efficiency,
+            overloadRisk: item.OverloadRisk,
+            adjCost: item.AdjCost,
+            noFault: item.NoFault,
+            bothFaults: item.BothFaults,
+            role: item.Role,
+            price: item.Price,
+            tradingStatus: item.NoFault === 1 ? "Allowed" : "Not Allowed"
+          }));
+          updateSummaryCards();
+          updateTableData();
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+          energyTableBody.innerHTML = `
+            <tr>
+              <td colspan="10" class="text-center">
+                Error loading data: ${error.message}. Please try again later.
+              </td>
+            </tr>
+          `;
+          showAlert(`Failed to load data: ${error.message}`, 'error');
+          currentData = [];
+          updateSummaryCards();
+          updateTableData();
+        });
     }
     
-    // Function to update the table data
+    // Update summary cards with real-time data
+    function updateSummaryCards() {
+      if (currentData.length === 0) {
+        totalSurplusEnergyElem.textContent = "0 kWh";
+        totalRequiredEnergyElem.textContent = "0 kWh";
+        tradingAllowedElem.textContent = "0 out of 0";
+        averagePriceElem.textContent = "$0.00/kWh";
+        gridPurchasePriceElem.textContent = "$0.10/kWh";
+        gridSellPriceElem.textContent = "$0.20/kWh";
+        return;
+      }
+      
+      let totalSurplus = 0;
+      let totalRequired = 0;
+      let tradingAllowed = 0;
+      let totalPrice = 0;
+      let priceCount = 0;
+      
+      currentData.forEach(item => {
+        if (item.netPower > 0) {
+          totalSurplus += item.netPower;
+        } else if (item.netPower < 0) {
+          totalRequired += Math.abs(item.netPower);
+        }
+        if (item.tradingStatus === "Allowed") {
+          tradingAllowed++;
+        }
+        if (item.price) {
+          totalPrice += item.price;
+          priceCount++;
+        }
+      });
+      
+      const averagePrice = priceCount > 0 ? (totalPrice / priceCount).toFixed(2) : "0.00";
+      
+      totalSurplusEnergyElem.textContent = `${totalSurplus.toFixed(2)} kWh`;
+      totalRequiredEnergyElem.textContent = `${totalRequired.toFixed(2)} kWh`;
+      tradingAllowedElem.textContent = `${tradingAllowed} out of ${currentData.length}`;
+      averagePriceElem.textContent = `$${averagePrice}/kWh`;
+      gridPurchasePriceElem.textContent = "$0.10/kWh";
+      gridSellPriceElem.textContent = "$0.20/kWh";
+    }
+    
+    // Update table data with pagination and filtering
     function updateTableData() {
-      // Filter data based on search and filters
       let filteredData = filterData();
-      
-      // Clear existing table data
       energyTableBody.innerHTML = '';
-      
-      // Calculate pagination
       const startIndex = (currentPage - 1) * itemsPerPage;
       const endIndex = startIndex + itemsPerPage;
       const paginatedData = filteredData.slice(startIndex, endIndex);
       
-      // Check if no data
       if (paginatedData.length === 0) {
-        const noDataRow = document.createElement('tr');
-        noDataRow.innerHTML = `
-          <td colspan="6" style="text-align: center;">No participants found</td>
-        `;
-        energyTableBody.appendChild(noDataRow);
+        energyTableBody.innerHTML = `<tr><td colspan="10" style="text-align: center;">No participants found</td></tr>`;
         return;
       }
       
-      // Create the table rows
       paginatedData.forEach(item => {
         const row = document.createElement('tr');
-        
-        // Determine the surplus energy class
-        const surplusClass = item.surplusEnergy >= 0 ? 'positive' : 'negative';
-        
-        // Determine the trading status class
+        const netPowerClass = item.netPower >= 0 ? 'positive' : 'negative';
         const statusClass = item.tradingStatus === 'Allowed' ? 'status-allowed' : 'status-not-allowed';
-        
         row.innerHTML = `
           <td>${item.householdId}</td>
-          <td class="${surplusClass}">${item.surplusEnergy} kWh</td>
-          <td class="${statusClass}">${item.tradingStatus}</td>
-          <td>$${item.price.toFixed(2)}</td>
+          <td class="${netPowerClass}">${item.netPower.toFixed(2)} kW</td>
+          <td>${item.efficiency ? item.efficiency.toFixed(2) : 'N/A'}%</td>
+          <td>${item.overloadRisk ? item.overloadRisk.toFixed(2) : 'N/A'}</td>
+          <td>${item.adjCost ? item.adjCost.toFixed(2) : 'N/A'}</td>
+          <td>${item.noFault === 1 ? 'Yes' : 'No'}</td>
+          <td>${item.bothFaults === 1 ? 'Yes' : 'No'}</td>
           <td>${item.role}</td>
+          <td class="${statusClass}">${item.tradingStatus}</td>
           <td>
-            <button class="action-btn edit" data-id="${item.id}" title="Edit"><i class="fa fa-edit"></i></button>
-            <button class="action-btn delete" data-id="${item.id}" title="Delete"><i class="fa fa-trash"></i></button>
+            <button class="action-btn edit" data-id="${item.id}" title="Edit"><i class="fas fa-edit"></i></button>
+            <button class="action-btn delete" data-id="${item.id}" title="Delete"><i class="fas fa-trash"></i></button>
           </td>
         `;
-        
         energyTableBody.appendChild(row);
       });
       
-      // Update pagination buttons
       updatePaginationButtons(filteredData.length);
-      
-      // Add event listeners to action buttons
       addActionButtonListeners();
     }
     
-    // Function to filter data based on search and filters
+    // Filter data based on role and status
     function filterData() {
-      const searchTerm = searchInput.value.toLowerCase();
       const roleValue = roleFilter.value;
       const statusValue = statusFilter.value;
-      
       return currentData.filter(item => {
-        // Filter by search term
-        const matchesSearch = item.householdId.toLowerCase().includes(searchTerm) || 
-                           item.role.toLowerCase().includes(searchTerm);
-        
-        // Filter by role
         const matchesRole = roleValue === 'all' || item.role === roleValue;
-        
-        // Filter by status
         const matchesStatus = statusValue === 'all' || item.tradingStatus === statusValue;
-        
-        return matchesSearch && matchesRole && matchesStatus;
+        return matchesRole && matchesStatus;
       });
     }
     
-    // Function to update pagination buttons
+    // Update pagination buttons
     function updatePaginationButtons(totalItems) {
-      const totalPages = Math.ceil(totalItems / itemsPerPage);
-      
-      // Update previous/next buttons
+      const totalPages = Math.ceil(totalItems / itemsPerPage) || 1;
       prevPageBtn.disabled = currentPage === 1;
       nextPageBtn.disabled = currentPage === totalPages || totalPages === 0;
+      paginationNumbers.innerHTML = '';
       
-      // Update page number buttons
-      const paginationButtons = document.querySelectorAll('.pagination button:not(#prevPage):not(#nextPage)');
+      const maxVisiblePages = 5;
+      let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
+      let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
+      if (endPage - startPage + 1 < maxVisiblePages) startPage = Math.max(1, endPage - maxVisiblePages + 1);
       
-      // Remove active class from all buttons
-      paginationButtons.forEach(button => {
-        button.classList.remove('active');
-      });
+      if (startPage > 1) {
+        const firstPageBtn = document.createElement('button');
+        firstPageBtn.textContent = '1';
+        firstPageBtn.addEventListener('click', () => { currentPage = 1; updateTableData(); });
+        paginationNumbers.appendChild(firstPageBtn);
+        if (startPage > 2) {
+          const ellipsis = document.createElement('span');
+          ellipsis.textContent = '...';
+          ellipsis.className = 'pagination-ellipsis';
+          paginationNumbers.appendChild(ellipsis);
+        }
+      }
       
-      // Set active class for current page
-      if (paginationButtons.length >= currentPage) {
-        paginationButtons[currentPage - 1].classList.add('active');
+      for (let i = startPage; i <= endPage; i++) {
+        const pageBtn = document.createElement('button');
+        pageBtn.textContent = i;
+        if (i === currentPage) pageBtn.classList.add('active');
+        pageBtn.addEventListener('click', () => { currentPage = i; updateTableData(); });
+        paginationNumbers.appendChild(pageBtn);
+      }
+      
+      if (endPage < totalPages) {
+        if (endPage < totalPages - 1) {
+          const ellipsis = document.createElement('span');
+          ellipsis.textContent = '...';
+          ellipsis.className = 'pagination-ellipsis';
+          paginationNumbers.appendChild(ellipsis);
+        }
+        const lastPageBtn = document.createElement('button');
+        lastPageBtn.textContent = totalPages;
+        lastPageBtn.addEventListener('click', () => { currentPage = totalPages; updateTableData(); });
+        paginationNumbers.appendChild(lastPageBtn);
       }
     }
     
-    // Function to add event listeners to action buttons
+    // Add action button listeners
     function addActionButtonListeners() {
-      // Add event listeners to edit buttons
-      const editButtons = document.querySelectorAll('.action-btn.edit');
-      editButtons.forEach(button => {
-        button.addEventListener('click', function() {
-          const id = parseInt(this.getAttribute('data-id'));
-          openEditModal(id);
-        });
+      document.querySelectorAll('.action-btn.edit').forEach(button => {
+        button.addEventListener('click', function() { openEditModal(parseInt(this.getAttribute('data-id'))); });
       });
-      
-      // Add event listeners to delete buttons
-      const deleteButtons = document.querySelectorAll('.action-btn.delete');
-      deleteButtons.forEach(button => {
-        button.addEventListener('click', function() {
-          const id = parseInt(this.getAttribute('data-id'));
-          openDeleteModal(id);
-        });
+      document.querySelectorAll('.action-btn.delete').forEach(button => {
+        button.addEventListener('click', function() { openDeleteModal(parseInt(this.getAttribute('data-id'))); });
       });
     }
     
-    // Function to open edit modal
+    // Open edit modal
     function openEditModal(id) {
       const participant = currentData.find(item => item.id === id);
-      
       if (participant) {
         document.getElementById('editId').value = participant.id;
         document.getElementById('editHouseholdId').value = participant.householdId;
-        document.getElementById('editSurplus').value = participant.surplusEnergy;
-        document.getElementById('editStatus').value = participant.tradingStatus;
-        document.getElementById('editPrice').value = participant.price;
+        document.getElementById('editNetPower').value = participant.netPower;
+        document.getElementById('editEfficiency').value = participant.efficiency;
+        document.getElementById('editOverloadRisk').value = participant.overloadRisk;
+        document.getElementById('editAdjCost').value = participant.adjCost;
+        document.getElementById('editNoFault').value = participant.noFault;
+        document.getElementById('editBothFaults').value = participant.bothFaults;
         document.getElementById('editRole').value = participant.role;
-        
         editModal.style.display = 'block';
       }
     }
     
-    // Function to open delete modal
+    // Open delete modal
     function openDeleteModal(id) {
       document.getElementById('deleteId').value = id;
       deleteModal.style.display = 'block';
     }
     
-    // Function to open add modal
-    function openAddModal() {
-      // Reset the form
-      addForm.reset();
-      
-      // Set default values
-      document.getElementById('addStatus').value = 'Allowed';
-      document.getElementById('addRole').value = 'Producer';
-      
-      addModal.style.display = 'block';
-    }
-    
-    // Function to update summary statistics
-    function updateSummaryStats() {
-      // Calculate total surplus energy
-      const totalSurplus = currentData
-        .filter(item => item.surplusEnergy > 0)
-        .reduce((sum, item) => sum + item.surplusEnergy, 0);
-      
-      // Calculate total deficit energy
-      const totalDeficit = Math.abs(currentData
-        .filter(item => item.surplusEnergy < 0)
-        .reduce((sum, item) => sum + item.surplusEnergy, 0));
-      
-      // Count participants with trading allowed
-      const tradingAllowed = currentData.filter(item => item.tradingStatus === 'Allowed').length;
-      
-      // Calculate average price
-      const totalPrice = currentData.reduce((sum, item) => sum + item.price, 0);
-      const averagePrice = totalPrice / currentData.length;
-      
-      // Update the summary statistics in the UI
-      document.getElementById('totalSurplus').textContent = `${totalSurplus} kWh`;
-      document.getElementById('totalDeficit').textContent = `${totalDeficit} kWh`;
-      document.getElementById('tradingAllowedCount').textContent = `${tradingAllowed} out of ${currentData.length}`;
-      document.getElementById('averagePrice').textContent = `$${averagePrice.toFixed(2)}/kWh`;
-    }
-    
-    // Function to set up event listeners
+    // Set up event listeners
     function setupEventListeners() {
-      // Search input event
-      searchInput.addEventListener('input', function() {
-        currentPage = 1; // Reset to first page when searching
-        updateTableData();
-      });
-      
-      // Filter events
-      roleFilter.addEventListener('change', function() {
-        currentPage = 1;
-        updateTableData();
-      });
-      
-      statusFilter.addEventListener('change', function() {
-        currentPage = 1;
-        updateTableData();
-      });
-      
-      // Pagination events
-      prevPageBtn.addEventListener('click', function() {
-        if (currentPage > 1) {
-          currentPage--;
-          updateTableData();
-        }
-      });
-      
-      nextPageBtn.addEventListener('click', function() {
+      roleFilter.addEventListener('change', () => { currentPage = 1; updateTableData(); });
+      statusFilter.addEventListener('change', () => { currentPage = 1; updateTableData(); });
+      prevPageBtn.addEventListener('click', () => { if (currentPage > 1) { currentPage--; updateTableData(); } });
+      nextPageBtn.addEventListener('click', () => {
         const filteredData = filterData();
         const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-        
-        if (currentPage < totalPages) {
-          currentPage++;
-          updateTableData();
-        }
+        if (currentPage < totalPages) { currentPage++; updateTableData(); }
       });
       
-      // Page number buttons
-      const pageButtons = document.querySelectorAll('.pagination button:not(#prevPage):not(#nextPage)');
-      pageButtons.forEach((button, index) => {
-        button.addEventListener('click', function() {
-          currentPage = index + 1;
-          updateTableData();
-        });
-      });
-      
-      // Add participant button
-      addParticipantBtn.addEventListener('click', openAddModal);
-      
-      // Close modal buttons
       closeButtons.forEach(button => {
-        button.addEventListener('click', function() {
-          editModal.style.display = 'none';
-          addModal.style.display = 'none';
-          deleteModal.style.display = 'none';
-        });
+        button.addEventListener('click', () => { editModal.style.display = 'none'; addModal.style.display = 'none'; deleteModal.style.display = 'none'; });
       });
       
-      // Cancel buttons
-      cancelEditBtn.addEventListener('click', function() {
-        editModal.style.display = 'none';
-      });
+      cancelEditBtn.addEventListener('click', () => { editModal.style.display = 'none'; });
+      cancelAddBtn.addEventListener('click', () => { addModal.style.display = 'none'; });
+      cancelDeleteBtn.addEventListener('click', () => { deleteModal.style.display = 'none'; });
       
-      cancelAddBtn.addEventListener('click', function() {
-        addModal.style.display = 'none';
-      });
-      
-      cancelDeleteBtn.addEventListener('click', function() {
+      confirmDeleteBtn.addEventListener('click', () => {
+        const id = parseInt(document.getElementById('deleteId').value);
+        currentData = currentData.filter(item => item.id !== id).map((item, index) => ({ ...item, id: index + 1 }));
+        updateSummaryCards();
+        updateTableData();
         deleteModal.style.display = 'none';
+        showAlert('Participant removed successfully', 'success');
       });
       
-      // Form submission events
-      editForm.addEventListener('submit', function(e) {
+      editForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        
         const id = parseInt(document.getElementById('editId').value);
-        const surplusEnergy = parseFloat(document.getElementById('editSurplus').value);
-        const tradingStatus = document.getElementById('editStatus').value;
-        const price = parseFloat(document.getElementById('editPrice').value);
+        const netPower = parseFloat(document.getElementById('editNetPower').value);
+        const efficiency = parseFloat(document.getElementById('editEfficiency').value);
+        const overloadRisk = parseFloat(document.getElementById('editOverloadRisk').value);
+        const adjCost = parseFloat(document.getElementById('editAdjCost').value);
+        const noFault = parseInt(document.getElementById('editNoFault').value);
+        const bothFaults = parseInt(document.getElementById('editBothFaults').value);
         const role = document.getElementById('editRole').value;
         
-        // Find the participant in the data
-        const participantIndex = currentData.findIndex(item => item.id === id);
-        
-        if (participantIndex !== -1) {
-          // Update the participant data
-          currentData[participantIndex].surplusEnergy = surplusEnergy;
-          currentData[participantIndex].tradingStatus = tradingStatus;
-          currentData[participantIndex].price = price;
-          currentData[participantIndex].role = role;
-          
-          // Close the modal
-          editModal.style.display = 'none';
-          
-          // Update the table and summary statistics
+        const index = currentData.findIndex(item => item.id === id);
+        if (index !== -1) {
+          currentData[index] = { ...currentData[index], netPower, efficiency, overloadRisk, adjCost, noFault, bothFaults, role, tradingStatus: noFault === 1 ? 'Allowed' : 'Not Allowed' };
+          updateSummaryCards();
           updateTableData();
-          updateSummaryStats();
-          
-          // Show success message
-          showAlert('Participant updated successfully!', 'success');
+          editModal.style.display = 'none';
+          showAlert('Participant updated successfully', 'success');
         }
       });
       
-      addForm.addEventListener('submit', function(e) {
+      addForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        
         const householdId = document.getElementById('addHouseholdId').value;
-        const surplusEnergy = parseFloat(document.getElementById('addSurplus').value);
-        const tradingStatus = document.getElementById('addStatus').value;
-        const price = parseFloat(document.getElementById('addPrice').value);
+        const netPower = parseFloat(document.getElementById('addNetPower').value);
+        const efficiency = parseFloat(document.getElementById('addEfficiency').value);
+        const overloadRisk = parseFloat(document.getElementById('addOverloadRisk').value);
+        const adjCost = parseFloat(document.getElementById('addAdjCost').value);
+        const noFault = parseInt(document.getElementById('addNoFault').value);
+        const bothFaults = parseInt(document.getElementById('addBothFaults').value);
         const role = document.getElementById('addRole').value;
         
-        // Generate a new ID (simple implementation)
-        const maxId = currentData.reduce((max, item) => Math.max(max, item.id), 0);
-        const newId = maxId + 1;
-        
-        // Create a new participant
-        const newParticipant = {
-          id: newId,
-          householdId,
-          surplusEnergy,
-          tradingStatus,
-          price,
-          role
-        };
-        
-        // Add the new participant to the data
+        const newParticipant = { id: currentData.length + 1, householdId, netPower, efficiency, overloadRisk, adjCost, noFault, bothFaults, role, tradingStatus: noFault === 1 ? 'Allowed' : 'Not Allowed' };
         currentData.push(newParticipant);
-        
-        // Close the modal
-        addModal.style.display = 'none';
-        
-        // Update the table and summary statistics
+        updateSummaryCards();
         updateTableData();
-        updateSummaryStats();
-        
-        // Show success message
-        showAlert('New participant added successfully!', 'success');
+        addModal.style.display = 'none';
+        showAlert('New participant added successfully', 'success');
       });
       
-      confirmDeleteBtn.addEventListener('click', function() {
-        const id = parseInt(document.getElementById('deleteId').value);
-        
-        // Find the participant in the data
-        const participantIndex = currentData.findIndex(item => item.id === id);
-        
-        if (participantIndex !== -1) {
-          // Remove the participant from the data
-          currentData.splice(participantIndex, 1);
-          
-          // Close the modal
-          deleteModal.style.display = 'none';
-          
-          // Update the table and summary statistics
-          updateTableData();
-          updateSummaryStats();
-          
-          // Show success message
-          showAlert('Participant removed successfully!', 'success');
-        }
+      document.getElementById('twoPlayerGame').addEventListener('click', () => {
+        alert('2 Player Game functionality to be implemented');
       });
       
-      // Action buttons
-      analyzeBtn.addEventListener('click', function() {
-        // Simulate analyzing data
-        showAlert('Analysis started. This may take a few moments...', 'success');
-        
-        // Simulate a delay
-        setTimeout(function() {
-          showAlert('Analysis complete! Optimal trading patterns identified.', 'success');
-        }, 2000);
+      document.getElementById('threePlayerGame').addEventListener('click', () => {
+        alert('3 Player Game functionality to be implemented');
       });
       
-      exportBtn.addEventListener('click', function() {
-        // Simulate exporting data
-        showAlert('Generating report. Please wait...', 'success');
-        
-        // Simulate a delay
-        setTimeout(function() {
-          showAlert('Report exported successfully! Check your downloads folder.', 'success');
-        }, 1500);
-      });
-      
-      optimizeBtn.addEventListener('click', function() {
-        // Simulate optimizing data
-        showAlert('Optimizing trading settings. This may take a few moments...', 'success');
-        
-        // Simulate a delay
-        setTimeout(function() {
-          // Simulate optimization by updating some values
-          currentData.forEach(item => {
-            if (item.tradingStatus === 'Not Allowed') {
-              item.tradingStatus = 'Allowed';
-            }
-            
-            // Adjust prices slightly to optimize trading
-            item.price = Math.max(0.10, Math.min(0.20, item.price + (Math.random() - 0.5) * 0.02));
-          });
-          
-          // Update the table and summary statistics
-          updateTableData();
-          updateSummaryStats();
-          
-          showAlert('Trading parameters optimized successfully!', 'success');
-        }, 2500);
+      document.getElementById('analyse').addEventListener('click', () => {
+        alert('Analyse functionality to be implemented');
       });
     }
     
-    // Function to show an alert message
+    // Show alerts
     function showAlert(message, type) {
       const alertContainer = document.getElementById('alert-container');
-      
-      // Create alert element
       const alertElement = document.createElement('div');
-      alertElement.className = `alert alert-${type}`;
-      alertElement.textContent = message;
-      
-      // Add to container
+      alertElement.className = `alert ${type}`;
+      alertElement.innerHTML = `<span>${message}</span><button class="close-alert">×</button>`;
       alertContainer.appendChild(alertElement);
       
-      // Auto-remove after delay
-      setTimeout(function() {
-        alertElement.remove();
-      }, 3000);
+      const closeBtn = alertElement.querySelector('.close-alert');
+      closeBtn.addEventListener('click', () => alertElement.remove());
+      setTimeout(() => { if (alertElement.parentNode) alertElement.remove(); }, 5000);
     }
     
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-      if (event.target == editModal) {
-        editModal.style.display = "none";
-      } else if (event.target == addModal) {
-        addModal.style.display = "none";
-      } else if (event.target == deleteModal) {
-        deleteModal.style.display = "none";
-      }
-    }
+    // Initialize data on load
+    window.addEventListener('load', fetchGridData);
   </script>
 </body>
 </html>

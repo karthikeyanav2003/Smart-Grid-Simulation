@@ -4036,3 +4036,751 @@ pymongo.errors.ServerSelectionTimeoutError: No replica set members match selecto
 2025-04-12 19:57:44,440 - asyncio - DEBUG - Using proactor: IocpProactor
 2025-04-12 19:57:54,493 - households.views - INFO - Successfully established robust MongoDB connection
 2025-04-12 20:03:05,883 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-12 20:10:19,781 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-12 20:10:19,783 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 20:10:29,908 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-12 20:11:20,920 - households.views - INFO - Generating graphs for household: H003
+2025-04-12 21:42:33,211 - households.views - INFO - Generating graphs for household: H007
+2025-04-12 21:42:33,890 - households.views - INFO - Generating graphs for household: H008
+2025-04-12 21:42:34,787 - households.views - INFO - Generating graphs for household: H009
+2025-04-12 21:47:44,067 - households.views - INFO - Generating graphs for household: H002
+2025-04-12 21:47:44,773 - households.views - INFO - Generating graphs for household: H004
+2025-04-12 21:47:45,480 - households.views - INFO - Generating graphs for household: H006
+2025-04-12 21:47:46,153 - households.views - INFO - Generating graphs for household: H007
+2025-04-12 21:47:46,820 - households.views - INFO - Generating graphs for household: H008
+2025-04-12 21:47:47,472 - households.views - INFO - Generating graphs for household: H009
+2025-04-12 21:55:16,867 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-12 21:55:16,871 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 21:55:27,338 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-12 21:59:11,433 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-12 21:59:12,648 - households.views - INFO - Generating graphs for household: H004
+2025-04-12 21:59:13,476 - households.views - INFO - Generating graphs for household: H006
+2025-04-12 21:59:14,414 - households.views - INFO - Generating graphs for household: H008
+2025-04-12 22:09:07,954 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 22:45:48,475 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-12 22:46:02,834 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-12 22:46:13,400 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-12 22:46:21,675 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-12 22:46:22,803 - households.views - INFO - Generating graphs for household: H004
+2025-04-12 22:46:23,502 - households.views - INFO - Generating graphs for household: H005
+2025-04-12 22:46:24,140 - households.views - INFO - Generating graphs for household: H008
+2025-04-12 23:19:31,366 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-12 23:19:31,368 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-12 23:19:41,357 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-12 23:47:51,197 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-12 23:47:58,160 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-12 23:47:59,312 - households.views - INFO - Generating graphs for household: H005
+2025-04-12 23:48:00,073 - households.views - INFO - Generating graphs for household: H003
+2025-04-13 11:18:15,071 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-13 11:19:10,941 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-13 11:19:17,325 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-13 11:19:18,904 - households.views - INFO - Generating graphs for household: H005
+2025-04-13 11:19:22,731 - households.views - INFO - Generating graphs for household: H003
+2025-04-13 11:20:11,499 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-13 11:26:51,444 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-13 11:26:51,444 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-13 11:27:01,353 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-13 11:31:50,488 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-13 11:31:50,491 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-13 11:32:15,082 - households.views - CRITICAL - Critical MongoDB Connection Failure: No replica set members match selector "Primary()", Timeout: 15.0s, Topology Description: <TopologyDescription id: 67fb53582d38259ace73191c, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('household-shard-00-00.ipekb.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.03180000000011205>, <ServerDescription ('household-shard-00-01.ipekb.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.030999999999949072>, <ServerDescription ('household-shard-00-02.ipekb.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('household-shard-00-02.ipekb.mongodb.net:27017: timed out')>]>
+Traceback (most recent call last):
+  File "F:\energy_trading_game\households\views.py", line 55, in _connect
+    self.client.server_info()
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1875, in server_info
+    return self.admin.command("buildinfo",
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\database.py", line 736, in command
+    with self.__client._socket_for_reads(
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1325, in _socket_for_reads
+    server = self._select_server(read_preference, session)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1278, in _select_server
+    server = topology.select_server(server_selector)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\topology.py", line 241, in select_server
+    return random.choice(self.select_servers(selector,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\topology.py", line 199, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\topology.py", line 215, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: No replica set members match selector "Primary()", Timeout: 15.0s, Topology Description: <TopologyDescription id: 67fb53582d38259ace73191c, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('household-shard-00-00.ipekb.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.03180000000011205>, <ServerDescription ('household-shard-00-01.ipekb.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.030999999999949072>, <ServerDescription ('household-shard-00-02.ipekb.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('household-shard-00-02.ipekb.mongodb.net:27017: timed out')>]>
+2025-04-13 11:32:23,644 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-13 11:32:32,674 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-13 11:32:32,674 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-13 11:32:57,844 - households.views - CRITICAL - Critical MongoDB Connection Failure: household-shard-00-02.ipekb.mongodb.net:27017: timed out
+Traceback (most recent call last):
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1278, in _get_socket
+    sock_info = self.sockets.popleft()
+                ^^^^^^^^^^^^^^^^^^^^^^
+IndexError: pop from an empty deque
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1180, in connect
+    sock = _configured_socket(self.address, self.opts)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 988, in _configured_socket
+    sock = _create_connection(address, options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 972, in _create_connection
+    raise err
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 965, in _create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\energy_trading_game\households\views.py", line 55, in _connect
+    self.client.server_info()
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1875, in server_info
+    return self.admin.command("buildinfo",
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\database.py", line 736, in command
+    with self.__client._socket_for_reads(
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1327, in _socket_for_reads
+    with self._get_socket(server, session) as sock_info:
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1246, in _get_socket
+    with server.get_socket(
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1231, in get_socket
+    sock_info = self._get_socket(all_credentials)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1281, in _get_socket
+    sock_info = self.connect(all_credentials)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1187, in connect
+    _raise_connection_failure(self.address, error)
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 277, in _raise_connection_failure
+    raise NetworkTimeout(msg)
+pymongo.errors.NetworkTimeout: household-shard-00-02.ipekb.mongodb.net:27017: timed out
+2025-04-13 11:33:06,490 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-13 11:33:31,004 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-13 11:33:32,099 - households.views - INFO - Generating graphs for household: H002
+2025-04-13 11:33:32,823 - households.views - INFO - Generating graphs for household: H004
+2025-04-13 11:33:33,620 - households.views - INFO - Generating graphs for household: H007
+2025-04-13 11:33:34,372 - households.views - INFO - Generating graphs for household: H008
+2025-04-13 11:33:35,203 - households.views - INFO - Generating graphs for household: H009
+2025-04-13 11:33:35,993 - households.views - INFO - Generating graphs for household: H005
+2025-04-13 19:43:30,004 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-13 19:43:51,028 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-13 19:44:19,033 - households.views - CRITICAL - Critical MongoDB Connection Failure: household-shard-00-02.ipekb.mongodb.net:27017: timed out
+Traceback (most recent call last):
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1278, in _get_socket
+    sock_info = self.sockets.popleft()
+                ^^^^^^^^^^^^^^^^^^^^^^
+IndexError: pop from an empty deque
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1180, in connect
+    sock = _configured_socket(self.address, self.opts)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 988, in _configured_socket
+    sock = _create_connection(address, options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 972, in _create_connection
+    raise err
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 965, in _create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\energy_trading_game\households\views.py", line 55, in _connect
+    self.client.server_info()
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1875, in server_info
+    return self.admin.command("buildinfo",
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\database.py", line 736, in command
+    with self.__client._socket_for_reads(
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1327, in _socket_for_reads
+    with self._get_socket(server, session) as sock_info:
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1246, in _get_socket
+    with server.get_socket(
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1231, in get_socket
+    sock_info = self._get_socket(all_credentials)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1281, in _get_socket
+    sock_info = self.connect(all_credentials)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1187, in connect
+    _raise_connection_failure(self.address, error)
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 277, in _raise_connection_failure
+    raise NetworkTimeout(msg)
+pymongo.errors.NetworkTimeout: household-shard-00-02.ipekb.mongodb.net:27017: timed out
+2025-04-13 19:44:37,854 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-13 19:45:12,473 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-13 19:45:18,112 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-13 19:45:26,108 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-13 19:45:28,613 - households.views - INFO - Generating graphs for household: H007
+2025-04-13 19:45:29,439 - households.views - INFO - Generating graphs for household: H004
+2025-04-13 19:45:31,083 - django.request - WARNING - Not Found: /api/energy-trading/data/
+2025-04-13 20:05:47,235 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-13 20:05:47,235 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-13 20:05:57,357 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-13 20:20:44,712 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-13 20:20:44,712 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-13 20:20:54,812 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-13 20:23:43,450 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-04-13 20:23:43,450 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-13 20:24:08,226 - households.views - CRITICAL - Critical MongoDB Connection Failure: household-shard-00-02.ipekb.mongodb.net:27017: timed out
+Traceback (most recent call last):
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1278, in _get_socket
+    sock_info = self.sockets.popleft()
+                ^^^^^^^^^^^^^^^^^^^^^^
+IndexError: pop from an empty deque
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1180, in connect
+    sock = _configured_socket(self.address, self.opts)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 988, in _configured_socket
+    sock = _create_connection(address, options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 972, in _create_connection
+    raise err
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 965, in _create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\energy_trading_game\households\views.py", line 55, in _connect
+    self.client.server_info()
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1875, in server_info
+    return self.admin.command("buildinfo",
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\database.py", line 736, in command
+    with self.__client._socket_for_reads(
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1327, in _socket_for_reads
+    with self._get_socket(server, session) as sock_info:
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1246, in _get_socket
+    with server.get_socket(
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1231, in get_socket
+    sock_info = self._get_socket(all_credentials)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1281, in _get_socket
+    sock_info = self.connect(all_credentials)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1187, in connect
+    _raise_connection_failure(self.address, error)
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 277, in _raise_connection_failure
+    raise NetworkTimeout(msg)
+pymongo.errors.NetworkTimeout: household-shard-00-02.ipekb.mongodb.net:27017: timed out
+2025-04-13 20:24:16,769 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-13 20:25:24,647 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-13 20:25:26,393 - households.views - INFO - Generating graphs for household: H004
+2025-04-13 20:25:27,095 - households.views - INFO - Generating graphs for household: H005
+2025-04-13 20:25:27,846 - households.views - INFO - Generating graphs for household: H006
+2025-04-13 20:25:28,533 - households.views - INFO - Generating graphs for household: H008
+2025-04-13 20:49:42,492 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-13 20:49:55,166 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-13 20:59:32,325 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-13 20:59:33,312 - households.views - INFO - Generating graphs for household: H002
+2025-04-13 20:59:34,915 - households.views - INFO - Generating graphs for household: H008
+2025-04-13 20:59:36,366 - households.views - INFO - Generating graphs for household: H007
+2025-04-13 22:38:25,374 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-13 22:40:41,810 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-13 22:40:48,103 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-13 22:40:56,121 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-13 22:40:57,206 - households.views - INFO - Generating graphs for household: H004
+2025-04-13 22:40:57,781 - households.views - INFO - Generating graphs for household: H006
+2025-04-13 22:40:58,741 - households.views - INFO - Generating graphs for household: H005
+2025-04-13 22:40:59,587 - households.views - INFO - Generating graphs for household: H003
+2025-04-13 22:40:59,968 - households.views - INFO - Generating graphs for household: H002
+2025-04-13 22:41:00,343 - households.views - INFO - Generating graphs for household: H001
+2025-04-13 22:41:01,341 - households.views - INFO - Generating graphs for household: H009
+2025-04-13 22:41:01,874 - households.views - INFO - Generating graphs for household: H010
+2025-04-13 22:41:02,346 - households.views - INFO - Generating graphs for household: H008
+2025-04-13 22:45:00,862 - households.views - CRITICAL - Critical MongoDB Connection Failure: household-shard-00-02.ipekb.mongodb.net:27017: timed out
+Traceback (most recent call last):
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1278, in _get_socket
+    sock_info = self.sockets.popleft()
+                ^^^^^^^^^^^^^^^^^^^^^^
+IndexError: pop from an empty deque
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1180, in connect
+    sock = _configured_socket(self.address, self.opts)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 988, in _configured_socket
+    sock = _create_connection(address, options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 972, in _create_connection
+    raise err
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 965, in _create_connection
+    sock.connect(sa)
+TimeoutError: timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "F:\energy_trading_game\households\views.py", line 55, in _connect
+    self.client.server_info()
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1875, in server_info
+    return self.admin.command("buildinfo",
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\database.py", line 736, in command
+    with self.__client._socket_for_reads(
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1327, in _socket_for_reads
+    with self._get_socket(server, session) as sock_info:
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1246, in _get_socket
+    with server.get_socket(
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1231, in get_socket
+    sock_info = self._get_socket(all_credentials)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1281, in _get_socket
+    sock_info = self.connect(all_credentials)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 1187, in connect
+    _raise_connection_failure(self.address, error)
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\pool.py", line 277, in _raise_connection_failure
+    raise NetworkTimeout(msg)
+pymongo.errors.NetworkTimeout: household-shard-00-02.ipekb.mongodb.net:27017: timed out
+2025-04-13 22:45:09,360 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-13 23:39:47,168 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 11:21:14,847 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 11:22:18,534 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-14 11:33:39,608 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-14 11:33:40,871 - households.views - INFO - Generating graphs for household: H007
+2025-04-14 11:33:41,785 - households.views - INFO - Generating graphs for household: H005
+2025-04-14 11:33:43,913 - households.views - INFO - Generating graphs for household: H003
+2025-04-14 11:33:45,804 - households.views - INFO - Generating graphs for household: H002
+2025-04-14 11:33:46,703 - households.views - INFO - Generating graphs for household: H001
+2025-04-14 11:33:48,744 - households.views - INFO - Generating graphs for household: H010
+2025-04-14 11:33:49,744 - households.views - INFO - Generating graphs for household: H009
+2025-04-14 12:44:01,238 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-14 12:44:08,315 - households.views - INFO - Generating graphs for household: H004
+2025-04-14 12:44:09,394 - households.views - INFO - Generating graphs for household: H007
+2025-04-14 12:44:10,501 - households.views - INFO - Generating graphs for household: H008
+2025-04-14 12:44:11,615 - households.views - INFO - Generating graphs for household: H005
+2025-04-14 13:12:24,274 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 13:12:45,202 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 13:14:06,246 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-14 13:24:30,378 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-14 13:24:31,382 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-14 13:24:32,186 - households.views - INFO - Generating graphs for household: H005
+2025-04-14 13:24:32,931 - households.views - INFO - Generating graphs for household: H004
+2025-04-14 13:24:34,372 - households.views - INFO - Generating graphs for household: H003
+2025-04-14 13:24:35,057 - households.views - INFO - Generating graphs for household: H005
+2025-04-14 13:24:35,694 - households.views - INFO - Generating graphs for household: H007
+2025-04-14 13:24:36,390 - households.views - INFO - Generating graphs for household: H009
+2025-04-14 13:24:37,132 - households.views - INFO - Generating graphs for household: H008
+2025-04-14 13:39:38,930 - households.views - INFO - Generating graphs for household: H005
+2025-04-14 13:39:40,381 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-14 13:39:42,205 - households.views - INFO - Generating graphs for household: H001
+2025-04-14 13:39:42,949 - households.views - INFO - Generating graphs for household: H002
+2025-04-14 13:39:43,610 - households.views - INFO - Generating graphs for household: H003
+2025-04-14 13:39:44,371 - households.views - INFO - Generating graphs for household: H004
+2025-04-14 13:39:45,085 - households.views - INFO - Generating graphs for household: H005
+2025-04-14 13:39:45,751 - households.views - INFO - Generating graphs for household: H006
+2025-04-14 13:39:46,430 - households.views - INFO - Generating graphs for household: H007
+2025-04-14 13:39:47,715 - households.views - INFO - Generating graphs for household: H008
+2025-04-14 13:39:48,360 - households.views - INFO - Generating graphs for household: H009
+2025-04-14 13:39:49,470 - households.views - INFO - Generating graphs for household: H010
+2025-04-14 16:19:19,580 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-14 16:19:19,587 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 16:19:29,254 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 16:19:51,263 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-14 16:19:51,263 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 16:20:00,795 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 16:32:35,802 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-14 16:32:35,802 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 16:32:45,582 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 16:33:12,442 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-14 16:33:13,839 - households.views - INFO - Generating graphs for household: H003
+2025-04-14 16:33:14,618 - households.views - INFO - Generating graphs for household: H005
+2025-04-14 16:33:15,326 - households.views - INFO - Generating graphs for household: H007
+2025-04-14 16:33:15,992 - households.views - INFO - Generating graphs for household: H008
+2025-04-14 16:33:16,617 - households.views - INFO - Generating graphs for household: H009
+2025-04-14 16:33:17,298 - households.views - INFO - Generating graphs for household: H003
+2025-04-14 16:33:18,020 - households.views - INFO - Generating graphs for household: H002
+2025-04-14 16:33:58,176 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 16:34:37,913 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 16:35:15,265 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-14 16:35:16,418 - households.views - INFO - Generating graphs for household: H002
+2025-04-14 16:35:17,095 - households.views - INFO - Generating graphs for household: H003
+2025-04-14 16:35:17,809 - households.views - INFO - Generating graphs for household: H005
+2025-04-14 16:35:18,441 - households.views - INFO - Generating graphs for household: H006
+2025-04-14 16:35:19,060 - households.views - INFO - Generating graphs for household: H007
+2025-04-14 16:35:19,637 - households.views - INFO - Generating graphs for household: H007
+2025-04-14 16:35:21,548 - households.views - INFO - Generating graphs for household: H009
+2025-04-14 16:35:22,337 - households.views - INFO - Generating graphs for household: H006
+2025-04-14 16:36:20,478 - django.request - WARNING - Not Found: /process_energy_data/
+2025-04-14 16:37:07,469 - django.request - WARNING - Bad Request: /process-data/
+2025-04-14 16:40:59,744 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-14 16:40:59,749 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 16:41:09,292 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 16:43:05,379 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-04-14 16:43:05,379 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 16:43:15,091 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 16:51:21,325 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-14 16:51:22,678 - households.views - INFO - Generating graphs for household: H006
+2025-04-14 16:51:23,445 - households.views - INFO - Generating graphs for household: H008
+2025-04-14 16:51:24,529 - households.views - INFO - Generating graphs for household: H010
+2025-04-14 16:51:25,423 - households.views - INFO - Generating graphs for household: H006
+2025-04-14 16:51:26,286 - households.views - INFO - Generating graphs for household: H005
+2025-04-14 16:51:27,104 - households.views - INFO - Generating graphs for household: H003
+2025-04-14 17:13:54,535 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-14 17:13:54,535 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 17:14:04,255 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 17:31:11,287 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-04-14 17:31:11,287 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 17:31:21,046 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 17:31:42,943 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-14 17:32:01,257 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-14 17:32:03,294 - households.views - INFO - Generating graphs for household: H001
+2025-04-14 17:32:04,242 - households.views - INFO - Generating graphs for household: H002
+2025-04-14 17:32:04,931 - households.views - INFO - Generating graphs for household: H004
+2025-04-14 17:32:05,577 - households.views - INFO - Generating graphs for household: H005
+2025-04-14 17:32:06,228 - households.views - INFO - Generating graphs for household: H007
+2025-04-14 17:32:06,844 - households.views - INFO - Generating graphs for household: H008
+2025-04-14 17:32:07,444 - households.views - INFO - Generating graphs for household: H009
+2025-04-14 17:32:08,690 - django.request - WARNING - Not Found: /main/report.html
+2025-04-14 17:32:15,787 - django.request - WARNING - Not Found: /main/report.html
+2025-04-14 17:33:45,832 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-04-14 17:33:45,832 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 17:33:55,623 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 17:34:10,646 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:34:10,654 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:35:24,524 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-04-14 17:35:24,525 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 17:35:34,037 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 17:36:08,353 - django.request - WARNING - Bad Request: /energy-trading-data/
+2025-04-14 17:36:18,705 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 17:36:19,215 - django.request - ERROR - Internal Server Error: /energy-trading-data/
+2025-04-14 17:49:46,982 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 17:49:58,726 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-14 17:50:04,728 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-14 17:50:06,655 - households.views - INFO - Generating graphs for household: H005
+2025-04-14 17:50:07,305 - households.views - INFO - Generating graphs for household: H007
+2025-04-14 17:50:07,909 - households.views - INFO - Generating graphs for household: H008
+2025-04-14 17:50:08,561 - households.views - INFO - Generating graphs for household: H009
+2025-04-14 17:50:09,333 - households.views - INFO - Generating graphs for household: H003
+2025-04-14 17:50:09,990 - households.views - INFO - Generating graphs for household: H005
+2025-04-14 17:50:10,589 - households.views - INFO - Generating graphs for household: H006
+2025-04-14 17:50:11,170 - households.views - INFO - Generating graphs for household: H008
+2025-04-14 17:50:12,123 - households.views - INFO - Generating graphs for household: H010
+2025-04-14 17:50:30,319 - django.request - WARNING - Bad Request: /energy-trading-data/
+2025-04-14 17:50:47,376 - django.request - WARNING - Bad Request: /energy-trading-data/
+2025-04-14 17:54:44,426 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-04-14 17:54:44,426 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 17:54:54,093 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 17:55:11,964 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:55:11,974 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:55:19,862 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:55:19,873 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:55:20,803 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:55:20,817 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:55:20,984 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:55:20,997 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:55:21,128 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:55:21,142 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:55:21,305 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:55:21,320 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:55:21,522 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:55:21,537 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:55:49,667 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-04-14 17:55:49,667 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 17:56:13,822 - households.views - CRITICAL - Critical MongoDB Connection Failure: No replica set members match selector "Primary()", Timeout: 15.0s, Topology Description: <TopologyDescription id: 67fcfed6e6b872d26628293d, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('household-shard-00-00.ipekb.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.03179999999993015>, <ServerDescription ('household-shard-00-01.ipekb.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.04380000000005566>, <ServerDescription ('household-shard-00-02.ipekb.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('household-shard-00-02.ipekb.mongodb.net:27017: timed out')>]>
+Traceback (most recent call last):
+  File "F:\energy_trading_game\households\views.py", line 55, in _connect
+    self.client.server_info()
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1875, in server_info
+    return self.admin.command("buildinfo",
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\database.py", line 736, in command
+    with self.__client._socket_for_reads(
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1325, in _socket_for_reads
+    server = self._select_server(read_preference, session)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1278, in _select_server
+    server = topology.select_server(server_selector)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\topology.py", line 241, in select_server
+    return random.choice(self.select_servers(selector,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\topology.py", line 199, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\topology.py", line 215, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: No replica set members match selector "Primary()", Timeout: 15.0s, Topology Description: <TopologyDescription id: 67fcfed6e6b872d26628293d, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('household-shard-00-00.ipekb.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.03179999999993015>, <ServerDescription ('household-shard-00-01.ipekb.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.04380000000005566>, <ServerDescription ('household-shard-00-02.ipekb.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('household-shard-00-02.ipekb.mongodb.net:27017: timed out')>]>
+2025-04-14 17:56:22,305 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 17:56:55,867 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:56:55,873 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:56:56,922 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:56:56,935 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:56:57,070 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:56:57,081 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:56:57,234 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:56:57,243 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:56:57,381 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:56:57,400 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:56:57,604 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:56:57,617 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:59:27,142 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-14 17:59:27,142 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 17:59:36,700 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 17:59:56,753 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:59:56,764 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:59:57,792 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:59:57,806 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:59:57,955 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:59:57,968 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:59:58,115 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:59:58,130 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:59:58,274 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:59:58,286 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:59:58,431 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 17:59:58,443 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 18:00:17,752 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-14 18:00:20,928 - households.views - INFO - Generating graphs for household: H004
+2025-04-14 18:00:23,032 - households.views - INFO - Generating graphs for household: H007
+2025-04-14 18:00:27,602 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 18:00:27,615 - django.request - WARNING - Not Found: /energy-trading-data/
+2025-04-14 18:02:38,113 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-04-14 18:02:38,113 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 18:02:47,685 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 18:05:50,959 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-14 18:05:53,389 - households.views - INFO - Generating graphs for household: H006
+2025-04-14 18:05:55,526 - households.views - INFO - Generating graphs for household: H008
+2025-04-14 18:06:30,833 - django.request - WARNING - Bad Request: /api/energy-trading/data/
+2025-04-14 18:07:08,172 - django.request - WARNING - Bad Request: /api/energy-trading/data/
+2025-04-14 19:36:00,618 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 19:36:12,450 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-14 19:36:22,265 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-14 19:36:24,911 - households.views - INFO - Generating graphs for household: H003
+2025-04-14 19:36:25,747 - households.views - INFO - Generating graphs for household: H004
+2025-04-14 19:36:26,678 - households.views - INFO - Generating graphs for household: H006
+2025-04-14 19:36:27,586 - households.views - INFO - Generating graphs for household: H007
+2025-04-14 19:36:28,358 - households.views - INFO - Generating graphs for household: H008
+2025-04-14 19:36:29,280 - households.views - INFO - Generating graphs for household: H009
+2025-04-14 19:36:30,128 - households.views - INFO - Generating graphs for household: H003
+2025-04-14 19:37:26,536 - django.request - WARNING - Bad Request: /api/energy-trading/data/
+2025-04-14 19:38:04,133 - django.request - WARNING - Bad Request: /api/energy-trading/data/
+2025-04-14 19:48:41,637 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-14 19:48:41,637 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 19:48:59,639 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 19:49:57,978 - django.utils.autoreload - INFO - F:\energy_trading_game\energy_trading_game\urls.py changed, reloading.
+2025-04-14 19:49:57,978 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 19:50:15,974 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 19:52:18,248 - trading.views - ERROR - Missing required columns in source 'energydata': ['Solar Power (kW)', 'Wind Power (kW)', 'Power Consumption (kW)', 'Voltage (V)', 'Current (A)', 'Electricity Price (USD/kWh)', 'Grid Supply (kW)', 'Overload Condition', 'Transformer Fault', 'household_id']
+2025-04-14 19:52:18,248 - trading.views - ERROR - Failed to generate report data: Missing required columns in source 'energydata': ['Solar Power (kW)', 'Wind Power (kW)', 'Power Consumption (kW)', 'Voltage (V)', 'Current (A)', 'Electricity Price (USD/kWh)', 'Grid Supply (kW)', 'Overload Condition', 'Transformer Fault', 'household_id']
+2025-04-14 19:52:35,198 - trading.views - ERROR - Missing required columns in source 'energydata': ['Solar Power (kW)', 'Wind Power (kW)', 'Power Consumption (kW)', 'Voltage (V)', 'Current (A)', 'Electricity Price (USD/kWh)', 'Grid Supply (kW)', 'Overload Condition', 'Transformer Fault', 'household_id']
+2025-04-14 19:52:35,259 - django.request - WARNING - Bad Request: /api/energy-trading/data/
+2025-04-14 19:52:51,968 - trading.views - ERROR - Missing required columns in source 'energydata': ['Solar Power (kW)', 'Wind Power (kW)', 'Power Consumption (kW)', 'Voltage (V)', 'Current (A)', 'Electricity Price (USD/kWh)', 'Grid Supply (kW)', 'Overload Condition', 'Transformer Fault', 'household_id']
+2025-04-14 19:52:52,022 - django.request - WARNING - Bad Request: /api/energy-trading/data/
+2025-04-14 19:54:05,868 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 19:54:43,145 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 19:55:03,873 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-14 19:55:38,787 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-14 19:55:55,622 - households.views - INFO - Generating graphs for household: H005
+2025-04-14 19:55:56,508 - households.views - INFO - Generating graphs for household: H007
+2025-04-14 19:55:57,418 - households.views - INFO - Generating graphs for household: H009
+2025-04-14 19:56:15,648 - trading.views - ERROR - Missing required columns in source 'energydata': ['Solar Power (kW)', 'Wind Power (kW)', 'Power Consumption (kW)', 'Voltage (V)', 'Current (A)', 'Electricity Price (USD/kWh)', 'Grid Supply (kW)', 'Overload Condition', 'Transformer Fault', 'household_id']
+2025-04-14 19:56:15,648 - trading.views - ERROR - Failed to generate report data: Missing required columns in source 'energydata': ['Solar Power (kW)', 'Wind Power (kW)', 'Power Consumption (kW)', 'Voltage (V)', 'Current (A)', 'Electricity Price (USD/kWh)', 'Grid Supply (kW)', 'Overload Condition', 'Transformer Fault', 'household_id']
+2025-04-14 19:56:32,458 - trading.views - ERROR - Missing required columns in source 'energydata': ['Solar Power (kW)', 'Wind Power (kW)', 'Power Consumption (kW)', 'Voltage (V)', 'Current (A)', 'Electricity Price (USD/kWh)', 'Grid Supply (kW)', 'Overload Condition', 'Transformer Fault', 'household_id']
+2025-04-14 19:56:32,507 - django.request - WARNING - Bad Request: /api/energy-trading/data/
+2025-04-14 19:56:49,233 - trading.views - ERROR - Missing required columns in source 'energydata': ['Solar Power (kW)', 'Wind Power (kW)', 'Power Consumption (kW)', 'Voltage (V)', 'Current (A)', 'Electricity Price (USD/kWh)', 'Grid Supply (kW)', 'Overload Condition', 'Transformer Fault', 'household_id']
+2025-04-14 19:56:49,287 - django.request - WARNING - Bad Request: /api/energy-trading/data/
+2025-04-14 20:03:03,412 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-14 20:03:03,412 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 20:03:21,586 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 20:06:54,294 - django.request - WARNING - Not Found: /favicon.ico
+2025-04-14 20:07:14,333 - trading.views - WARNING - Missing columns in 'energydata': ['Solar Power (kW)', 'Wind Power (kW)', 'Power Consumption (kW)', 'Voltage (V)', 'Current (A)', 'Electricity Price (USD/kWh)', 'Grid Supply (kW)', 'Overload Condition', 'Transformer Fault', 'household_id']. Setting to 0.
+2025-04-14 20:07:35,190 - trading.views - WARNING - Missing columns in 'energydata': ['Solar Power (kW)', 'Wind Power (kW)', 'Power Consumption (kW)', 'Voltage (V)', 'Current (A)', 'Electricity Price (USD/kWh)', 'Grid Supply (kW)', 'Overload Condition', 'Transformer Fault', 'household_id']. Setting to 0.
+2025-04-14 20:07:51,520 - trading.views - WARNING - Missing columns in 'energydata': ['Solar Power (kW)', 'Wind Power (kW)', 'Power Consumption (kW)', 'Voltage (V)', 'Current (A)', 'Electricity Price (USD/kWh)', 'Grid Supply (kW)', 'Overload Condition', 'Transformer Fault', 'household_id']. Setting to 0.
+2025-04-14 20:07:52,139 - trading.views - WARNING - Missing columns in 'energydata': ['Solar Power (kW)', 'Wind Power (kW)', 'Power Consumption (kW)', 'Voltage (V)', 'Current (A)', 'Electricity Price (USD/kWh)', 'Grid Supply (kW)', 'Overload Condition', 'Transformer Fault', 'household_id']. Setting to 0.
+2025-04-14 20:08:18,204 - trading.views - WARNING - Missing columns in 'energydata': ['Solar Power (kW)', 'Wind Power (kW)', 'Power Consumption (kW)', 'Voltage (V)', 'Current (A)', 'Electricity Price (USD/kWh)', 'Grid Supply (kW)', 'Overload Condition', 'Transformer Fault', 'household_id']. Setting to 0.
+2025-04-14 20:08:34,978 - trading.views - WARNING - Missing columns in 'energydata': ['Solar Power (kW)', 'Wind Power (kW)', 'Power Consumption (kW)', 'Voltage (V)', 'Current (A)', 'Electricity Price (USD/kWh)', 'Grid Supply (kW)', 'Overload Condition', 'Transformer Fault', 'household_id']. Setting to 0.
+2025-04-14 20:12:27,003 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 20:13:14,003 - households.views - CRITICAL - Critical MongoDB Connection Failure: No replica set members match selector "Primary()", Timeout: 15.0s, Topology Description: <TopologyDescription id: 67fd1ef26c85708d7455cd4c, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('household-shard-00-00.ipekb.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.05>, <ServerDescription ('household-shard-00-01.ipekb.mongodb.net', 27017) server_type: Unknown, rtt: None>, <ServerDescription ('household-shard-00-02.ipekb.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('household-shard-00-02.ipekb.mongodb.net:27017: timed out')>]>
+Traceback (most recent call last):
+  File "F:\energy_trading_game\households\views.py", line 55, in _connect
+    self.client.server_info()
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1875, in server_info
+    return self.admin.command("buildinfo",
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\database.py", line 736, in command
+    with self.__client._socket_for_reads(
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1325, in _socket_for_reads
+    server = self._select_server(read_preference, session)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\mongo_client.py", line 1278, in _select_server
+    server = topology.select_server(server_selector)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\topology.py", line 241, in select_server
+    return random.choice(self.select_servers(selector,
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\topology.py", line 199, in select_servers
+    server_descriptions = self._select_servers_loop(
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymongo\topology.py", line 215, in _select_servers_loop
+    raise ServerSelectionTimeoutError(
+pymongo.errors.ServerSelectionTimeoutError: No replica set members match selector "Primary()", Timeout: 15.0s, Topology Description: <TopologyDescription id: 67fd1ef26c85708d7455cd4c, topology_type: ReplicaSetNoPrimary, servers: [<ServerDescription ('household-shard-00-00.ipekb.mongodb.net', 27017) server_type: RSSecondary, rtt: 0.05>, <ServerDescription ('household-shard-00-01.ipekb.mongodb.net', 27017) server_type: Unknown, rtt: None>, <ServerDescription ('household-shard-00-02.ipekb.mongodb.net', 27017) server_type: Unknown, rtt: None, error=NetworkTimeout('household-shard-00-02.ipekb.mongodb.net:27017: timed out')>]>
+2025-04-14 20:13:14,005 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 20:13:48,757 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 20:14:38,844 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-14 20:14:42,438 - households.views - INFO - Generating graphs for household: H002
+2025-04-14 20:14:43,289 - households.views - INFO - Generating graphs for household: H004
+2025-04-14 20:14:44,095 - households.views - INFO - Generating graphs for household: H006
+2025-04-14 20:14:44,809 - households.views - INFO - Generating graphs for household: H007
+2025-04-14 20:14:45,623 - households.views - INFO - Generating graphs for household: H009
+2025-04-14 20:14:46,725 - households.views - INFO - Generating graphs for household: H004
+2025-04-14 20:15:05,196 - trading.views - WARNING - Missing columns in 'energydata': ['Solar Power (kW)', 'Wind Power (kW)', 'Power Consumption (kW)', 'Voltage (V)', 'Current (A)', 'Electricity Price (USD/kWh)', 'Grid Supply (kW)', 'Overload Condition', 'Transformer Fault', 'household_id']. Setting to 0.
+2025-04-14 20:15:22,104 - trading.views - WARNING - Missing columns in 'energydata': ['Solar Power (kW)', 'Wind Power (kW)', 'Power Consumption (kW)', 'Voltage (V)', 'Current (A)', 'Electricity Price (USD/kWh)', 'Grid Supply (kW)', 'Overload Condition', 'Transformer Fault', 'household_id']. Setting to 0.
+2025-04-14 20:15:38,891 - trading.views - WARNING - Missing columns in 'energydata': ['Solar Power (kW)', 'Wind Power (kW)', 'Power Consumption (kW)', 'Voltage (V)', 'Current (A)', 'Electricity Price (USD/kWh)', 'Grid Supply (kW)', 'Overload Condition', 'Transformer Fault', 'household_id']. Setting to 0.
+2025-04-14 20:22:52,972 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-14 20:22:52,972 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 20:23:10,961 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 20:23:14,237 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-14 20:23:14,237 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 20:23:31,991 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 20:23:51,830 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-14 20:23:51,831 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 20:24:09,760 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 20:25:12,523 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-14 20:25:12,523 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 20:25:30,463 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 20:26:16,767 - trading.views - WARNING - Missing columns in 'energydata': ['Solar Power (kW)', 'Wind Power (kW)', 'Power Consumption (kW)', 'Voltage (V)', 'Current (A)', 'Electricity Price (USD/kWh)', 'Grid Supply (kW)', 'Overload Condition', 'Transformer Fault', 'household_id']. Setting to 0.
+2025-04-14 20:26:34,469 - trading.views - INFO - No new data to insert into 'energy_trading' collection.
+2025-04-14 20:26:51,328 - trading.views - INFO - No new data to insert into 'energy_trading' collection.
+2025-04-14 20:27:20,607 - trading.views - INFO - No new data to insert into 'energy_trading' collection.
+2025-04-14 20:27:37,660 - trading.views - INFO - No new data to insert into 'energy_trading' collection.
+2025-04-14 20:33:03,674 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-14 20:33:03,674 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 20:33:21,804 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 20:35:32,738 - trading.views - ERROR - Error during data calculation: 'last_updated'
+Traceback (most recent call last):
+  File "F:\energy_trading_game\trading\views.py", line 50, in _calculate_trading_data_from_source
+    df = df.sort_values("last_updated", ascending=True).groupby("household_id").last().reset_index()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\core\frame.py", line 7189, in sort_values
+    k = self._get_label_or_level_values(by[0], axis=axis)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\core\generic.py", line 1911, in _get_label_or_level_values
+    raise KeyError(key)
+KeyError: 'last_updated'
+2025-04-14 20:35:49,642 - trading.views - ERROR - Error during data calculation: 'last_updated'
+Traceback (most recent call last):
+  File "F:\energy_trading_game\trading\views.py", line 50, in _calculate_trading_data_from_source
+    df = df.sort_values("last_updated", ascending=True).groupby("household_id").last().reset_index()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\core\frame.py", line 7189, in sort_values
+    k = self._get_label_or_level_values(by[0], axis=axis)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\core\generic.py", line 1911, in _get_label_or_level_values
+    raise KeyError(key)
+KeyError: 'last_updated'
+2025-04-14 20:35:49,701 - django.request - ERROR - Internal Server Error: /api/energy-trading/data/
+2025-04-14 20:36:06,426 - trading.views - ERROR - Error during data calculation: 'last_updated'
+Traceback (most recent call last):
+  File "F:\energy_trading_game\trading\views.py", line 50, in _calculate_trading_data_from_source
+    df = df.sort_values("last_updated", ascending=True).groupby("household_id").last().reset_index()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\core\frame.py", line 7189, in sort_values
+    k = self._get_label_or_level_values(by[0], axis=axis)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\core\generic.py", line 1911, in _get_label_or_level_values
+    raise KeyError(key)
+KeyError: 'last_updated'
+2025-04-14 20:36:06,475 - django.request - ERROR - Internal Server Error: /api/energy-trading/data/
+2025-04-14 20:39:03,384 - django.utils.autoreload - INFO - F:\energy_trading_game\trading\views.py changed, reloading.
+2025-04-14 20:39:03,386 - asyncio - DEBUG - Using proactor: IocpProactor
+2025-04-14 20:39:21,458 - households.views - INFO - Successfully established robust MongoDB connection
+2025-04-14 20:41:02,867 - households.views - INFO - search_households found 10 matches for query: ''
+2025-04-14 20:41:03,878 - households.views - INFO - Generating graphs for household: H005
+2025-04-14 20:41:04,610 - households.views - INFO - Generating graphs for household: H007
+2025-04-14 20:41:06,499 - households.views - INFO - Generating graphs for household: H009
+2025-04-14 20:41:07,290 - households.views - INFO - Generating graphs for household: H010
+2025-04-14 20:41:46,279 - trading.views - ERROR - Error during data calculation: 'last_updated'
+Traceback (most recent call last):
+  File "F:\energy_trading_game\trading\views.py", line 50, in _calculate_trading_data_from_source
+    df = df.sort_values("last_updated", ascending=True).groupby("household_id").last().reset_index()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\core\frame.py", line 7189, in sort_values
+    k = self._get_label_or_level_values(by[0], axis=axis)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\core\generic.py", line 1911, in _get_label_or_level_values
+    raise KeyError(key)
+KeyError: 'last_updated'
+2025-04-14 20:42:23,232 - trading.views - ERROR - Error during data calculation: 'last_updated'
+Traceback (most recent call last):
+  File "F:\energy_trading_game\trading\views.py", line 50, in _calculate_trading_data_from_source
+    df = df.sort_values("last_updated", ascending=True).groupby("household_id").last().reset_index()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\core\frame.py", line 7189, in sort_values
+    k = self._get_label_or_level_values(by[0], axis=axis)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\core\generic.py", line 1911, in _get_label_or_level_values
+    raise KeyError(key)
+KeyError: 'last_updated'
+2025-04-14 20:42:23,285 - django.request - ERROR - Internal Server Error: /api/energy-trading/data/
+2025-04-14 20:42:23,791 - trading.views - ERROR - Error during data calculation: 'last_updated'
+Traceback (most recent call last):
+  File "F:\energy_trading_game\trading\views.py", line 50, in _calculate_trading_data_from_source
+    df = df.sort_values("last_updated", ascending=True).groupby("household_id").last().reset_index()
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\core\frame.py", line 7189, in sort_values
+    k = self._get_label_or_level_values(by[0], axis=axis)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\vishw\AppData\Local\Programs\Python\Python312\Lib\site-packages\pandas\core\generic.py", line 1911, in _get_label_or_level_values
+    raise KeyError(key)
+KeyError: 'last_updated'
+2025-04-14 20:42:23,835 - django.request - ERROR - Internal Server Error: /api/energy-trading/data/

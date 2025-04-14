@@ -1,14 +1,13 @@
 /* New Color Palette & CSS Variables */
 :root {
-    --primary-color: #000000;         /* Black */
-    --secondary-color: #150050;       /* Navy/Dark Purple */
-    --accent-color: #3F0071;          /* Purple */
-    --light-color: #610094;           /* Vivid Purple */
-    --dark-color: #000000;            /* Black */
-    --success-color: #150050;         /* Navy/Dark Purple */
-    --warning-color: #3F0071;         /* Purple */
-    --danger-color: #610094;          /* Vivid Purple */
-}
+    --primary-color: #F2506E;         /* Main action color - vibrant coral */
+    --secondary-color: #9E91F2;       /* Button hover or secondary action - soft purple */
+    --background-color: #ffffff;      /* White Background */
+    --text-color: #333;               /* Neutral dark text */
+    --shadow-color: rgba(0, 0, 0, 0.1);/* Box shadow remains subtle */
+    --error-color: #F2CD5E;           /* Soft warning yellow */
+    --accent-color: #9CF25E;          /* Optional: success or accent highlight - lime */
+  }  
 
 /* Global Styles */
 * {

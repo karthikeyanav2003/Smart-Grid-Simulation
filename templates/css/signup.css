@@ -1,7 +1,7 @@
 :root {
   --primary-color: #F2506E;      /* Vibrant Pinkish Red */
   --secondary-color: #9E91F2;    /* Soft Purple */
-  --background-color: #99E2F2;   /* Soft Aqua Blue */
+  --background-color: #ffffff;   /*  White */
   --text-color: #333;            /* Kept original for readability */
   --shadow-color: rgba(0, 0, 0, 0.1);
   --accent-color: #9CF25E;       /* Bright Lime Green */

@@ -1,7 +1,7 @@
 :root {
   --primary-color: #F2506E;         /* Main action color - vibrant coral */
   --secondary-color: #9E91F2;       /* Button hover or secondary action - soft purple */
-  --background-color: #99E2F2;      /* Light and clean background - sky blue */
+  --background-color: #ffffff;      /* White Background */
   --text-color: #333;               /* Neutral dark text */
   --shadow-color: rgba(0, 0, 0, 0.1);/* Box shadow remains subtle */
   --error-color: #F2CD5E;           /* Soft warning yellow */
