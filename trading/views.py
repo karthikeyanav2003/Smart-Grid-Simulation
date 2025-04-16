@@ -10,6 +10,12 @@ from datetime import datetime
 # Set up logging
 logger = logging.getLogger(__name__)
 
+# Connect to the database once at the start.
+client = MongoClient(settings.MONGO_URI)
+db = client[settings.MONGO_DB_NAME]
+# Note: Removed 'users_collection' since we are not using the 'users' collection.
+# Instead, use the respective collection names in each function.
+
 def hash_household_id(household_id):
     """Returns a SHA-256 hash of the household_id."""
     return hashlib.sha256(str(household_id).encode()).hexdigest()
@@ -18,7 +24,6 @@ def _calculate_trading_data_from_source(db, incremental=False, last_processed_ti
     """
     Reads raw data from 'energydata', performs calculations, and returns the processed data as a list of dictionaries.
     Supports incremental updates by processing only new or updated records based on last_processed_time.
-    Handles missing columns by setting them to default values.
     
     Parameters:
     - db: MongoDB database connection
@@ -29,6 +34,7 @@ def _calculate_trading_data_from_source(db, incremental=False, last_processed_ti
     - Dictionary with 'data' (list of calculated records) or 'error' (error message)
     """
     try:
+        # Use the respective collection name here
         source_collection = db["energydata"]
         
         # Build query for incremental updates
@@ -125,14 +131,10 @@ def update_energy_trading_collection(request):
     View to trigger calculation of data from 'energydata' and store it in 'energy_trading'.
     Supports full refresh (incremental=false) or incremental update (incremental=true) via query parameter.
     
-    URL Example: /update_energy_trading/?incremental=true 
-
+    URL Example: /update_energy_trading/?incremental=true
     """
-    client = None
     try:
-        client = MongoClient(settings.MONGO_URI)
-        db = client[settings.MONGO_DB_NAME]
-        
+        # Use the module-level db connection
         # Determine if incremental update is requested
         incremental = request.GET.get('incremental', 'false').lower() == 'true'
         last_processed_time = None
@@ -149,7 +151,7 @@ def update_energy_trading_collection(request):
         calculated_data = calculation_result.get("data", [])
         message = calculation_result.get("message", "")
         
-        # Update energy_trading collection
+        # Update the energy_trading collection using the appropriate collection name
         target_collection = db["energy_trading"]
         if calculated_data:
             if not incremental:
@@ -175,9 +177,6 @@ def update_energy_trading_collection(request):
         error_msg = f"Error updating energy_trading collection: {str(e)}"
         logger.exception(error_msg)
         return JsonResponse({"error": error_msg}, status=500)
-    finally:
-        if client:
-            client.close()
 
 def energy_trading_data(request):
     """
@@ -186,11 +185,7 @@ def energy_trading_data(request):
     
     URL Example: /api/energy-trading/data/
     """
-    client = None
     try:
-        client = MongoClient(settings.MONGO_URI)
-        db = client[settings.MONGO_DB_NAME]
-        
         # Perform incremental update
         latest_record = db["energy_trading"].find_one(sort=[("last_updated", -1)])
         last_processed_time = latest_record.get("last_updated") if latest_record else None
@@ -210,7 +205,7 @@ def energy_trading_data(request):
                 )
             logger.info(f"Upserted {len(calculated_data)} new records into 'energy_trading'.")
         
-        # Fetch all data
+        # Fetch all data from the 'energy_trading' collection
         trading_data = list(target_collection.find({}, {"_id": 0}))
         return JsonResponse(trading_data, safe=False)
     
@@ -218,9 +213,6 @@ def energy_trading_data(request):
         error_msg = f"Error in energy_trading_data endpoint: {str(e)}"
         logger.exception(error_msg)
         return HttpResponseServerError(JsonResponse({"error": error_msg}))
-    finally:
-        if client:
-            client.close()
 
 def report_view(request):
     """
@@ -229,12 +221,8 @@ def report_view(request):
     
     URL Example: /main/report/
     """
-    client = None
     context = {}
     try:
-        client = MongoClient(settings.MONGO_URI)
-        db = client[settings.MONGO_DB_NAME]
-        
         # Perform incremental update
         latest_record = db["energy_trading"].find_one(sort=[("last_updated", -1)])
         last_processed_time = latest_record.get("last_updated") if latest_record else None
@@ -253,7 +241,7 @@ def report_view(request):
                         {"$set": record},
                         upsert=True
                     )
-            # Fetch data for display
+            # Retrieve data for display
             trading_data = list(target_collection.find({}, {"_id": 0}))
             context["trading_data"] = trading_data
             context["message"] = f"Displaying {len(trading_data)} calculated record(s)."
@@ -266,6 +254,6 @@ def report_view(request):
         context["error"] = "An unexpected error occurred while generating the report."
         context["trading_data"] = []
         return render(request, 'report.html', context)
-    finally:
-        if client:
-            client.close()
+
+# Optionally, you may close the client connection when the application shuts down.
+# In many Django applications, the connection is managed by the framework or a middleware.
