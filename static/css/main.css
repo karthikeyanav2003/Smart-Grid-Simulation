@@ -1,9 +1,9 @@
 /* New Color Palette & CSS Variables */
 :root {
-    --primary-color: #F2506E;         /* Main action color - vibrant coral */
-    --secondary-color: #9E91F2;       /* Button hover or secondary action - soft purple */
-    --background-color: #ffffff;      /* White Background */
-    --text-color: #333;               /* Neutral dark text */
+    --primary-color: #99BC85;         /* Main action color - vibrant coral */
+    --secondary-color: #E4EFE7;       /* Button hover or secondary action - soft purple */
+    --background-color: #fdfaf6;      /* White Background */
+    --text-color: #99BC85;               /* Neutral dark text */
     --shadow-color: rgba(0, 0, 0, 0.1);/* Box shadow remains subtle */
     --error-color: #F2CD5E;           /* Soft warning yellow */
     --accent-color: #9CF25E;          /* Optional: success or accent highlight - lime */

@@ -1,259 +1,303 @@
-from django.http import JsonResponse, HttpResponseServerError
-from django.conf import settings
-from django.shortcuts import render
-from pymongo import MongoClient
 import pandas as pd
 import hashlib
-import logging
-from datetime import datetime
+import numpy as np
+import plotly.graph_objects as go
+import networkx as nx
+from pymongo import MongoClient
+from django.conf import settings
+from django.shortcuts import render
+from django.http import HttpResponse
 
-# Set up logging
-logger = logging.getLogger(__name__)
+# Configuration
+GRID_BUY_PRICE = 0.13
+GRID_SELL_PRICE = 0.15
+SELLER_PRICE_LOW = GRID_BUY_PRICE + 0.01
+SELLER_PRICE_HIGH = GRID_SELL_PRICE - 0.01
+BUYER_PRICE_LOW = GRID_SELL_PRICE
+BUYER_PRICE_HIGH = GRID_SELL_PRICE + 0.05
 
-# Connect to the database once at the start.
-client = MongoClient(settings.MONGO_URI)
-db = client[settings.MONGO_DB_NAME]
-# Note: Removed 'users_collection' since we are not using the 'users' collection.
-# Instead, use the respective collection names in each function.
-
+# Helper functions
 def hash_household_id(household_id):
-    """Returns a SHA-256 hash of the household_id."""
     return hashlib.sha256(str(household_id).encode()).hexdigest()
 
-def _calculate_trading_data_from_source(db, incremental=False, last_processed_time=None):
-    """
-    Reads raw data from 'energydata', performs calculations, and returns the processed data as a list of dictionaries.
-    Supports incremental updates by processing only new or updated records based on last_processed_time.
+def merge(left, right, compare):
+    result = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if compare(left[i], right[j]):
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
+
+def merge_sort(arr, compare):
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid], compare)
+    right = merge_sort(arr[mid:], compare)
+    return merge(left, right, compare)
+
+def perform_trading(households):
+    sellers = {n: d for n, d in households.items() if d['Role'] == 'seller' and d['NetPower'] > 0}
+    buyers = {n: d for n, d in households.items() if d['Role'] == 'buyer' and d['NetPower'] < 0}
+
+    compare_seller = lambda a, b: a[1]['NetPower'] > b[1]['NetPower']
+    compare_buyer = lambda a, b: a[1]['NetPower'] < b[1]['NetPower']
+
+    sorted_sellers = merge_sort(list(sellers.items()), compare_seller)
+    sorted_buyers = merge_sort(list(buyers.items()), compare_buyer)
+
+    trades = []
+
+    # Peer-to-peer trading
+    for s_name, s_data in sorted_sellers:
+        for b_name, b_data in sorted_buyers:
+            if s_data['remaining'] > 0 and b_data['remaining'] < 0:
+                if b_data['electricityPrice'] >= s_data['electricityPrice']:
+                    trade_qty = min(s_data['remaining'], -b_data['remaining'])
+                    traded_price = (s_data['electricityPrice'] + b_data['electricityPrice']) / 2.0
+                    
+                    # Update seller
+                    s_data['traded_units'] += trade_qty
+                    s_data['total_price'] += trade_qty * traded_price
+                    s_data['remaining'] -= trade_qty
+
+                    # Update buyer
+                    b_data['traded_units'] += trade_qty
+                    b_data['total_price'] -= trade_qty * traded_price
+                    b_data['remaining'] += trade_qty
+
+                    trades.append({
+                        'seller': s_name,
+                        'buyer': b_name,
+                        'quantity': trade_qty,
+                        'price': traded_price
+                    })
+
+    # Grid trading
+    for s_name, s_data in sellers.items():
+        if s_data['remaining'] > 0:
+            trade_qty = s_data['remaining']
+            s_data['traded_units'] += trade_qty
+            s_data['total_price'] += trade_qty * GRID_BUY_PRICE
+            s_data['remaining'] = 0
+            trades.append({
+                'seller': s_name,
+                'buyer': 'grid',
+                'quantity': trade_qty,
+                'price': GRID_BUY_PRICE
+            })
+
+    for b_name, b_data in buyers.items():
+        if b_data['remaining'] < 0:
+            trade_qty = -b_data['remaining']
+            b_data['traded_units'] += trade_qty
+            b_data['total_price'] -= trade_qty * GRID_SELL_PRICE
+            b_data['remaining'] = 0
+            trades.append({
+                'seller': 'grid',
+                'buyer': b_name,
+                'quantity': trade_qty,
+                'price': GRID_SELL_PRICE
+            })
     
-    Parameters:
-    - db: MongoDB database connection
-    - incremental: Boolean flag for incremental updates
-    - last_processed_time: Datetime for filtering new records in incremental mode
+    return households, trades
+
+def create_summary_chart(households):
+    fig = go.Figure()
+    names = list(households.keys())
     
-    Returns:
-    - Dictionary with 'data' (list of calculated records) or 'error' (error message)
-    """
+    fig.add_trace(go.Bar(
+        x=names,
+        y=[h['traded_units'] for h in households.values()],
+        name='Traded Units',
+        marker_color='blue'
+    ))
+    
+    fig.add_trace(go.Bar(
+        x=names,
+        y=[h['total_price'] for h in households.values()],
+        name='Total Price',
+        marker_color='green'
+    ))
+    
+    fig.add_trace(go.Bar(
+        x=names,
+        y=[h['remaining'] for h in households.values()],
+        name='Remaining',
+        marker_color='orange'
+    ))
+    
+    fig.update_layout(
+        title='Energy Trading Summary',
+        barmode='group',
+        xaxis_title='Households',
+        yaxis_title='Values'
+    )
+    return fig.to_html(full_html=False)
+
+def create_network_graph(households, trades):
+    G = nx.DiGraph()
+    
+    # Add nodes
+    for name in households:
+        G.add_node(name)
+    G.add_node('grid')
+    
+    # Add edges
+    for trade in trades:
+        G.add_edge(trade['seller'], trade['buyer'], weight=trade['quantity'])
+    
+    # Create positions
+    pos = nx.circular_layout(G)
+    
+    # Create edge traces
+    edge_x = []
+    edge_y = []
+    for edge in G.edges():
+        x0, y0 = pos[edge[0]]
+        x1, y1 = pos[edge[1]]
+        edge_x.extend([x0, x1, None])
+        edge_y.extend([y0, y1, None])
+    
+    edge_trace = go.Scatter(
+        x=edge_x, y=edge_y,
+        line=dict(width=0.5, color='#888'),
+        hoverinfo='none',
+        mode='lines')
+    
+    # Create node traces
+    node_x = []
+    node_y = []
+    node_text = []
+    for node in G.nodes():
+        x, y = pos[node]
+        node_x.append(x)
+        node_y.append(y)
+        node_text.append(node)
+    
+    node_trace = go.Scatter(
+        x=node_x, y=node_y,
+        mode='markers+text',
+        text=node_text,
+        textposition="top center",
+        marker=dict(
+            showscale=True,
+            colorscale='YlGnBu',
+            size=20,
+            color=[],
+            line_width=2))
+    
+    fig = go.Figure(data=[edge_trace, node_trace],
+                    layout=go.Layout(
+                        title='Trading Network',
+                        showlegend=False,
+                        hovermode='closest',
+                        margin=dict(b=20,l=5,r=5,t=40),
+                        xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+                        yaxis=dict(showgrid=False, zeroline=False, showticklabels=False)))
+    
+    return fig.to_html(full_html=False)
+
+def energy_report(request):
     try:
-        # Use the respective collection name here
-        source_collection = db["energydata"]
+        # MongoDB connection
+        client = MongoClient(settings.MONGO_URI)
+        db = client[settings.MONGO_DB_NAME]
+        energy_collection = db["energydata"]
+        trading_collection = db["energy_trading"]
         
-        # Build query for incremental updates
-        query = {}
-        if incremental and last_processed_time:
-            query = {"last_updated": {"$gt": last_processed_time}}
-        
-        # Fetch data, sorted by last_updated to ensure latest records are processed last
-        raw_data = list(source_collection.find(query).sort("last_updated", 1))
-        if not raw_data:
-            message = "No new data in 'energydata'." if incremental else "Source collection 'energydata' is empty."
-            return {"data": [], "message": message}
-        
-        # Load into DataFrame
+        # Fetch and process data
+        raw_data = list(energy_collection.find())
         df = pd.DataFrame(raw_data)
         
-        # Select the latest record per household_id
-        if not df.empty:
-            df = df.sort_values("last_updated", ascending=True).groupby("household_id").last().reset_index()
+        # Data validation
+        required_fields = ['householdId', 'solarPower', 'windPower', 'powerConsumption',
+                          'voltage', 'current', 'overloadCondition', 'transformerFault']
+        if df.empty or not all(field in df.columns for field in required_fields):
+            return HttpResponse("Missing required data fields", status=400)
         
-        # Define required columns from energydata
-        required_columns = [
-            "Solar Power (kW)", "Wind Power (kW)", "Power Consumption (kW)",
-            "Voltage (V)", "Current (A)", "Electricity Price (USD/kWh)",
-            "Grid Supply (kW)", "Overload Condition", "Transformer Fault", "household_id"
-        ]
+        # Calculations
+        df['NetPower'] = (df['solarPower'] + df['windPower'] - df['powerConsumption']).round(2)
+        df['Role'] = np.where(df['NetPower'] > 0, 'seller', 
+                            np.where(df['NetPower'] < 0, 'buyer', 'neutral'))
+        df['NoFault'] = (df['overloadCondition'] == 0) & (df['transformerFault'] == 0)
         
-        # Handle missing columns
-        missing_columns = [col for col in required_columns if col not in df.columns]
-        if missing_columns:
-            logger.warning(f"Missing columns in 'energydata': {missing_columns}. Setting to 0.")
-            for col in missing_columns:
-                df[col] = 0
+        # Generate price based on role
+        def generate_price(row):
+            if row['Role'] == 'seller':
+                return round(np.random.uniform(SELLER_PRICE_LOW, SELLER_PRICE_HIGH), 2)
+            elif row['Role'] == 'buyer':
+                return round(np.random.uniform(BUYER_PRICE_LOW, BUYER_PRICE_HIGH), 2)
+            return None
+        df['electricityPrice'] = df.apply(generate_price, axis=1)
         
-        # Ensure numeric columns are properly typed
-        numeric_columns = [
-            "Solar Power (kW)", "Wind Power (kW)", "Power Consumption (kW)",
-            "Voltage (V)", "Current (A)", "Electricity Price (USD/kWh)",
-            "Grid Supply (kW)", "Overload Condition", "Transformer Fault"
-        ]
-        for col in numeric_columns:
-            if col in df.columns:
-                df[col] = pd.to_numeric(df[col], errors='coerce').fillna(0)
+        # Create household records
+        households = {}
+        for _, row in df.iterrows():
+            hh_id = str(row['householdId'])
+            households[hh_id] = {
+                'householdId': hh_id,
+                'householdId_hash': hash_household_id(hh_id),
+                'NetPower': row['NetPower'],
+                'electricityPrice': row['electricityPrice'],
+                'Role': row['Role'],
+                'NoFault': row['NoFault'],
+                'traded_units': 0,
+                'total_price': 0.0,
+                'remaining': row['NetPower']
+            }
         
-        # Perform calculations
-        df["Net Power (kW)"] = (df["Solar Power (kW)"] + df["Wind Power (kW)"] - df["Power Consumption (kW)"]).round(2)
+        # Filter eligible participants
+        eligible_households = {
+            k: v for k, v in households.items() 
+            if v['NoFault'] and v['Role'] in ['seller', 'buyer']
+        }
         
-        df["Efficiency (%)"] = df.apply(
-            lambda row: round(((row["Solar Power (kW)"] + row["Wind Power (kW)"]) / row["Power Consumption (kW)"]) * 100, 2)
-            if row["Power Consumption (kW)"] != 0 else 0,
-            axis=1
-        )
+        # Perform trading
+        traded_households, trades = perform_trading(eligible_households.copy())
         
-        df["Overload Risk"] = df.apply(
-            lambda row: round(row["Power Consumption (kW)"] / (row["Voltage (V)"] * row["Current (A)"]), 2)
-            if (row["Voltage (V)"] * row["Current (A)"]) != 0 else 0,
-            axis=1
-        )
+        # Store results in MongoDB
+        trading_records = []
+        for hh_id, data in traded_households.items():
+            record = {
+                'householdId': data['householdId'],
+                'householdId_hash': data['householdId_hash'],
+                'NetPower': data['NetPower'],
+                'traded_units': data['traded_units'],
+                'total_price': data['total_price'],
+                'remaining': data['remaining'],
+                'Role': data['Role']
+            }
+            trading_records.append(record)
         
-        df["Adjusted Cost"] = (df["Power Consumption (kW)"] * df["Electricity Price (USD/kWh)"]).round(2)
+        trading_collection.delete_many({})
+        trading_collection.insert_many(trading_records)
         
-        denominator = df["Solar Power (kW)"] + df["Wind Power (kW)"] + df["Grid Supply (kW)"]
-        df["RenRatio"] = ((df["Solar Power (kW)"] + df["Wind Power (kW)"]) / denominator).fillna(0).round(2)
-        df.loc[denominator == 0, "RenRatio"] = 0
+        # Generate visualizations
+        summary_div = create_summary_chart(traded_households)
+        network_div = create_network_graph(traded_households, trades)
         
-        df["No Fault"] = ((df["Overload Condition"] == 0) & (df["Transformer Fault"] == 0)).astype(int)
-        df["Both Faults"] = ((df["Overload Condition"] == 1) & (df["Transformer Fault"] == 1)).astype(int)
+        # Get trading data for table
+        trading_data = list(trading_collection.find({}, {'_id': 0}))
         
-        # Role and Trading Status are the same concept as per the requirement
-        df["Role"] = df["Net Power (kW)"].apply(lambda x: "Producer" if x > 0 else ("Consumer" if x < 0 else "Balanced"))
-        df["Trading Status"] = df["Role"]  # Trading Status is synonymous with Role
+        # Prepare context
+        context = {
+            'trading_data': trading_data,
+            'summary_plot': summary_div,
+            'network_plot': network_div,
+            'trades': trades
+        }
         
-        df["electricity price"] = df["Electricity Price (USD/kWh)"].round(2)
-        df["householdId_hash"] = df["household_id"].apply(hash_household_id)
-        df["last_updated"] = df.get("last_updated", pd.Series([datetime.utcnow()] * len(df), index=df.index))
-        
-        # Select final columns
-        output_columns = [
-            "household_id", "householdId_hash", "Net Power (kW)", "Efficiency (%)", "Overload Risk",
-            "Adjusted Cost", "No Fault", "Both Faults", "Role", "Trading Status", "electricity price",
-            "last_updated"
-        ]
-        calculated_data = df[output_columns].to_dict(orient="records")
-        
-        return {"data": calculated_data}
+        return render(request, 'report.html', context)
     
     except Exception as e:
-        error_msg = f"Error during data calculation: {str(e)}"
-        logger.exception(error_msg)
-        return {"error": error_msg, "error_type": "calculation_error"}
+        return HttpResponse(f"Error: {str(e)}", status=500)
 
 def update_energy_trading_collection(request):
-    """
-    View to trigger calculation of data from 'energydata' and store it in 'energy_trading'.
-    Supports full refresh (incremental=false) or incremental update (incremental=true) via query parameter.
-    
-    URL Example: /update_energy_trading/?incremental=true
-    """
-    try:
-        # Use the module-level db connection
-        # Determine if incremental update is requested
-        incremental = request.GET.get('incremental', 'false').lower() == 'true'
-        last_processed_time = None
-        if incremental:
-            latest_record = db["energy_trading"].find_one(sort=[("last_updated", -1)])
-            last_processed_time = latest_record.get("last_updated") if latest_record else None
-        
-        # Calculate data
-        calculation_result = _calculate_trading_data_from_source(db, incremental=incremental, last_processed_time=last_processed_time)
-        
-        if "error" in calculation_result:
-            return JsonResponse({"error": calculation_result["error"]}, status=500)
-        
-        calculated_data = calculation_result.get("data", [])
-        message = calculation_result.get("message", "")
-        
-        # Update the energy_trading collection using the appropriate collection name
-        target_collection = db["energy_trading"]
-        if calculated_data:
-            if not incremental:
-                # Full refresh: Clear and insert
-                target_collection.delete_many({})
-                target_collection.insert_many(calculated_data)
-                insert_msg = f"Inserted {len(calculated_data)} records into 'energy_trading' (full refresh)."
-            else:
-                # Incremental update: Upsert based on household_id
-                for record in calculated_data:
-                    target_collection.update_one(
-                        {"household_id": record["household_id"]},
-                        {"$set": record},
-                        upsert=True
-                    )
-                insert_msg = f"Upserted {len(calculated_data)} records into 'energy_trading' (incremental update)."
-        else:
-            insert_msg = f"No data to insert. {message}"
-        
-        return JsonResponse({"message": insert_msg, "records_processed": len(calculated_data)})
-    
-    except Exception as e:
-        error_msg = f"Error updating energy_trading collection: {str(e)}"
-        logger.exception(error_msg)
-        return JsonResponse({"error": error_msg}, status=500)
-
-def energy_trading_data(request):
-    """
-    API endpoint to fetch data from 'energy_trading' after performing an incremental update.
-    Returns JSON data excluding MongoDB '_id' field.
-    
-    URL Example: /api/energy-trading/data/
-    """
-    try:
-        # Perform incremental update
-        latest_record = db["energy_trading"].find_one(sort=[("last_updated", -1)])
-        last_processed_time = latest_record.get("last_updated") if latest_record else None
-        calculation_result = _calculate_trading_data_from_source(db, incremental=True, last_processed_time=last_processed_time)
-        
-        if "error" in calculation_result:
-            return HttpResponseServerError(JsonResponse({"error": calculation_result["error"]}))
-        
-        calculated_data = calculation_result.get("data", [])
-        target_collection = db["energy_trading"]
-        if calculated_data:
-            for record in calculated_data:
-                target_collection.update_one(
-                    {"household_id": record["household_id"]},
-                    {"$set": record},
-                    upsert=True
-                )
-            logger.info(f"Upserted {len(calculated_data)} new records into 'energy_trading'.")
-        
-        # Fetch all data from the 'energy_trading' collection
-        trading_data = list(target_collection.find({}, {"_id": 0}))
-        return JsonResponse(trading_data, safe=False)
-    
-    except Exception as e:
-        error_msg = f"Error in energy_trading_data endpoint: {str(e)}"
-        logger.exception(error_msg)
-        return HttpResponseServerError(JsonResponse({"error": error_msg}))
-
-def report_view(request):
-    """
-    Renders report.html with data from 'energy_trading' after an incremental update.
-    Passes trading_data and optional error/message to the template.
-    
-    URL Example: /main/report/
-    """
-    context = {}
-    try:
-        # Perform incremental update
-        latest_record = db["energy_trading"].find_one(sort=[("last_updated", -1)])
-        last_processed_time = latest_record.get("last_updated") if latest_record else None
-        calculation_result = _calculate_trading_data_from_source(db, incremental=True, last_processed_time=last_processed_time)
-        
-        target_collection = db["energy_trading"]
-        if "error" in calculation_result:
-            context["error"] = calculation_result["error"]
-            context["trading_data"] = []
-        else:
-            calculated_data = calculation_result.get("data", [])
-            if calculated_data:
-                for record in calculated_data:
-                    target_collection.update_one(
-                        {"household_id": record["household_id"]},
-                        {"$set": record},
-                        upsert=True
-                    )
-            # Retrieve data for display
-            trading_data = list(target_collection.find({}, {"_id": 0}))
-            context["trading_data"] = trading_data
-            context["message"] = f"Displaying {len(trading_data)} calculated record(s)."
-        
-        return render(request, 'report.html', context)
-    
-    except Exception as e:
-        error_msg = f"Error rendering report view: {str(e)}"
-        logger.exception(error_msg)
-        context["error"] = "An unexpected error occurred while generating the report."
-        context["trading_data"] = []
-        return render(request, 'report.html', context)
-
-# Optionally, you may close the client connection when the application shuts down.
-# In many Django applications, the connection is managed by the framework or a middleware.
+    return HttpResponse("Trading data updated successfully")

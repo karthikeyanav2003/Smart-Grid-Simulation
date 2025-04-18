@@ -3,51 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Energy Grid Trading Game | Analytics</title>
-  <!-- Import Roboto font -->
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
-  <!-- Import Font Awesome for icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
+  <title>Energy Grid Trading Platform</title>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <style>
-    /* Base styles */
-    :root {
-      --primary-color: #2a9d8f;
-      --secondary-color: #e9c46a;
-      --danger-color: #e63946;
-      --success-color: #2a9d8f;
-      --warning-color: #e9c46a;
-      --text-color: #293241;
-      --light-color: #f8f9fa;
-      --dark-color: #293241;
-      --border-color: #e0e0e0;
-      --hover-color: #f1f1f1;
-    }
-    
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     
     body {
-      font-family: 'Roboto', sans-serif;
-      background-color: #f5f5f5;
-      color: var(--text-color);
-      line-height: 1.6;
+      background-color: #f5f7fa;
+      padding: 20px;
+      color: #333;
     }
     
-    /* Header styles */
     header {
-      background-color: white;
-      padding: 1rem 2rem;
+      padding: 15px 20px;
+      border-radius: 8px;
+      margin-bottom: 20px;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-      position: sticky;
-      top: 0;
-      z-index: 1000;
+      justify-content: space-between;
     }
     
     .header-left {
@@ -56,259 +34,209 @@
     }
     
     .header-icon {
-      font-size: 1.8rem;
-      margin-right: 0.8rem;
-      color: var(--primary-color);
+      color: #ffd166;
+      margin-right: 10px;
+      font-size: 24px;
     }
     
-    h1 {
-      font-size: 1.5rem;
-      font-weight: 500;
+    .header h1 {
+      color: #333;
+      font-size: 24px;
     }
     
     .navbar ul {
-      display: flex;
       list-style: none;
-      gap: 1.5rem;
-    }
-    
-    .navbar a {
-      text-decoration: none;
-      color: var(--text-color);
-      padding: 0.5rem 0.8rem;
-      border-radius: 4px;
-      transition: background-color 0.3s;
-    }
-    
-    .navbar a:hover {
-      background-color: var(--hover-color);
-    }
-    
-    .navbar a.active {
-      background-color: var(--primary-color);
-      color: white;
-    }
-    
-    /* Alert container */
-    .alert-container {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      z-index: 1100;
-      width: 300px;
-      max-width: 90%;
-    }
-    
-    .alert {
-      padding: 1rem;
-      margin-bottom: 1rem;
-      border-radius: 4px;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-      animation: slide-in 0.3s ease;
+      gap: 30px;
+      padding: 0;
+      margin: 0;
     }
     
-    .alert.success {
-      background-color: #d4edda;
-      color: #155724;
-      border-left: 4px solid #155724;
+    .navbar ul li a {
+      text-decoration: none;
+      color: #333;
+      font-size: 16px;
+      font-weight: 500;
+      transition: color 0.2s;
     }
     
-    .alert.error {
-      background-color: #f8d7da;
-      color: #721c24;
-      border-left: 4px solid #721c24;
+    .navbar ul li a:hover {
+      color: #457b9d;
     }
     
-    .alert.warning {
-      background-color: #fff3cd;
-      color: #856404;
-      border-left: 4px solid #856404;
+    .stats-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
     }
     
-    @keyframes slide-in {
-      from { transform: translateX(100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
+    .stat-card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      border-top: 4px solid #ccc;
     }
     
-    /* Content container */
+    .stat-card.surplus {
+      border-top-color: #2a9d8f;
+    }
+    
+    .stat-card.deficit {
+      border-top-color: #e63946;
+    }
+    
+    .stat-card.trading {
+      border-top-color: #457b9d;
+    }
+    
+    .stat-card.market {
+      border-top-color: #f4a261;
+    }
+    
+    .stat-card.utility {
+      border-top-color: #a8dadc;
+    }
+    
+    .stat-title {
+      display: flex;
+      align-items: center;
+      color: #6c757d;
+      font-size: 14px;
+      margin-bottom: 8px;
+    }
+    
+    .stat-title i {
+      margin-right: 5px;
+    }
+    
+    .stat-value {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .stat-subtitle {
+      font-size: 12px;
+      color: #6c757d;
+    }
+    
     .content-container {
-      padding: 2rem;
       display: grid;
       grid-template-columns: 1fr;
-      gap: 2rem;
+      gap: 20px;
+      margin-bottom: 20px;
     }
     
-    @media (min-width: 1200px) {
-нах      .content-container {
-        grid-template-columns: repeat(2, 1fr);
+    @media (min-width: 992px) {
+      .content-container {
+        grid-template-columns: 2fr 1fr;
       }
     }
     
-    /* Panel styles */
     .panel {
       background-color: white;
       border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      overflow: hidden;
+      padding: 15px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
     }
     
     .panel-header {
-      padding: 1.2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid var(--border-color);
+      margin-bottom: 15px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e9ecef;
     }
     
     .panel-title {
-      font-size: 1.2rem;
-      font-weight: 500;
+      font-size: 18px;
+      font-weight: bold;
       display: flex;
       align-items: center;
-      gap: 0.5rem;
     }
     
     .panel-title i {
-      color: var(--primary-color);
+      margin-right: 8px;
     }
     
-    /* Filter container */
-    .filter-container {
-      padding: 1rem 1.2rem;
+    .info-text {
+      font-size: 13px;
+      color: #6c757d;
       display: flex;
       align-items: center;
-      gap: 1rem;
-      border-bottom: 1px solid var(--border-color);
-      background-color: #fafafa;
     }
     
-    .filter-label {
-      font-size: 0.9rem;
-      color: #666;
-    }
-    
-    .filter-select {
-      padding: 0.5rem;
-      border-radius: 4px;
-      border: 1px solid var(--border-color);
-      font-size: 0.9rem;
-      outline: none;
-      cursor: pointer;
-    }
-    
-    /* Table styles */
-    .table-responsive {
-      overflow-x: auto;
-      padding: 1.2rem;
+    .info-text i {
+      margin-right: 5px;
+      font-size: 14px;
     }
     
     table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.9rem;
     }
     
     th, td {
-      padding: 0.5rem 0.8rem;
+      padding: 10px 15px;
       text-align: left;
-      border-bottom: 1px solid var(--border-color);
-      font-size: 0.85rem;
-      white-space: nowrap;
+      border-bottom: 1px solid #e9ecef;
     }
     
     th {
-      font-weight: 500;
-      background-color: #fafafa;
+      font-weight: 600;
+      color: #495057;
+      background-color: #f8f9fa;
     }
     
-    tr:hover {
-      background-color: #f9f9f9;
+    tr:last-child td {
+      border-bottom: none;
     }
     
     .positive {
-      color: var(--success-color);
+      color: #2a9d8f;
     }
     
     .negative {
-      color: var(--danger-color);
+      color: #e63946;
     }
     
     .status-allowed {
-      background-color: rgba(42, 157, 143, 0.1);
-      color: var(--success-color);
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      display: inline-block;
+      color: #2a9d8f;
     }
     
     .status-not-allowed {
-      background-color: rgba(230, 57, 70, 0.1);
-      color: var(--danger-color);
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      display: inline-block;
+      color: #e63946;
     }
     
-    .action-btn {
-      background: none;
-      border: none;
-      cursor: pointer;
-      font-size: 1rem;
-      padding: 0.25rem;
-      margin-right: 0.5rem;
-      border-radius: 4px;
-      transition: background-color 0.2s;
-    }
-    
-    .action-btn:hover {
-      background-color: #f5f5f5;
-    }
-    
-    .action-btn.edit {
-      color: #2196f3;
-    }
-    
-    .action-btn.delete {
-      color: var(--danger-color);
-    }
-    
-    /* Hide columns on small screens */
-    @media (max-width: 768px) {
-      th:nth-child(3), td:nth-child(3), /* Efficiency */
-      th:nth-child(4), td:nth-child(4), /* Overload Risk */
-      th:nth-child(5), td:nth-child(5), /* Adjusted Cost */
-      th:nth-child(6), td:nth-child(6), /* No Fault */
-      th:nth-child(7), td:nth-child(7) { /* Both Faults */
-        display: none;
-      }
-    }
-    
-    /* Pagination */
     .pagination {
       display: flex;
       justify-content: center;
+      margin-top: 20px;
       align-items: center;
-      gap: 0.5rem;
-      padding: 1.2rem;
-      border-top: 1px solid var(--border-color);
     }
     
     .pagination button {
-      background: none;
-      border: 1px solid var(--border-color);
+      background-color: white;
+      border: 1px solid #dee2e6;
+      padding: 8px 12px;
+      margin: 0 5px;
       cursor: pointer;
-      padding: 0.5rem 0.8rem;
       border-radius: 4px;
       transition: all 0.2s;
     }
     
-    .pagination button:hover:not(:disabled) {
-      background-color: var(--primary-color);
+    .pagination button:hover {
+      background-color: #f8f9fa;
+    }
+    
+    .pagination button.active {
+      background-color: #457b9d;
       color: white;
-      border-color: var(--primary-color);
+      border-color: #457b9d;
     }
     
     .pagination button:disabled {
@@ -316,199 +244,44 @@
       cursor: not-allowed;
     }
     
-    .pagination button.active {
-      background-color: var(--primary-color);
-      color: white;
-      border-color: var(--primary-color);
-    }
-    
-    .pagination-ellipsis {
-      margin: 0 0.5rem;
-    }
-    
-    /* Summary cards */
-    .stats-container {
-      grid-column: 1 / -1;
-      margin-bottom: 2rem;
-      background-color: #ffffff;
-      border-radius: 8px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-      overflow-x: auto;
-    }
-    
-    .summary-cards {
-      display: flex;
-      flex-wrap: nowrap;
-      gap: 2rem;
-      padding: 1.2rem;
-    }
-    
-    .summary-card {
-      background-color: #ffffff;
-      border-radius: 8px;
-      padding: 1rem;
-      text-align: center;
-      transition: transform 0.2s;
-      min-width: 150px;
-      flex: 0 0 auto;
-    }
-    
-    .summary-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-    }
-    
-    .summary-title {
-      font-size: 0.9rem;
-      color: #666;
-      margin-bottom: 0.5rem;
-    }
-    
-    .summary-value {
-      font-size: 1.2rem;
-      font-weight: 500;
-      color: var(--dark-color);
-    }
-    
-    .summary-subtitle {
-      font-size: 0.8rem;
-      color: #888;
-      margin-top: 0.25rem;
-    }
-    
-    /* Action buttons */
-    .action-buttons {
+    .checkbox-container {
       display: flex;
       justify-content: center;
-      gap: 1rem;
-      padding: 1rem;
-      border-top: 1px solid var(--border-color);
     }
     
-    .action-buttons button {
-      padding: 0.8rem 1.5rem;
-      border: none;
-      border-radius: 4px;
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
       cursor: pointer;
-      background-color: var(--primary-color);
-      color: white;
-      transition: background-color 0.2s;
     }
     
-    .action-buttons button:hover {
-      background-color: #238b7f;
-    }
-    
-    /* Modal styles */
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.5);
-      z-index: 1200;
-    }
-    
-    .modal-content {
-      background-color: white;
-      padding: 2rem;
-      border-radius: 8px;
-      width: 90%;
-      max-width: 500px;
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    }
-    
-    .close-btn {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: #999;
-    }
-    
-    .form-group {
-      margin-bottom: 1.2rem;
-    }
-    
-    .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-size: 0.9rem;
-      color: #666;
-    }
-    
-    .form-control {
-      width: 100%;
-      padding: 0.8rem;
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-      font-size: 1rem;
-      outline: none;
-    }
-    
-    .form-control:focus {
-      border-color: var(--primary-color);
-    }
-    
-    .form-control:disabled {
-      background-color: #f5f5f5;
-      cursor: not-allowed;
-    }
-    
-    .form-actions {
+    .bottom-navigation {
       display: flex;
-      justify-content: flex-end;
-      gap: 1rem;
-      margin-top: 1.5rem;
+      justify-content: center;
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
     
-    .btn {
-      padding: 0.8rem 1.5rem;
+    .bottom-navigation button {
+      background-color: #1d3557;
+      color: white;
       border: none;
-      border-radius: 4px;
+      padding: 10px 20px;
+      margin: 0 10px;
       cursor: pointer;
+      border-radius: 4px;
+      font-weight: 500;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       transition: all 0.2s;
     }
     
-    .btn-primary {
-      background-color: var(--primary-color);
-      color: white;
+    .bottom-navigation button:hover {
+      background-color: #457b9d;
     }
     
-    .btn-secondary {
-      background-color: #f5f5f5;
-      color: var(--dark-color);
-    }
-    
-    .btn:hover {
-      opacity: 0.9;
-    }
-    
-    /* Loader */
-    .loader {
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid var(--primary-color);
-      border-radius: 50%;
-      width: 30px;
-      height: 30px;
-      animation: spin 1s linear infinite;
-      margin: 1rem auto;
-    }
-    
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-    
-    .text-center {
-      text-align: center;
+    .bottom-navigation button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
     }
   </style>
 </head>
@@ -516,618 +289,137 @@
   <header>
     <div class="header-left">
       <div class="header-icon">⚡</div>
-      <h1>Analytics Report</h1>
+      <h1>Energy Grid Trading Platform</h1>
     </div>
     <nav class="navbar">
       <ul>
-        <li><a href="#"><i class="fas fa-home"></i> Home</a></li>
-        <li><a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-        <li><a href="#"><i class="fas fa-chart-bar"></i> Analysis</a></li>
-        <li><a href="#" class="active"><i class="fas fa-file-alt"></i> Report</a></li>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Analysis</a></li>
+        <li><a href="#">Report</a></li>
       </ul>
     </nav>
   </header>
   
-  <!-- Alert container -->
-  <div id="alert-container" class="alert-container"></div>
-  
-  <div class="content-container">
-    <div class="stats-container">
-      <div class="summary-cards">
-        <div class="summary-card">
-          <div class="summary-title">
-            <i>⊕</i> Total Surplus Energy
-          </div>
-          <div class="summary-value" id="totalSurplusEnergy">0 kWh</div>
-          <div class="summary-subtitle">Available for trading</div>
-        </div>
-        <div class="summary-card">
-          <div class="summary-title">
-            <i>⊖</i> Total Required Energy
-          </div>
-          <div class="summary-value" id="totalRequiredEnergy">0 kWh</div>
-          <div class="summary-subtitle">Energy deficit</div>
-        </div>
-        <div class="summary-card">
-          <div class="summary-title">
-            <i>⚙</i> Trading Allowed
-          </div>
-          <div class="summary-value" id="tradingAllowed">0 out of 0</div>
-          <div class="summary-subtitle">Active participants</div>
-        </div>
-        <div class="summary-card">
-          <div class="summary-title">
-            <i>💲</i> Average Price
-          </div>
-          <div class="summary-value" id="averagePrice">$0.00/kWh</div>
-          <div class="summary-subtitle">Market rate</div>
-        </div>
-        <div class="summary-card">
-          <div class="summary-title">
-            <i>⚡</i> Grid Purchase Price
-          </div>
-          <div class="summary-value" id="gridPurchasePrice">$0.10/kWh</div>
-          <div class="summary-subtitle">Utility rate</div>
-        </div>
-        <div class="summary-card">
-          <div class="summary-title">
-            <i>⚡</i> Grid Sell Price
-          </div>
-          <div class="summary-value" id="gridSellPrice">$0.20/kWh</div>
-          <div class="summary-subtitle">Utility rate</div>
-        </div>
+  <div class="stats-container">
+    <div class="stat-card surplus">
+      <div class="stat-title">
+        <i>⊕</i> Total Surplus Energy
       </div>
+      <div class="stat-value">450 kWh</div>
+      <div class="stat-subtitle">Available for trading</div>
     </div>
     
-    <div class="panel" style="grid-column: 1 / -1;">
-      <div class="panel-header">
-        <div class="panel-title"><i class="fas fa-home"></i> Grid Participants</div>
+    <div class="stat-card deficit">
+      <div class="stat-title">
+        <i>⊖</i> Total Required Energy
       </div>
-      
-      <div class="filter-container">
-        <span class="filter-label">Filter by:</span>
-        <select id="roleFilter" class="filter-select">
-          <option value="all">All Roles</option>
-          <option value="Producer">Producer</option>
-          <option value="Consumer">Consumer</option>
-          <option value="Balanced">Balanced</option>
-        </select>
-        <select id="statusFilter" class="filter-select">
-          <option value="all">All Status</option>
-          <option value="Allowed">Allowed</option>
-          <option value="Not Allowed">Not Allowed</option>
-        </select>
+      <div class="stat-value">320 kWh</div>
+      <div class="stat-subtitle">Energy deficit</div>
+    </div>
+    
+    <div class="stat-card trading">
+      <div class="stat-title">
+        <i>⚙</i> Trading Allowed
+      </div>
+      <div class="stat-value">3 out of 5</div>
+      <div class="stat-subtitle">Active participants</div>
+    </div>
+    
+    <div class="stat-card market">
+      <div class="stat-title">
+        <i>💲</i> Average Price
+      </div>
+      <div class="stat-value">$0.14/kWh</div>
+      <div class="stat-subtitle">Market rate</div>
+    </div>
+    
+    <div class="stat-card utility">
+      <div class="stat-title">
+        <i>⚡</i> Grid Purchase Price 
+      </div>
+      <div class="stat-value">$0.10/kWh</div>
+      <div class="stat-subtitle">Utility rate</div>
+    </div>
+    <div class="stat-card utility">
+      <div class="stat-title">
+        <i>⚡</i> Grid Sell Price
+      </div>
+      <div class="stat-value">$0.20/kWh</div>
+      <div class="stat-subtitle">Utility rate</div>
+    </div>
+  </div>
+  
+  <div class="content-container">
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">
+          <i>🏠</i> Grid Participants
+        </div>
       </div>
       
       <div class="table-responsive">
         <table>
           <thead>
             <tr>
-              <th style="width: 10%;">Household ID</th>
-              <th style="width: 15%;">Net Power (kW)</th>
-              <th style="width: 10%;">Efficiency (%)</th>
-              <th style="width: 10%;">Overload Risk</th>
-              <th style="width: 10%;">Adjusted Cost</th>
-              <th style="width: 10%;">No Fault</th>
-              <th style="width: 10%;">Both Faults</th>
-              <th style="width: 10%;">Role</th>
-              <th style="width: 10%;">Trading Status</th>
-              <th style="width: 15%;">Actions</th>
+              <th>Household ID</th>
+              <th>Net Energy (kWh)</th>
+              <th>Electricity Price ($/kWh)</th>
+              <th>Traded Units</th>
+              <th>Total Price</th>
+              <th>Remaining</th>
+              <th>Role</th>
+              <th>No Fault</th>
             </tr>
           </thead>
-          <tbody id="energyTableBody">
+          <tbody>
+            {% for data in trading_data %}
             <tr>
-              <td colspan="10" class="text-center">
-                <div class="loader"></div>
-                <p>Loading data...</p>
-              </td>
+              <td>{{ data.householdId }}</td>
+              <td class="{% if data.NetPower > 0 %}positive{% else %}negative{% endif %}">{{ data.NetPower }}</td>
+              <td>{{ data.electricityPrice }}</td>
+              <td>{{ data.traded_units }}</td>
+              <td>{{ data.total_price }}</td>
+              <td>{{ data.remaining }}</td>
+              <td>{{ data.Role }}</td>
+              <td>{{ data.NoFault|yesno:"Yes,No" }}</td>
             </tr>
+            {% empty %}
+            <tr>
+              <td colspan="8">No data available.</td>
+            </tr>
+            {% endfor %}
           </tbody>
         </table>
       </div>
+      
       <div class="pagination">
-        <button id="prevPage" disabled><i class="fas fa-chevron-left"></i></button>
-        <span id="paginationNumbers"></span>
-        <button id="nextPage"><i class="fas fa-chevron-right"></i></button>
-      </div>
-      <div class="action-buttons">
-        <button id="twoPlayerGame">2 Player Game</button>
-        <button id="threePlayerGame">3 Player Game</button>
-        <button id="analyse">Analyse</button>
+        <button disabled>Previous</button>
+        <button class="active">1</button>
+        <button>2</button>
+        <button>Next</button>
       </div>
     </div>
-  </div>
-  
-  <!-- Modal for editing participant -->
-  <div id="editModal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn">×</span>
-      <h2>Edit Participant</h2>
-      <form id="editForm">
-        <input type="hidden" id="editId">
-        <div class="form-group">
-          <label for="editHouseholdId">Household ID</label>
-          <input type="text" id="editHouseholdId" class="form-control" disabled>
+    
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">
+          <i>📊</i> Trading Statistics
         </div>
-        <div class="form-group">
-          <label for="editNetPower">Net Power (kW)</label>
-          <input type="number" step="0.01" id="editNetPower" class="form-control">
+      </div>
+      
+      <div id="trading-charts">
+        <div id="summary-chart" style="width: 100%; height: 400px;">
+          {{ summary_plot|safe }}
         </div>
-        <div class="form-group">
-          <label for="editEfficiency">Efficiency (%)</label>
-          <input type="number" step="0.01" id="editEfficiency" class="form-control">
+        <div id="network-graph" style="width: 100%; height: 400px;">
+          {{ network_plot|safe }}
         </div>
-        <div class="form-group">
-          <label for="editOverloadRisk">Overload Risk</label>
-          <input type="number" step="0.01" id="editOverloadRisk" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="editAdjCost">Adjusted Cost</label>
-          <input type="number" step="0.01" id="edit(ILAdjCost" class="form-control">
-        </div>
-        <div class="form-group">
-          <label for="editNoFault">No Fault</label>
-          <select id="editNoFault" class="form-control">
-            <option value="1">Yes</option>
-            <option value="0">No</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="editBothFaults">Both Faults</label>
-          <select id="editBothFaults" class="form-control">
-            <option value="1">Yes</option>
-            <option value="0">No</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="editRole">Role</label>
-          <select id="editRole" class="form-control">
-            <option value="Producer">Producer</option>
-            <option value="Consumer">Consumer</option>
-            <option value="Balanced">Balanced</option>
-          </select>
-        </div>
-        <div class="form-actions">
-          <button type="button" class="btn btn-secondary" id="cancelEdit">Cancel</button>
-          <button type="submit" class="btn btn-primary">Save Changes</button>
-        </div>
-      </form>
-    </div>
-  </div>
-  
-  <!-- Modal for adding new participant -->
-  <div id="addModal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn">×</span>
-      <h2>Add New Participant</h2>
-      <form id="addForm">
-        <div class="form-group">
-          <label for="addHouseholdId">Household ID</label>
-          <input type="text" id="addHouseholdId" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="addNetPower">Net Power (kW)</label>
-          <input type="number" step="0.01" id="addNetPower" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="addEfficiency">Efficiency (%)</label>
-          <input type="number" step="0.01" id="addEfficiency" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="addOverloadRisk">Overload Risk</label>
-          <input type="number" step="0.01" id="addOverloadRisk" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="addAdjCost">Adjusted Cost</label>
-          <input type="number" step="0.01" id="addAdjCost" class="form-control" required>
-        </div>
-        <div class="form-group">
-          <label for="addNoFault">No Fault</label>
-          <select id="addNoFault" class="form-control">
-            <option value="1">Yes</option>
-            <option value="0">No</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="addBothFaults">Both Faults</label>
-          <select id="addBothFaults" class="form-control">
-            <option value="0">No</option>
-            <option value="1">Yes</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="addRole">Role</label>
-          <select id="addRole" class="form-control">
-            <option value="Producer">Producer</option>
-            <option value="Consumer">Consumer</option>
-            <option value="Balanced">Balanced</option>
-          </select>
-        </div>
-        <div class="form-actions">
-          <button type="button" class="btn btn-secondary" id="cancelAdd">Cancel</button>
-          <button type="submit" class="btn btn-primary">Add Participant</button>
-        </div>
-      </form>
-    </div>
-  </div>
-  
-  <!-- Confirm delete modal -->
-  <div id="deleteModal" class="modal">
-    <div class="modal-content">
-      <span class="close-btn">×</span>
-      <h2>Confirm Deletion</h2>
-      <p>Are you sure you want to remove this participant from the grid?</p>
-      <input type="hidden" id="deleteId">
-      <div class="form-actions">
-        <button type="button" class="btn btn-secondary" id="cancelDelete">Cancel</button>
-        <button type="button" class="btn btn-primary" id="confirmDelete">Delete</button>
       </div>
     </div>
   </div>
   
-  <script>
-    // Global variables
-    let currentData = [];
-    let currentPage = 1;
-    const itemsPerPage = 5;
-    
-    // DOM Elements
-    const energyTableBody = document.getElementById("energyTableBody");
-    const roleFilter = document.getElementById("roleFilter");
-    const statusFilter = document.getElementById("statusFilter");
-    const prevPageBtn = document.getElementById("prevPage");
-    const nextPageBtn = document.getElementById("nextPage");
-    const paginationNumbers = document.getElementById("paginationNumbers");
-    
-    // Summary card elements
-    const totalSurplusEnergyElem = document.getElementById("totalSurplusEnergy");
-    const totalRequiredEnergyElem = document.getElementById("totalRequiredEnergy");
-    const tradingAllowedElem = document.getElementById("tradingAllowed");
-    const averagePriceElem = document.getElementById("averagePrice");
-    const gridPurchasePriceElem = document.getElementById("gridPurchasePrice");
-    const gridSellPriceElem = document.getElementById("gridSellPrice");
-    
-    // Modal elements
-    const editModal = document.getElementById("editModal");
-    const addModal = document.getElementById("addModal");
-    const deleteModal = document.getElementById("deleteModal");
-    const editForm = document.getElementById("editForm");
-    const addForm = document.getElementById("addForm");
-    const closeButtons = document.querySelectorAll(".close-btn");
-    const cancelEditBtn = document.getElementById("cancelEdit");
-    const cancelAddBtn = document.getElementById("cancelAdd");
-    const cancelDeleteBtn = document.getElementById("cancelDelete");
-    const confirmDeleteBtn = document.getElementById("confirmDelete");
-    
-    // Initialize the application
-    document.addEventListener("DOMContentLoaded", function() {
-      fetchGridData();
-      setupEventListeners();
-    });
-    
-    // Fetch data from the server
-    function fetchGridData() {
-      energyTableBody.innerHTML = `
-        <tr>
-          <td colspan="10" class="text-center">
-            <div class="loader"></div>
-            <p>Loading data...</p>
-          </td>
-        </tr>
-      `;
-      
-      fetch('/api/energy-trading/data/')
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then(data => {
-          if (data.error) {
-            throw new Error(data.error);
-          }
-          currentData = data.map((item, index) => ({
-            id: index + 1,
-            householdId: item.household_id || `Unknown-${index}`,
-            netPower: item.NetPower,
-            efficiency: item.Efficiency,
-            overloadRisk: item.OverloadRisk,
-            adjCost: item.AdjCost,
-            noFault: item.NoFault,
-            bothFaults: item.BothFaults,
-            role: item.Role,
-            price: item.Price,
-            tradingStatus: item.NoFault === 1 ? "Allowed" : "Not Allowed"
-          }));
-          updateSummaryCards();
-          updateTableData();
-        })
-        .catch(error => {
-          console.error('Error fetching data:', error);
-          energyTableBody.innerHTML = `
-            <tr>
-              <td colspan="10" class="text-center">
-                Error loading data: ${error.message}. Please try again later.
-              </td>
-            </tr>
-          `;
-          showAlert(`Failed to load data: ${error.message}`, 'error');
-          currentData = [];
-          updateSummaryCards();
-          updateTableData();
-        });
-    }
-    
-    // Update summary cards with real-time data
-    function updateSummaryCards() {
-      if (currentData.length === 0) {
-        totalSurplusEnergyElem.textContent = "0 kWh";
-        totalRequiredEnergyElem.textContent = "0 kWh";
-        tradingAllowedElem.textContent = "0 out of 0";
-        averagePriceElem.textContent = "$0.00/kWh";
-        gridPurchasePriceElem.textContent = "$0.10/kWh";
-        gridSellPriceElem.textContent = "$0.20/kWh";
-        return;
-      }
-      
-      let totalSurplus = 0;
-      let totalRequired = 0;
-      let tradingAllowed = 0;
-      let totalPrice = 0;
-      let priceCount = 0;
-      
-      currentData.forEach(item => {
-        if (item.netPower > 0) {
-          totalSurplus += item.netPower;
-        } else if (item.netPower < 0) {
-          totalRequired += Math.abs(item.netPower);
-        }
-        if (item.tradingStatus === "Allowed") {
-          tradingAllowed++;
-        }
-        if (item.price) {
-          totalPrice += item.price;
-          priceCount++;
-        }
-      });
-      
-      const averagePrice = priceCount > 0 ? (totalPrice / priceCount).toFixed(2) : "0.00";
-      
-      totalSurplusEnergyElem.textContent = `${totalSurplus.toFixed(2)} kWh`;
-      totalRequiredEnergyElem.textContent = `${totalRequired.toFixed(2)} kWh`;
-      tradingAllowedElem.textContent = `${tradingAllowed} out of ${currentData.length}`;
-      averagePriceElem.textContent = `$${averagePrice}/kWh`;
-      gridPurchasePriceElem.textContent = "$0.10/kWh";
-      gridSellPriceElem.textContent = "$0.20/kWh";
-    }
-    
-    // Update table data with pagination and filtering
-    function updateTableData() {
-      let filteredData = filterData();
-      energyTableBody.innerHTML = '';
-      const startIndex = (currentPage - 1) * itemsPerPage;
-      const endIndex = startIndex + itemsPerPage;
-      const paginatedData = filteredData.slice(startIndex, endIndex);
-      
-      if (paginatedData.length === 0) {
-        energyTableBody.innerHTML = `<tr><td colspan="10" style="text-align: center;">No participants found</td></tr>`;
-        return;
-      }
-      
-      paginatedData.forEach(item => {
-        const row = document.createElement('tr');
-        const netPowerClass = item.netPower >= 0 ? 'positive' : 'negative';
-        const statusClass = item.tradingStatus === 'Allowed' ? 'status-allowed' : 'status-not-allowed';
-        row.innerHTML = `
-          <td>${item.householdId}</td>
-          <td class="${netPowerClass}">${item.netPower.toFixed(2)} kW</td>
-          <td>${item.efficiency ? item.efficiency.toFixed(2) : 'N/A'}%</td>
-          <td>${item.overloadRisk ? item.overloadRisk.toFixed(2) : 'N/A'}</td>
-          <td>${item.adjCost ? item.adjCost.toFixed(2) : 'N/A'}</td>
-          <td>${item.noFault === 1 ? 'Yes' : 'No'}</td>
-          <td>${item.bothFaults === 1 ? 'Yes' : 'No'}</td>
-          <td>${item.role}</td>
-          <td class="${statusClass}">${item.tradingStatus}</td>
-          <td>
-            <button class="action-btn edit" data-id="${item.id}" title="Edit"><i class="fas fa-edit"></i></button>
-            <button class="action-btn delete" data-id="${item.id}" title="Delete"><i class="fas fa-trash"></i></button>
-          </td>
-        `;
-        energyTableBody.appendChild(row);
-      });
-      
-      updatePaginationButtons(filteredData.length);
-      addActionButtonListeners();
-    }
-    
-    // Filter data based on role and status
-    function filterData() {
-      const roleValue = roleFilter.value;
-      const statusValue = statusFilter.value;
-      return currentData.filter(item => {
-        const matchesRole = roleValue === 'all' || item.role === roleValue;
-        const matchesStatus = statusValue === 'all' || item.tradingStatus === statusValue;
-        return matchesRole && matchesStatus;
-      });
-    }
-    
-    // Update pagination buttons
-    function updatePaginationButtons(totalItems) {
-      const totalPages = Math.ceil(totalItems / itemsPerPage) || 1;
-      prevPageBtn.disabled = currentPage === 1;
-      nextPageBtn.disabled = currentPage === totalPages || totalPages === 0;
-      paginationNumbers.innerHTML = '';
-      
-      const maxVisiblePages = 5;
-      let startPage = Math.max(1, currentPage - Math.floor(maxVisiblePages / 2));
-      let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-      if (endPage - startPage + 1 < maxVisiblePages) startPage = Math.max(1, endPage - maxVisiblePages + 1);
-      
-      if (startPage > 1) {
-        const firstPageBtn = document.createElement('button');
-        firstPageBtn.textContent = '1';
-        firstPageBtn.addEventListener('click', () => { currentPage = 1; updateTableData(); });
-        paginationNumbers.appendChild(firstPageBtn);
-        if (startPage > 2) {
-          const ellipsis = document.createElement('span');
-          ellipsis.textContent = '...';
-          ellipsis.className = 'pagination-ellipsis';
-          paginationNumbers.appendChild(ellipsis);
-        }
-      }
-      
-      for (let i = startPage; i <= endPage; i++) {
-        const pageBtn = document.createElement('button');
-        pageBtn.textContent = i;
-        if (i === currentPage) pageBtn.classList.add('active');
-        pageBtn.addEventListener('click', () => { currentPage = i; updateTableData(); });
-        paginationNumbers.appendChild(pageBtn);
-      }
-      
-      if (endPage < totalPages) {
-        if (endPage < totalPages - 1) {
-          const ellipsis = document.createElement('span');
-          ellipsis.textContent = '...';
-          ellipsis.className = 'pagination-ellipsis';
-          paginationNumbers.appendChild(ellipsis);
-        }
-        const lastPageBtn = document.createElement('button');
-        lastPageBtn.textContent = totalPages;
-        lastPageBtn.addEventListener('click', () => { currentPage = totalPages; updateTableData(); });
-        paginationNumbers.appendChild(lastPageBtn);
-      }
-    }
-    
-    // Add action button listeners
-    function addActionButtonListeners() {
-      document.querySelectorAll('.action-btn.edit').forEach(button => {
-        button.addEventListener('click', function() { openEditModal(parseInt(this.getAttribute('data-id'))); });
-      });
-      document.querySelectorAll('.action-btn.delete').forEach(button => {
-        button.addEventListener('click', function() { openDeleteModal(parseInt(this.getAttribute('data-id'))); });
-      });
-    }
-    
-    // Open edit modal
-    function openEditModal(id) {
-      const participant = currentData.find(item => item.id === id);
-      if (participant) {
-        document.getElementById('editId').value = participant.id;
-        document.getElementById('editHouseholdId').value = participant.householdId;
-        document.getElementById('editNetPower').value = participant.netPower;
-        document.getElementById('editEfficiency').value = participant.efficiency;
-        document.getElementById('editOverloadRisk').value = participant.overloadRisk;
-        document.getElementById('editAdjCost').value = participant.adjCost;
-        document.getElementById('editNoFault').value = participant.noFault;
-        document.getElementById('editBothFaults').value = participant.bothFaults;
-        document.getElementById('editRole').value = participant.role;
-        editModal.style.display = 'block';
-      }
-    }
-    
-    // Open delete modal
-    function openDeleteModal(id) {
-      document.getElementById('deleteId').value = id;
-      deleteModal.style.display = 'block';
-    }
-    
-    // Set up event listeners
-    function setupEventListeners() {
-      roleFilter.addEventListener('change', () => { currentPage = 1; updateTableData(); });
-      statusFilter.addEventListener('change', () => { currentPage = 1; updateTableData(); });
-      prevPageBtn.addEventListener('click', () => { if (currentPage > 1) { currentPage--; updateTableData(); } });
-      nextPageBtn.addEventListener('click', () => {
-        const filteredData = filterData();
-        const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-        if (currentPage < totalPages) { currentPage++; updateTableData(); }
-      });
-      
-      closeButtons.forEach(button => {
-        button.addEventListener('click', () => { editModal.style.display = 'none'; addModal.style.display = 'none'; deleteModal.style.display = 'none'; });
-      });
-      
-      cancelEditBtn.addEventListener('click', () => { editModal.style.display = 'none'; });
-      cancelAddBtn.addEventListener('click', () => { addModal.style.display = 'none'; });
-      cancelDeleteBtn.addEventListener('click', () => { deleteModal.style.display = 'none'; });
-      
-      confirmDeleteBtn.addEventListener('click', () => {
-        const id = parseInt(document.getElementById('deleteId').value);
-        currentData = currentData.filter(item => item.id !== id).map((item, index) => ({ ...item, id: index + 1 }));
-        updateSummaryCards();
-        updateTableData();
-        deleteModal.style.display = 'none';
-        showAlert('Participant removed successfully', 'success');
-      });
-      
-      editForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const id = parseInt(document.getElementById('editId').value);
-        const netPower = parseFloat(document.getElementById('editNetPower').value);
-        const efficiency = parseFloat(document.getElementById('editEfficiency').value);
-        const overloadRisk = parseFloat(document.getElementById('editOverloadRisk').value);
-        const adjCost = parseFloat(document.getElementById('editAdjCost').value);
-        const noFault = parseInt(document.getElementById('editNoFault').value);
-        const bothFaults = parseInt(document.getElementById('editBothFaults').value);
-        const role = document.getElementById('editRole').value;
-        
-        const index = currentData.findIndex(item => item.id === id);
-        if (index !== -1) {
-          currentData[index] = { ...currentData[index], netPower, efficiency, overloadRisk, adjCost, noFault, bothFaults, role, tradingStatus: noFault === 1 ? 'Allowed' : 'Not Allowed' };
-          updateSummaryCards();
-          updateTableData();
-          editModal.style.display = 'none';
-          showAlert('Participant updated successfully', 'success');
-        }
-      });
-      
-      addForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        const householdId = document.getElementById('addHouseholdId').value;
-        const netPower = parseFloat(document.getElementById('addNetPower').value);
-        const efficiency = parseFloat(document.getElementById('addEfficiency').value);
-        const overloadRisk = parseFloat(document.getElementById('addOverloadRisk').value);
-        const adjCost = parseFloat(document.getElementById('addAdjCost').value);
-        const noFault = parseInt(document.getElementById('addNoFault').value);
-        const bothFaults = parseInt(document.getElementById('addBothFaults').value);
-        const role = document.getElementById('addRole').value;
-        
-        const newParticipant = { id: currentData.length + 1, householdId, netPower, efficiency, overloadRisk, adjCost, noFault, bothFaults, role, tradingStatus: noFault === 1 ? 'Allowed' : 'Not Allowed' };
-        currentData.push(newParticipant);
-        updateSummaryCards();
-        updateTableData();
-        addModal.style.display = 'none';
-        showAlert('New participant added successfully', 'success');
-      });
-      
-      document.getElementById('twoPlayerGame').addEventListener('click', () => {
-        alert('2 Player Game functionality to be implemented');
-      });
-      
-      document.getElementById('threePlayerGame').addEventListener('click', () => {
-        alert('3 Player Game functionality to be implemented');
-      });
-      
-      document.getElementById('analyse').addEventListener('click', () => {
-        alert('Analyse functionality to be implemented');
-      });
-    }
-    
-    // Show alerts
-    function showAlert(message, type) {
-      const alertContainer = document.getElementById('alert-container');
-      const alertElement = document.createElement('div');
-      alertElement.className = `alert ${type}`;
-      alertElement.innerHTML = `<span>${message}</span><button class="close-alert">×</button>`;
-      alertContainer.appendChild(alertElement);
-      
-      const closeBtn = alertElement.querySelector('.close-alert');
-      closeBtn.addEventListener('click', () => alertElement.remove());
-      setTimeout(() => { if (alertElement.parentNode) alertElement.remove(); }, 5000);
-    }
-    
-    // Initialize data on load
-    window.addEventListener('load', fetchGridData);
-  </script>
+  <div class="bottom-navigation">
+  </div>
 </body>
 </html>

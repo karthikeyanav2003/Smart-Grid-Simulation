@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Energy Grig Trading Game|Dashboard</title>
+  <title>Energy Trading Game | Dashboard</title>
   <!-- Chart.js for charting -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <!-- Font Awesome for icons -->
@@ -13,21 +13,487 @@
   <link rel="stylesheet" href="{% static 'css/main.css' %}">
   <!-- Axios for AJAX requests -->
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <!-- Inline CSS for tab contents and graphs layout -->
+  <!-- Inline CSS -->
   <style>
+    /* New Color Palette & CSS Variables */
+    :root {
+      --primary-color: #99BC85;
+      --secondary-color: #E4EFE7;
+      --background-color: #fdfaf6;
+      --text-color: #99BC85;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+      --error-color: #F2CD5E;
+      --accent-color: #9CF25E;
+    }
+
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Header Styles */
+    header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .header-icon {
+      font-size: 1.5rem;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .navbar ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    .navbar ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: opacity 0.2s;
+    }
+
+    .navbar ul li a:hover {
+      opacity: 0.8;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: 20px;
+      height: calc(100vh - 60px);
+    }
+
+    /* Dashboard Layout */
+    .dashboard {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 20px;
+      height: 100%;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 15px;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    /* Search Bar */
+    .search-container {
+      margin-bottom: 15px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .search-bar {
+      flex-grow: 1;
+      padding: 10px 15px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      font-size: 0.9rem;
+      padding-left: 35px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #888;
+    }
+
+    /* Household List Header */
+    .households-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .households-header h2 {
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .households-header h2 i {
+      margin-right: 8px;
+      color: var(--primary-color);
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .household-list-container {
+      flex-grow: 1;
+      overflow: hidden;
+      position: relative;
+      margin-bottom: 15px;
+    }
+
+    .household-list {
+      list-style: none;
+      margin-top: 10px;
+      overflow-y: auto;
+      padding-right: 5px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      max-height: calc(100vh - 250px);
+    }
+
+    .household-item {
+      padding: 10px;
+      border-radius: 5px;
+      margin-bottom: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .household-item:hover {
+      background-color: #f0f0f0;
+    }
+
+    .household-item.active {
+      background-color: var(--secondary-color);
+      color: white;
+    }
+
+    .household-item .household-name {
+      display: flex;
+      align-items: center;
+    }
+
+    .household-item .household-name i {
+      margin-right: 8px;
+    }
+
+    .household-item .view-btn {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 4px 8px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      visibility: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    .household-item .view-btn i {
+      margin-right: 5px;
+    }
+
+    .household-item:hover .view-btn {
+      visibility: visible;
+    }
+
+    .household-item.active .view-btn {
+      background-color: white;
+      color: var(--primary-color);
+      visibility: visible;
+    }
+
+    /* Center View Button */
+    .center-view-container {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: auto;
+      padding-top: 15px;
+    }
+
+    .center-view-btn {
+      padding: 10px 20px;
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 0.9rem;
+      transition: background-color 0.2s;
+      display: flex;
+      align-items: center;
+      flex: 1;
+      justify-content: center;
+    }
+
+    .center-view-btn i {
+      margin-right: 8px;
+    }
+
+    .center-view-btn:hover {
+      background-color: #1a2732;
+    }
+
+    /* Main Content */
+    .main-content {
+      display: grid;
+      grid-template-rows: 1fr;
+      height: 100%;
+    }
+
+    /* Household Details */
+    .household-details {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 20px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .household-details h2 {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      font-size: 1.2rem;
+    }
+
+    .household-details h2 i {
+      margin-right: 10px;
+      color: var(--primary-color);
+    }
+
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid #ddd;
+      margin-bottom: 20px;
+    }
+
+    .tab {
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      font-size: 0.9rem;
+    }
+
+    .tab i {
+      margin-right: 8px;
+    }
+
+    .tab.active {
+      border-bottom: 3px solid var(--secondary-color);
+      font-weight: bold;
+    }
+
     .tab-content {
       display: none;
+      flex: 1;
+      overflow: auto;
+      padding-right: 5px;
     }
+
     .tab-content.active {
       display: block;
     }
-    /* Graphs container uses grid with reduced gap and no scrolling */
+
+    /* Energy Data Cards */
+    .energy-data {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 15px;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      transition: transform 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+
+    .card h3 {
+      font-size: 0.85rem;
+      color: #666;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+    }
+
+    .card h3 i {
+      margin-right: 6px;
+      color: var(--primary-color);
+    }
+
+    .card .value {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .card .unit {
+      font-size: 0.75rem;
+      color: #888;
+    }
+
+    /* Trading Section */
+    .trading-section {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      padding: 15px;
+      margin-bottom: 20px;
+    }
+
+    .trading-options {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 15px;
+    }
+
+    .trading-card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 15px;
+      transition: transform 0.2s;
+    }
+
+    .trading-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .trading-card h3 {
+      color: #333;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      font-size: 1rem;
+    }
+
+    .trading-card h3 i {
+      margin-right: 8px;
+      color: var(--primary-color);
+    }
+
+    .trading-card p {
+      color: #666;
+      margin-bottom: 15px;
+      font-size: 0.9rem;
+    }
+
+    .trading-card .price {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: var(--primary-color);
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+    }
+
+    .trading-card .price i {
+      margin-right: 8px;
+      color: #f1c40f;
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.2s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    .btn i {
+      margin-right: 6px;
+    }
+
+    .btn-primary {
+      background-color: var(--primary-color);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #219a52;
+    }
+
+    .btn-secondary {
+      background-color: #e0e0e0;
+      color: #333;
+    }
+
+    .btn-secondary:hover {
+      background-color: #d0d0d0;
+    }
+
+    /* Charts */
+    .chart-container {
+      height: 35vh;
+      min-height: 250px;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    /* Energy Graphs Tab */
     .graphs-container {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      grid-gap: 5px; /* Reduced gap */
+      grid-gap: 5px;
       overflow: hidden;
     }
+
     .graph-container {
       background: #fff;
       padding: 20px;
@@ -36,45 +502,213 @@
       width: 100%;
       text-align: center;
     }
+
     .graph-container canvas {
-      /* Canvas width controlled by CSS (80% of container) and inline height */
       width: 80% !important;
       height: auto !important;
     }
-    /* Specific rules for pie charts */
+
     #overloadPieChart, #transformerPieChart {
       width: 60% !important;
     }
-    /* Highlight selected household id with rounded edges */
+
+    /* Highlight selected household id */
     .household-list li.selected {
-      background: #f0f8ff; /* Light blue */
-      border: 2px solid #007bff;
+      background: #E4EFE7;
+      border: 2px solid #fdfaf6;
       border-radius: 8px;
       padding: 8px;
       text-align: center;
       margin-bottom: 6px;
     }
-    /* New styling for navigation buttons */
+
+    /* Navigation Buttons */
     .nav-buttons {
       text-align: center;
       margin-top: 10px;
     }
+
     .nav-buttons button {
       display: inline-block;
       padding: 8px 12px;
-      font-size: 0.8em; /* Reduced size */
+      font-size: 0.8em;
       margin: 0 5px;
       cursor: pointer;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.5);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+      width: 500px;
+      max-width: 90%;
+      padding: 25px;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .modal-header h3 {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      font-size: 1.2rem;
+    }
+
+    .modal-header h3 i {
+      margin-right: 10px;
+      color: var(--primary-color);
+    }
+
+    .close-modal {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: #888;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px 10px 10px 35px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 0.95rem;
+    }
+
+    .form-group i {
+      position: absolute;
+      left: 12px;
+      top: 34px;
+      color: #888;
+    }
+
+    .form-buttons {
+      display: flex;
+      justify-content: flex-end;
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+      .energy-data {
+        grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      }
+    }
+
+    @media (max-width: 992px) {
+      .dashboard {
+        grid-template-columns: 1fr 1.5fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .container {
+        padding: 10px;
+        height: auto;
+      }
+      .dashboard {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+      .sidebar, .household-details {
+        height: auto;
+        min-height: 500px;
+      }
+      .energy-data {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .search-container {
+        flex-direction: column;
+      }
+      .search-bar {
+        width: 100%;
+      }
+      .btn {
+        width: 100%;
+      }
+      .plotly-graph, .chart-container {
+        height: 50vh;
+      }
+      .tab-content {
+        max-height: none;
+      }
+      .household-list {
+        max-height: 300px;
+      }
+      header {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .navbar ul {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .energy-datarin {
+        grid-template-columns: 1fr;
+      }
+      .trading-options {
+        grid-template-columns: 1fr;
+      }
+      .tab {
+        padding: 8px 12px;
+        font-size: 0.8rem;
+      }
+      header h1 {
+        font-size: 1.2rem;
+      }
     }
   </style>
 </head>
 <body>
   <header>
-    <div class="container">
-      <h1><i class="fas fa-bolt"></i> Energy Trading Simulation</h1>
+    <div class="header-left">
+      <div class="header-icon">⚡</div>
+      <h1>Energy Grid Trading Platform</h1>
     </div>
+    <nav class="navbar">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Dashboard</a></li>
+        <li><a href="#">Analysis</a></li>
+        <li><a href="#">Report</a></li>
+      </ul>
+    </nav>
   </header>
-
   <div class="container">
     <div class="dashboard">
       <div class="sidebar">
@@ -82,7 +716,8 @@
         <div class="search-container">
           <i class="fas fa-search search-icon"></i>
           <input type="text" class="search-bar" id="searchHouseholds" placeholder="Search households...">
-          <button class="search-ok-btn" id="searchOkBtn">Search</button>
+          <button class="btn btn-primary" id="searchOkBtn">Search</button>
+          <button class="btn btn-secondary" id="resetSearchBtn">Reset</button>
         </div>
 
         <!-- Households Header -->
@@ -169,7 +804,7 @@
                 <h3><i class="fas fa-wrench"></i> Transformer</h3>
                 <div class="value" id="TransformerFault">No</div>
                 <div class="unit">Status</div>
-              </div> 
+              </div>
               <div class="card">
                 <h3><i class="fas fa-thermometer-half"></i> Temperature</h3>
                 <div class="value" id="Temperature">0.00</div>
@@ -219,10 +854,9 @@
             </div>
           </div>
 
-          <!-- Graphs Tab (Grid layout for multiple graphs) -->
+          <!-- Graphs Tab -->
           <div class="tab-content" id="graphsTab">
             <div class="graphs-container">
-              <!-- Dashboard Charts -->
               <div class="graph-container">
                 <canvas id="solarWindChart" class="chartjs-graph" style="height:400px;"></canvas>
               </div>
@@ -235,9 +869,7 @@
               <div class="graph-container">
                 <canvas id="transformerPieChart" class="chartjs-graph" style="height:300px;"></canvas>
               </div>
-              <!-- Additional Graphs Plotted via AJAX -->
               <div class="graph-container">
-                <!-- Bubble chart for Temperature vs Humidity with larger points -->
                 <canvas id="temperatureHumidityChart" class="chartjs-graph" style="height:400px;"></canvas>
               </div>
               <div class="graph-container">
@@ -245,7 +877,6 @@
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </div>
@@ -286,12 +917,13 @@
     </div>
   </div>
 
-  <!-- Client-side JavaScript for Dynamic Functionality -->
+  <!-- Client-side JavaScript -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
       // DOM Element References
       const searchInput = document.getElementById('searchHouseholds');
       const searchButton = document.getElementById('searchOkBtn');
+      const resetButton = document.getElementById('resetSearchBtn');
       const householdList = document.getElementById('householdList');
       const nextButton = document.getElementById('nextButton');
 
@@ -312,7 +944,7 @@
           : 'N/A';
       }
 
-      // Case-sensitive binary search (no conversion to lower case)
+      // Case-sensitive binary search
       function binarySearch(arr, target) {
         let low = 0, high = arr.length - 1;
         while (low <= high) {
@@ -394,13 +1026,9 @@
         try {
           const response = await axios.get(`/energy_graphs_view/${householdId}/`);
           const graphs = response.data;
-          // Plot Bubble Chart for Temperature vs Humidity with larger points
           if (graphs && graphs.temperature_humidity_bubble) {
             const bubbleData = graphs.temperature_humidity_bubble.data;
-            // Increase bubble radius: instead of dividing by 10, use division by 3
             bubbleData.forEach(point => {
-              // Assuming original point.r = powerConsumption/10,
-              // new bubble radius becomes (powerConsumption/3)
               point.r = (point.r * 10) / 3;
             });
             const tempHumidityCtx = document.getElementById('temperatureHumidityChart').getContext('2d');
@@ -413,7 +1041,7 @@
                   data: bubbleData,
                   backgroundColor: 'rgba(75,192,192,0.4)',
                   borderColor: 'rgba(75,192,192,1)',
-                  borderWidth: 7   // Increased border width for even bolder points
+                  borderWidth: 7
                 }]
               },
               options: {
@@ -427,7 +1055,6 @@
           } else {
             console.warn('Temperature vs Humidity bubble chart data is missing.');
           }
-          // Plot Bar Chart for Energy Sources Breakdown
           if (graphs && graphs.power_sources_bar) {
             const barData = graphs.power_sources_bar.data;
             const energyMixCtx = document.getElementById('energyMixChart').getContext('2d');
@@ -471,8 +1098,7 @@
         const humidity = parseFloat(document.getElementById('Humidity').textContent) || 0;
         const overloadStatus = document.getElementById('OverloadCondition').textContent.trim() === 'Yes' ? 1 : 0;
         const transformerStatus = document.getElementById('TransformerFault').textContent.trim() === 'Yes' ? 1 : 0;
-        
-        // Chart 1: Solar and Wind Production (Bar Chart)
+
         const ctxSolarWind = document.getElementById('solarWindChart').getContext('2d');
         if (solarWindChart) { solarWindChart.destroy(); }
         solarWindChart = new Chart(ctxSolarWind, {
@@ -482,14 +1108,8 @@
             datasets: [{
               label: 'Production',
               data: [solarPower, windPower],
-              backgroundColor: [
-                'rgba(255, 204, 0, 0.6)',
-                'rgba(54, 162, 235, 0.6)'
-              ],
-              borderColor: [
-                'rgba(255, 204, 0, 1)',
-                'rgba(54, 162, 235, 1)'
-              ],
+              backgroundColor: ['rgba(255, 204, 0, 0.6)', 'rgba(54, 162, 235, 0.6)'],
+              borderColor: ['rgba(255, 204, 0, 1)', 'rgba(54, 162, 235, 1)'],
               borderWidth: 1
             }]
           },
@@ -500,7 +1120,6 @@
           }
         });
 
-        // Chart 2: Temperature and Humidity (Bar Chart)
         const ctxTempHumidity = document.getElementById('tempHumidityChart').getContext('2d');
         if (tempHumidityChart2) { tempHumidityChart2.destroy(); }
         tempHumidityChart2 = new Chart(ctxTempHumidity, {
@@ -510,14 +1129,8 @@
             datasets: [{
               label: 'Value',
               data: [temperature, humidity],
-              backgroundColor: [
-                'rgba(255, 87, 34, 0.6)',
-                'rgba(0, 150, 136, 0.6)'
-              ],
-              borderColor: [
-                'rgba(255, 87, 34, 1)',
-                'rgba(0, 150, 136, 1)'
-              ],
+              backgroundColor: ['rgba(255, 87, 34, 0.6)', 'rgba(0, 150, 136, 0.6)'],
+              borderColor: ['rgba(255, 87, 34, 1)', 'rgba(0, 150, 136, 1)'],
               borderWidth: 1
             }]
           },
@@ -528,7 +1141,6 @@
           }
         });
 
-        // Chart 3: Overload Condition (Pie Chart)
         const ctxOverload = document.getElementById('overloadPieChart').getContext('2d');
         if (overloadPieChart) { overloadPieChart.destroy(); }
         overloadPieChart = new Chart(ctxOverload, {
@@ -537,14 +1149,8 @@
             labels: ['Active', 'Inactive'],
             datasets: [{
               data: [overloadStatus, 1 - overloadStatus],
-              backgroundColor: [
-                'rgba(255, 99, 132, 0.7)',
-                'rgba(75, 192, 192, 0.7)'
-              ],
-              borderColor: [
-                'rgba(255, 99, 132, 1)',
-                'rgba(75, 192, 192, 1)'
-              ],
+              backgroundColor: ['rgba(255, 99, 132, 0.7)', 'rgba(75, 192, 192, 0.7)'],
+              borderColor: ['rgba(255, 99, 132, 1)', 'rgba(75, 192, 192, 1)'],
               borderWidth: 1
             }]
           },
@@ -566,7 +1172,6 @@
           }
         });
 
-        // Chart 4: Transformer Fault (Pie Chart)
         const ctxTransformer = document.getElementById('transformerPieChart').getContext('2d');
         if (transformerPieChart) { transformerPieChart.destroy(); }
         transformerPieChart = new Chart(ctxTransformer, {
@@ -575,14 +1180,8 @@
             labels: ['Active', 'Inactive'],
             datasets: [{
               data: [transformerStatus, 1 - transformerStatus],
-              backgroundColor: [
-                'rgba(255, 159, 64, 0.7)',
-                'rgba(153, 102, 255, 0.7)'
-              ],
-              borderColor: [
-                'rgba(255, 159, 64, 1)',
-                'rgba(153, 102, 255, 1)'
-              ],
+              backgroundColor: ['rgba(255, 159, 64, 0.7)', 'rgba(153, 102, 255, 0.7)'],
+              borderColor: ['rgba(255, 159, 64, 1)', 'rgba(153, 102, 255, 1)'],
               borderWidth: 1
             }]
           },
@@ -605,7 +1204,7 @@
         });
       }
 
-      // Event listeners for search and navigation
+      // Event listeners for search and reset
       searchButton.addEventListener('click', () => {
         const searchTerm = searchInput.value.trim();
         if (searchTerm === '') {
@@ -640,14 +1239,17 @@
         }
       });
 
-      // Next button event listener remains unchanged
+      resetButton.addEventListener('click', () => {
+        searchInput.value = '';
+        fetchHouseholds();
+      });
+
       nextButton.addEventListener('click', () => {
         // Implement next household functionality if needed
       });
 
       // Delete button function
       window.deleteHousehold = function() {
-        // Placeholder for delete action, e.g., an AJAX request to delete the household.
         alert('Delete button clicked. Implement delete functionality.');
       };
 
@@ -669,4 +1271,3 @@
   </script>
 </body>
 </html>
-<!-- End of HTML Document -->
