@@ -4,8 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Energy Grid Trading Platform</title>
-  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
   <style>
+    :root {
+      --primary-color: #99BC85;
+      --secondary-color: #E4EFE7;
+      --background-color: #fdfaf6;
+      --text-color: #99BC85;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+      --error-color: #F2CD5E;
+      --accent-color: #9CF25E;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -14,9 +23,9 @@
     }
     
     body {
-      background-color: #f5f7fa;
+      background-color: var(--background-color);
       padding: 20px;
-      color: #333;
+      color: var(--text-color);
     }
     
     header {
@@ -34,13 +43,13 @@
     }
     
     .header-icon {
-      color: #ffd166;
+      color: var(--accent-color);
       margin-right: 10px;
       font-size: 24px;
     }
     
     .header h1 {
-      color: #333;
+      color: var(--text-color);
       font-size: 24px;
     }
     
@@ -55,14 +64,14 @@
     
     .navbar ul li a {
       text-decoration: none;
-      color: #333;
+      color: var(--text-color);
       font-size: 16px;
       font-weight: 500;
       transition: color 0.2s;
     }
     
     .navbar ul li a:hover {
-      color: #457b9d;
+      color: var(--accent-color);
     }
     
     .stats-container {
@@ -73,31 +82,32 @@
     }
     
     .stat-card {
-      background-color: white;
+      background-color: var(--background-color);
       border-radius: 8px;
       padding: 15px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-      border-top: 4px solid #ccc;
+      box-shadow: 0 2px 4px var(--shadow-color);
+      border-top: 4px solid var(--primary-color);
+      color: #333;
     }
     
     .stat-card.surplus {
-      border-top-color: #2a9d8f;
+      border-top-color: var(--primary-color);
     }
     
     .stat-card.deficit {
-      border-top-color: #e63946;
+      border-top-color: var(--error-color);
     }
     
     .stat-card.trading {
-      border-top-color: #457b9d;
+      border-top-color: var(--primary-color);
     }
     
     .stat-card.market {
-      border-top-color: #f4a261;
+      border-top-color: var(--accent-color);
     }
     
     .stat-card.utility {
-      border-top-color: #a8dadc;
+      border-top-color: var(--accent-color);
     }
     
     .stat-title {
@@ -137,10 +147,11 @@
     }
     
     .panel {
-      background-color: white;
+      background-color: var(--background-color);
       border-radius: 8px;
       padding: 15px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 4px var(--shadow-color);
+      color: #333;
     }
     
     .panel-header {
@@ -197,19 +208,11 @@
     }
     
     .positive {
-      color: #2a9d8f;
+      color: #007bff;
     }
     
     .negative {
-      color: #e63946;
-    }
-    
-    .status-allowed {
-      color: #2a9d8f;
-    }
-    
-    .status-not-allowed {
-      color: #e63946;
+      color: var(--error-color);
     }
     
     .pagination {
@@ -220,8 +223,8 @@
     }
     
     .pagination button {
-      background-color: white;
-      border: 1px solid #dee2e6;
+      background-color: var(--background-color);
+      border: 1px solid var(--primary-color);
       padding: 8px 12px;
       margin: 0 5px;
       cursor: pointer;
@@ -230,29 +233,18 @@
     }
     
     .pagination button:hover {
-      background-color: #f8f9fa;
+      background-color: var(--accent-color);
     }
     
     .pagination button.active {
-      background-color: #457b9d;
+      background-color: var(--primary-color);
       color: white;
-      border-color: #457b9d;
+      border-color: var(--primary-color);
     }
     
     .pagination button:disabled {
       opacity: 0.5;
       cursor: not-allowed;
-    }
-    
-    .checkbox-container {
-      display: flex;
-      justify-content: center;
-    }
-    
-    input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
-      cursor: pointer;
     }
     
     .bottom-navigation {
@@ -263,7 +255,7 @@
     }
     
     .bottom-navigation button {
-      background-color: #1d3557;
+      background-color: var(--primary-color);
       color: white;
       border: none;
       padding: 10px 20px;
@@ -271,17 +263,127 @@
       cursor: pointer;
       border-radius: 4px;
       font-weight: 500;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 2px 4px var(--shadow-color);
       transition: all 0.2s;
     }
     
     .bottom-navigation button:hover {
-      background-color: #457b9d;
+      background-color: var(--accent-color);
     }
     
     .bottom-navigation button:disabled {
       opacity: 0.5;
       cursor: not-allowed;
+    }
+    
+    /* New styles for Action button */
+    .action-button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    
+    .action-button:hover {
+      background-color: var(--accent-color);
+    }
+    
+    /* Checkbox styling */
+    .select-checkbox {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+    
+    .analyse-button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      margin-top: 15px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-weight: 500;
+      box-shadow: 0 2px 4px var(--shadow-color);
+      transition: all 0.2s;
+      display: block;
+      margin-left: auto;
+    }
+    
+    .analyse-button:hover {
+      background-color: var(--accent-color);
+    }
+    
+    /* Filter styles */
+    .filter-container {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .filter-label {
+      font-size: 14px;
+      color: #6c757d;
+      font-weight: 500;
+    }
+    
+    .filter-select {
+      padding: 6px 10px;
+      border-radius: 4px;
+      border: 1px solid #ced4da;
+      background-color: white;
+      color: #495057;
+      font-size: 14px;
+    }
+    
+    .filter-button {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    
+    .filter-button:hover {
+      background-color: var(--accent-color);
+    }
+    
+    .reset-button {
+      background-color: #6c757d;
+      color: white;
+      border: none;
+      padding: 6px 12px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    
+    .reset-button:hover {
+      background-color: #5a6268;
+    }
+    
+    /* Added for pagination */
+    .page-info {
+      margin-top: 10px;
+      text-align: center;
+      color: #6c757d;
+      font-size: 14px;
     }
   </style>
 </head>
@@ -358,68 +460,260 @@
         </div>
       </div>
       
+      <!-- Added Filter Controls -->
+      <div class="filter-container">
+        <div class="filter-group">
+          <span class="filter-label">Role:</span>
+          <select class="filter-select" id="role-filter">
+            <option value="all">All Roles</option>
+            <option value="producer">Producer</option>
+            <option value="consumer">Consumer</option>
+          </select>
+        </div>
+        
+        <div class="filter-group">
+          <span class="filter-label">Both Faults:</span>
+          <select class="filter-select" id="fault-filter">
+            <option value="all">All</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+        
+        <button class="filter-button" onclick="applyFilters()">Apply Filters</button>
+        <button class="reset-button" onclick="resetFilters()">Reset</button>
+      </div>
+      
       <div class="table-responsive">
-        <table>
+        <table id="participants-table">
           <thead>
             <tr>
               <th>Household ID</th>
               <th>Net Energy (kWh)</th>
-              <th>Electricity Price ($/kWh)</th>
-              <th>Traded Units</th>
-              <th>Total Price</th>
-              <th>Remaining</th>
+              <th>Efficiency (%)</th>
+              <th>Overload Risk</th>
+              <th>Adjusted Cost ($)</th>
+              <th>Price ($/kWh)</th>
               <th>Role</th>
               <th>No Fault</th>
+              <th>Both Faults</th>
+              <th>Overload Only</th>
+              <th>Transformer Fault Only</th>
+              <th>Action</th>
             </tr>
           </thead>
-          <tbody>
-            {% for data in trading_data %}
-            <tr>
-              <td>{{ data.householdId }}</td>
-              <td class="{% if data.NetPower > 0 %}positive{% else %}negative{% endif %}">{{ data.NetPower }}</td>
-              <td>{{ data.electricityPrice }}</td>
-              <td>{{ data.traded_units }}</td>
-              <td>{{ data.total_price }}</td>
-              <td>{{ data.remaining }}</td>
-              <td>{{ data.Role }}</td>
-              <td>{{ data.NoFault|yesno:"Yes,No" }}</td>
+          <tbody id="table-body">
+            {% for item in data %}
+            <tr class="data-row" data-role="{{ item.Role|lower }}" data-bothfaults="{{ item.BothFaults|yesno:'yes,no' }}">
+              <td>{{ item.householdId }}</td>
+              <td class="{% if item.NetPower > 0 %}positive{% else %}negative{% endif %}">{{ item.NetPower }}</td>
+              <td>{{ item.Efficiency }}</td>
+              <td>{{ item.OverloadRisk }}</td>
+              <td>{{ item.AdjCost }}</td>
+              <td>{{ item.Price }}</td>
+              <td>{{ item.Role }}</td>
+              <td>{{ item.NoFault|yesno:"Yes,No" }}</td>
+              <td>{{ item.BothFaults|yesno:"Yes,No" }}</td>
+              <td>{{ item.OverloadOnly|yesno:"Yes,No" }}</td>
+              <td>{{ item.TransformerFaultOnly|yesno:"Yes,No" }}</td>
+              <td><input type="checkbox" class="select-checkbox" name="select-household" value="{{ item.householdId }}"></td>
             </tr>
             {% empty %}
             <tr>
-              <td colspan="8">No data available.</td>
+              <td colspan="12">No data available.</td>
             </tr>
             {% endfor %}
           </tbody>
         </table>
+        
+        <!-- Page info display -->
+        <div class="page-info" id="page-info">
+          Showing <span id="page-start">1</span> to <span id="page-end">5</span> of <span id="total-items">0</span> households
+        </div>
+        
+        <!-- Added Analyse button below the table -->
+        <button class="analyse-button" onclick="analyseSelected()">Analyse Selected</button>
       </div>
       
-      <div class="pagination">
-        <button disabled>Previous</button>
-        <button class="active">1</button>
-        <button>2</button>
-        <button>Next</button>
-      </div>
-    </div>
-    
-    <div class="panel">
-      <div class="panel-header">
-        <div class="panel-title">
-          <i>📊</i> Trading Statistics
-        </div>
-      </div>
-      
-      <div id="trading-charts">
-        <div id="summary-chart" style="width: 100%; height: 400px;">
-          {{ summary_plot|safe }}
-        </div>
-        <div id="network-graph" style="width: 100%; height: 400px;">
-          {{ network_plot|safe }}
-        </div>
+      <div class="pagination" id="pagination">
+        <button id="prev-btn" onclick="prevPage()" disabled>Previous</button>
+        <span id="pagination-numbers"></span>
+        <button id="next-btn" onclick="nextPage()">Next</button>
       </div>
     </div>
   </div>
   
   <div class="bottom-navigation">
   </div>
+
+  <script>
+    // Pagination variables
+    let currentPage = 1;
+    const rowsPerPage = 5;
+    let totalPages = 1;
+    let filteredRows = [];
+    
+    // Initialize when document is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      initializePagination();
+    });
+    
+    // Initialize pagination
+    function initializePagination() {
+      // Get all rows that are currently visible (not filtered out)
+      const allRows = document.querySelectorAll('.data-row');
+      filteredRows = Array.from(allRows).filter(row => row.style.display !== 'none');
+      
+      // Calculate total pages
+      totalPages = Math.ceil(filteredRows.length / rowsPerPage);
+      if (totalPages === 0) totalPages = 1;
+      
+      // Update total count in page info
+      document.getElementById('total-items').textContent = filteredRows.length;
+      
+      // Reset to first page when filters change
+      currentPage = 1;
+      
+      // Render pagination numbers
+      renderPaginationNumbers();
+      
+      // Update page
+      updatePage();
+    }
+    
+    // Render pagination number buttons
+    function renderPaginationNumbers() {
+      const paginationNumbers = document.getElementById('pagination-numbers');
+      paginationNumbers.innerHTML = '';
+      
+      // Limit number of page buttons to show
+      const maxButtons = 5;
+      let startPage = Math.max(1, currentPage - Math.floor(maxButtons / 2));
+      let endPage = Math.min(totalPages, startPage + maxButtons - 1);
+      
+      // Adjust start page if we're near the end
+      if (endPage - startPage + 1 < maxButtons) {
+        startPage = Math.max(1, endPage - maxButtons + 1);
+      }
+      
+      for (let i = startPage; i <= endPage; i++) {
+        const btn = document.createElement('button');
+        btn.textContent = i;
+        btn.classList.toggle('active', i === currentPage);
+        btn.addEventListener('click', function() {
+          currentPage = i;
+          updatePage();
+        });
+        paginationNumbers.appendChild(btn);
+      }
+    }
+    
+    // Update page display
+    function updatePage() {
+      // Hide all rows
+      filteredRows.forEach(row => {
+        row.style.display = 'none';
+      });
+      
+      // Show rows for current page
+      const start = (currentPage - 1) * rowsPerPage;
+      const end = Math.min(start + rowsPerPage, filteredRows.length);
+      
+      for (let i = start; i < end; i++) {
+        filteredRows[i].style.display = '';
+      }
+      
+      // Update pagination buttons
+      document.getElementById('prev-btn').disabled = currentPage === 1;
+      document.getElementById('next-btn').disabled = currentPage === totalPages;
+      
+      // Update active button
+      const paginationNumbers = document.getElementById('pagination-numbers').children;
+      for (let i = 0; i < paginationNumbers.length; i++) {
+        paginationNumbers[i].classList.toggle('active', parseInt(paginationNumbers[i].textContent) === currentPage);
+      }
+      
+      // Update page info
+      document.getElementById('page-start').textContent = start + 1;
+      document.getElementById('page-end').textContent = end;
+      
+      renderPaginationNumbers();
+    }
+    
+    // Go to previous page
+    function prevPage() {
+      if (currentPage > 1) {
+        currentPage--;
+        updatePage();
+      }
+    }
+    
+    // Go to next page
+    function nextPage() {
+      if (currentPage < totalPages) {
+        currentPage++;
+        updatePage();
+      }
+    }
+    
+    // Function to view details of a specific household
+    function viewDetails(householdId) {
+      alert("Viewing details for household: " + householdId);
+      // This would typically navigate to a detailed view or open a modal
+    }
+    
+    // Function to analyse selected households
+    function analyseSelected() {
+      const selectedCheckboxes = document.querySelectorAll('input[name="select-household"]:checked');
+      const selectedIds = Array.from(selectedCheckboxes).map(checkbox => checkbox.value);
+      
+      if (selectedIds.length === 0) {
+        alert("Please select at least one household to analyse.");
+        return;
+      }
+      
+      alert("Analysing households: " + selectedIds.join(", "));
+      // This would typically trigger an analysis process or navigate to an analysis page
+    }
+    
+    // Function to apply filters
+    function applyFilters() {
+      const roleFilter = document.getElementById('role-filter').value;
+      const faultFilter = document.getElementById('fault-filter').value;
+      
+      const rows = document.querySelectorAll('.data-row');
+      
+      rows.forEach(row => {
+        const role = row.getAttribute('data-role');
+        const bothFaults = row.getAttribute('data-bothfaults');
+        
+        let roleMatch = roleFilter === 'all' || role === roleFilter;
+        let faultMatch = faultFilter === 'all' || bothFaults === faultFilter;
+        
+        if (roleMatch && faultMatch) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+      
+      // Reinitialize pagination after applying filters
+      initializePagination();
+    }
+    
+    // Function to reset filters
+    function resetFilters() {
+      document.getElementById('role-filter').value = 'all';
+      document.getElementById('fault-filter').value = 'all';
+      
+      const rows = document.querySelectorAll('.data-row');
+      rows.forEach(row => {
+        row.style.display = '';
+      });
+      
+      // Reinitialize pagination after resetting filters
+      initializePagination();
+    }
+  </script>
 </body>
 </html>
