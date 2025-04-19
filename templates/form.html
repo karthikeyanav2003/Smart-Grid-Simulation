@@ -7,31 +7,29 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary-color: #3498db;
-      --primary-dark: #2980b9;
-      --secondary-color: #2ecc71;
-      --secondary-dark: #27ae60;
-      --accent-color: #e74c3c;
-      --accent-dark: #c0392b;
-      --light-color: #f5f7fa;
-      --dark-color: #2c3e50;
-      --warning-color: #f39c12;
-      --success-color: #2ecc71;
-      --danger-color: #e74c3c;
+      --primary-color: #99BC85;
+      --primary-dark: #789661;
+      --secondary-color: #E4EFE7;
+      --background-color: #fdfaf6;
+      --text-color: #99BC85;
+      --dark-color: #333;
+      --shadow-color: rgba(0, 0, 0, 0.1);
+      --error-color: #F2CD5E;
+      --error-dark: #d4b83e;
+      --accent-color: #9CF25E;
+      --accent-dark: #7ed321;
       --transition-speed: 0.3s;
       --border-radius: 8px;
-      --box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      --box-shadow: 0 10px 20px var(--shadow-color);
     }
-    
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
-    
     body {
-      background: linear-gradient(135deg, #d3e5ee, #f5f7fa);
+      background: var(--background-color);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -39,7 +37,6 @@
       padding: 20px;
       color: var(--dark-color);
     }
-    
     .container {
       background-color: white;
       border-radius: var(--border-radius);
@@ -47,15 +44,12 @@
       width: 100%;
       max-width: 700px;
       padding: 40px;
-      transform: translateY(0);
       transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
-    
     .container:hover {
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      box-shadow: 0 15px 30px var(--shadow-color);
       transform: translateY(-5px);
     }
-    
     .form-title {
       text-align: center;
       color: var(--primary-color);
@@ -65,7 +59,6 @@
       position: relative;
       padding-bottom: 10px;
     }
-    
     .form-title::after {
       content: '';
       position: absolute;
@@ -77,18 +70,50 @@
       background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
       border-radius: 2px;
     }
-    
+    .progress-bar {
+      position: relative;
+      height: 10px;
+      background-color: #e0e0e0;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background-color: var(--primary-color);
+      border-radius: 5px;
+      transition: width 0.3s ease;
+      width: 0%;
+    }
+    .step {
+      position: absolute;
+      top: -10px;
+      width: 30px;
+      height: 30px;
+      background-color: #e0e0e0;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+    }
+    .step.active {
+      background-color: var(--primary-color);
+      color: white;
+    }
+    #step1 { left: 0; }
+    #step2 { left: 50%; transform: translateX(-50%); }
+    #step3 { right: 0; }
+    .step-container { display: none; }
+    #step1-container { display: block; }
     .form-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 20px;
     }
-    
     .form-group {
       position: relative;
       margin-bottom: 5px;
     }
-    
     .form-group label {
       display: block;
       margin-bottom: 8px;
@@ -97,35 +122,30 @@
       font-size: 14px;
       transition: color var(--transition-speed);
     }
-    
     .input-wrapper {
       position: relative;
     }
-    
     .form-group input,
     .form-group select {
       width: 100%;
       padding: 12px 15px;
-      border: 2px solid #e1e5ea;
+      border: 2px solid var(--secondary-color);
       border-radius: var(--border-radius);
       font-size: 15px;
       transition: all var(--transition-speed);
       background-color: #f9fafc;
     }
-    
     .form-group input:focus,
     .form-group select:focus {
       outline: none;
       border-color: var(--primary-color);
       background-color: white;
-      box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+      box-shadow: 0 0 0 3px rgba(153, 188, 133, 0.2);
     }
-    
     .form-group input:focus + .input-icon,
     .form-group select:focus + .input-icon {
       color: var(--primary-color);
     }
-    
     .input-icon {
       position: absolute;
       right: 15px;
@@ -134,19 +154,21 @@
       color: #95a5a6;
       transition: color var(--transition-speed);
     }
-    
     .form-group input::placeholder {
       color: #bdc3c7;
       opacity: 0.7;
     }
-    
     .form-buttons {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       margin-top: 30px;
       gap: 15px;
     }
-    
+    .step-buttons {
+      display: flex;
+      gap: 15px;
+    }
     .btn {
       padding: 12px 24px;
       border-radius: var(--border-radius);
@@ -159,11 +181,10 @@
       align-items: center;
       justify-content: center;
       gap: 10px;
-      flex: 1;
       position: relative;
       overflow: hidden;
+      color: white;
     }
-    
     .btn::after {
       content: '';
       position: absolute;
@@ -174,330 +195,263 @@
       background-color: rgba(255, 255, 255, 0.2);
       transition: width 0.3s ease;
     }
-    
     .btn:hover::after {
       width: 100%;
     }
-    
     .btn i {
       transition: transform 0.3s;
     }
-    
     .btn:hover i {
       transform: translateX(-3px);
     }
-    
-    .btn-submit {
-      background-color: var(--secondary-color);
-      color: white;
-    }
-    
-    .btn-submit:hover {
-      background-color: var(--secondary-dark);
-    }
-    
-    .btn-reset {
-      background-color: var(--warning-color);
-      color: white;
-    }
-    
-    .btn-reset:hover {
-      background-color: #d35400;
-    }
-    
-    .btn-back {
-      background-color: var(--accent-color);
-      color: white;
-    }
-    
-    .btn-back:hover {
-      background-color: var(--accent-dark);
-    }
-    
-    /* Custom select styling */
+    .btn-submit { background-color: var(--primary-color); }
+    .btn-submit:hover { background-color: var(--primary-dark); }
+    .btn-back { background-color: var(--error-color); }
+    .btn-back:hover { background-color: var(--error-dark); }
+    .btn-next { background-color: var(--primary-color); }
+    .btn-next:hover { background-color: var(--primary-dark); }
     select {
       appearance: none;
-      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232c3e50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+      background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
       background-repeat: no-repeat;
       background-position: right 15px center;
       background-size: 15px;
     }
-    
     .hidden-error {
       display: none;
-      color: var(--danger-color);
+      color: var(--error-color);
       font-size: 12px;
       margin-top: 5px;
     }
-    
     .error-shake {
       animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
     }
-    
     @keyframes shake {
       10%, 90% { transform: translate3d(-1px, 0, 0); }
       20%, 80% { transform: translate3d(2px, 0, 0); }
       30%, 50%, 70% { transform: translate3d(-3px, 0, 0); }
       40%, 60% { transform: translate3d(3px, 0, 0); }
     }
-    
-    /* Form section grouping */
     .form-section {
       margin-bottom: 25px;
       padding-bottom: 20px;
       border-bottom: 1px solid #ecf0f1;
     }
-    
     .form-section-title {
       font-size: 18px;
       color: var(--primary-color);
       margin-bottom: 15px;
       font-weight: 600;
     }
-    
-    /* Responsive adjustments */
     @media (max-width: 600px) {
-      .container {
-        padding: 25px;
-      }
-      
-      .form-buttons {
-        flex-direction: column;
-      }
-      
-      .btn {
-        width: 100%;
-      }
+      .container { padding: 25px; }
+      .form-buttons { flex-direction: column; }
+      .step-buttons { width: 100%; display: flex; flex-direction: column; gap: 10px; }
+      .btn { width: 100%; }
     }
-    
-    /* Dark mode support */
     @media (prefers-color-scheme: dark) {
-      body {
-        background: linear-gradient(135deg, #2c3e50, #1a1a2e);
-      }
-      
-      .container {
-        background-color: #2d3436;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-      }
-      
-      .form-title {
-        color: #f1f1f1;
-      }
-      
-      .form-group label {
-        color: #dfe6e9;
-      }
-      
-      .form-group input,
-      .form-group select {
-        background-color: #3d3d3d;
-        border-color: #444;
-        color: #f1f1f1;
-      }
-      
-      .form-group input::placeholder {
-        color: #777;
-      }
-      
-      .form-group input:focus,
-      .form-group select:focus {
-        background-color: #3a3a3a;
-        box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.3);
-      }
-      
-      .form-section {
-        border-bottom-color: #444;
-      }
+      body { background: #333; }
+      .container { background-color: #444; box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); }
+      .form-title { color: #f1f1f1; }
+      .form-group label { color: #dfe6e9; }
+      .form-group input, .form-group select { background-color: #555; border-color: #666; color: #f1f1f1; }
+      .form-group input::placeholder { color: #aaa; }
+      .form-group input:focus, .form-group select:focus { background-color: #666; box-shadow: 0 0 0 3px rgba(153, 188, 133, 0.3); }
+      .form-section { border-bottom-color: #555; }
+      .btn { color: #fff; }
+      .hidden-error { color: var(--error-color); }
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h2 class="form-title">Household Data Collection</h2>
-    
     <form id="householdForm">
       <!-- CSRF token if using Django templates -->
       {% csrf_token %}
-      
-      <div class="form-section">
-        <h3 class="form-section-title">Identification</h3>
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="householdId">Household ID</label>
-            <div class="input-wrapper">
-              <input type="text" id="householdId" name="householdId" placeholder="Enter Household ID" required>
-              <i class="fas fa-home input-icon"></i>
+      <!-- Progress Bar -->
+      <div class="progress-bar">
+        <div class="progress-bar-fill" id="progressBarFill"></div>
+        <div class="step active" id="step1">1</div>
+        <div class="step" id="step2">2</div>
+        <div class="step" id="step3">3</div>
+      </div>
+      <div class="step-container" id="step1-container">
+        <div class="form-section">
+          <h3 class="form-section-title">Identification</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="householdId">Household ID</label>
+              <div class="input-wrapper">
+                <input type="text" id="householdId" name="householdId" placeholder="Enter Household ID" required>
+                <i class="fas fa-home input-icon"></i>
+              </div>
+              <div class="hidden-error" id="householdId-error"></div>
             </div>
-            <div class="hidden-error" id="householdId-error"></div>
+          </div>
+        </div>
+        <div class="form-section">
+          <h3 class="form-section-title">Electrical Parameters</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="voltage">Voltage (V)</label>
+              <div class="input-wrapper">
+                <input type="number" id="voltage" name="voltage" step="0.01" placeholder="Enter Voltage" required>
+                <i class="fas fa-bolt input-icon"></i>
+              </div>
+              <div class="hidden-error" id="voltage-error"></div>
+            </div>
+            <div class="form-group">
+              <label for="current">Current (A)</label>
+              <div class="input-wrapper">
+                <input type="number" id="current" name="current" step="0.01" placeholder="Enter Current" required>
+                <i class="fas fa-exchange-alt input-icon"></i>
+              </div>
+              <div class="hidden-error" id="current-error"></div>
+            </div>
+            <div class="form-group">
+              <label for="powerConsumption">Power Consumption (kW)</label>
+              <div class="input-wrapper">
+                <input type="number" id="powerConsumption" name="powerConsumption" step="0.01" placeholder="Enter Power Consumption" required>
+                <i class="fas fa-plug input-icon"></i>
+              </div>
+              <div class="hidden-error" id="powerConsumption-error"></div>
+            </div>
+          </div>
+        </div>
+        <div class="form-buttons">
+          <button type="button" class="btn btn-back back-to-main"><i class="fas fa-arrow-left"></i> Back to Main</button>
+          <div class="step-buttons">
+            <button type="button" class="btn btn-next" id="nextToStep2">Next <i class="fas fa-arrow-right"></i></button>
           </div>
         </div>
       </div>
-      
-      <div class="form-section">
-        <h3 class="form-section-title">Electrical Parameters</h3>
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="voltage">Voltage (V)</label>
-            <div class="input-wrapper">
-              <input type="number" id="voltage" name="voltage" step="0.01" placeholder="Enter Voltage" required>
-              <i class="fas fa-bolt input-icon"></i>
+      <div class="step-container" id="step2-container">
+        <div class="form-section">
+          <h3 class="form-section-title">Energy Sources</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="solarPower">Solar Power (kW)</label>
+              <div class="input-wrapper">
+                <input type="number" id="solarPower" name="solarPower" step="0.01" placeholder="Enter Solar Power" required>
+                <i class="fas fa-sun input-icon"></i>
+              </div>
+              <div class="hidden-error" id="solarPower-error"></div>
             </div>
-            <div class="hidden-error" id="voltage-error"></div>
+            <div class="form-group">
+              <label for="windPower">Wind Power (kW)</label>
+              <div class="input-wrapper">
+                <input type="number" id="windPower" name="windPower" step="0.01" placeholder="Enter Wind Power" required>
+                <i class="fas fa-wind input-icon"></i>
+              </div>
+              <div class="hidden-error" id="windPower-error"></div>
+            </div>
+            <div class="form-group">
+              <label for="gridSupply">Grid Supply (kW)</label>
+              <div class="input-wrapper">
+                <input type="number" id="gridSupply" name="gridSupply" step="0.01" placeholder="Enter Grid Supply" required>
+                <i class="fas fa-power-off input-icon"></i>
+              </div>
+              <div class="hidden-error" id="gridSupply-error"></div>
+            </div>
           </div>
-          
-          <div class="form-group">
-            <label for="current">Current (A)</label>
-            <div class="input-wrapper">
-              <input type="number" id="current" name="current" step="0.01" placeholder="Enter Current" required>
-              <i class="fas fa-exchange-alt input-icon"></i>
+        </div>
+        <div class="form-section">
+          <h3 class="form-section-title">System Status</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="overloadCondition">Overload Condition</label>
+              <div class="input-wrapper">
+                <select id="overloadCondition" name="overloadCondition" required>
+                  <option value="">Select Overload Condition</option>
+                  <option value="0">No Overload</option>
+                  <option value="1">Overload</option>
+                </select>
+                <i class="fas fa-exclamation-triangle input-icon"></i>
+              </div>
+              <div class="hidden-error" id="overloadCondition-error"></div>
             </div>
-            <div class="hidden-error" id="current-error"></div>
+            <div class="form-group">
+              <label for="transformerFault">Transformer Fault</label>
+              <div class="input-wrapper">
+                <select id="transformerFault" name="transformerFault" required>
+                  <option value="">Select Transformer Fault</option>
+                  <option value="0">No Fault</option>
+                  <option value="1">Fault Detected</option>
+                </select>
+                <i class="fas fa-tools input-icon"></i>
+              </div>
+              <div class="hidden-error" id="transformerFault-error"></div>
+            </div>
           </div>
-          
-          <div class="form-group">
-            <label for="powerConsumption">Power Consumption (kW)</label>
-            <div class="input-wrapper">
-              <input type="number" id="powerConsumption" name="powerConsumption" step="0.01" placeholder="Enter Power Consumption" required>
-              <i class="fas fa-plug input-icon"></i>
-            </div>
-            <div class="hidden-error" id="powerConsumption-error"></div>
+        </div>
+        <div class="form-buttons">
+          <div class="step-buttons">
+            <button type="button" class="btn btn-back" id="backToStep1"><i class="fas fa-arrow-left"></i> Previous</button>
+            <button type="button" class="btn btn-next" id="nextToStep3">Next <i class="fas fa-arrow-right"></i></button>
           </div>
         </div>
       </div>
-      
-      <div class="form-section">
-        <h3 class="form-section-title">Energy Sources</h3>
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="solarPower">Solar Power (kW)</label>
-            <div class="input-wrapper">
-              <input type="number" id="solarPower" name="solarPower" step="0.01" placeholder="Enter Solar Power" required>
-              <i class="fas fa-sun input-icon"></i>
+      <div class="step-container" id="step3-container">
+        <div class="form-section">
+          <h3 class="form-section-title">Environmental Factors</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="temperature">Temperature (°C)</label>
+              <div class="input-wrapper">
+                <input type="number" id="temperature" name="temperature" step="0.01" placeholder="Enter Temperature" required>
+                <i class="fas fa-thermometer-half input-icon"></i>
+              </div>
+              <div class="hidden-error" id="temperature-error"></div>
             </div>
-            <div class="hidden-error" id="solarPower-error"></div>
-          </div>
-          
-          <div class="form-group">
-            <label for="windPower">Wind Power (kW)</label>
-            <div class="input-wrapper">
-              <input type="number" id="windPower" name="windPower" step="0.01" placeholder="Enter Wind Power" required>
-              <i class="fas fa-wind input-icon"></i>
+            <div class="form-group">
+              <label for="humidity">Humidity (%)</label>
+              <div class="input-wrapper">
+                <input type="number" id="humidity" name="humidity" step="0.01" placeholder="Enter Humidity" required>
+                <i class="fas fa-tint input-icon"></i>
+              </div>
+              <div class="hidden-error" id="humidity-error"></div>
             </div>
-            <div class="hidden-error" id="windPower-error"></div>
-          </div>
-          
-          <div class="form-group">
-            <label for="gridSupply">Grid Supply (kW)</label>
-            <div class="input-wrapper">
-              <input type="number" id="gridSupply" name="gridSupply" step="0.01" placeholder="Enter Grid Supply" required>
-              <i class="fas fa-power-off input-icon"></i>
-            </div>
-            <div class="hidden-error" id="gridSupply-error"></div>
           </div>
         </div>
-      </div>
-      
-      <div class="form-section">
-        <h3 class="form-section-title">System Status</h3>
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="overloadCondition">Overload Condition</label>
-            <div class="input-wrapper">
-              <select id="overloadCondition" name="overloadCondition" required>
-                <option value="">Select Overload Condition</option>
-                <option value="0">No Overload</option>
-                <option value="1">Overload</option>
-              </select>
-              <i class="fas fa-exclamation-triangle input-icon"></i>
+        <div class="form-section">
+          <h3 class="form-section-title">Economic Factors</h3>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="electricityPrice">Electricity Price ($/kWh)</label>
+              <div class="input-wrapper">
+                <input type="number" id="electricityPrice" name="electricityPrice" step="0.01" placeholder="Enter Electricity Price" required>
+                <i class="fas fa-dollar-sign input-icon"></i>
+              </div>
+              <div class="hidden-error" id="electricityPrice-error"></div>
             </div>
-            <div class="hidden-error" id="overloadCondition-error"></div>
-          </div>
-          
-          <div class="form-group">
-            <label for="transformerFault">Transformer Fault</label>
-            <div class="input-wrapper">
-              <select id="transformerFault" name="transformerFault" required>
-                <option value="">Select Transformer Fault</option>
-                <option value="0">No Fault</option>
-                <option value="1">Fault Detected</option>
-              </select>
-              <i class="fas fa-tools input-icon"></i>
+            <div class="form-group">
+              <label for="predictedLoad">Predicted Load (kW)</label>
+              <div class="input-wrapper">
+                <input type="number" id="predictedLoad" name="predictedLoad" step="0.01" placeholder="Enter Predicted Load" required>
+                <i class="fas fa-chart-line input-icon"></i>
+              </div>
+              <div class="hidden-error" id="predictedLoad-error"></div>
             </div>
-            <div class="hidden-error" id="transformerFault-error"></div>
           </div>
         </div>
-      </div>
-      
-      <div class="form-section">
-        <h3 class="form-section-title">Environmental Factors</h3>
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="temperature">Temperature (°C)</label>
-            <div class="input-wrapper">
-              <input type="number" id="temperature" name="temperature" step="0.01" placeholder="Enter Temperature" required>
-              <i class="fas fa-thermometer-half input-icon"></i>
-            </div>
-            <div class="hidden-error" id="temperature-error"></div>
-          </div>
-          
-          <div class="form-group">
-            <label for="humidity">Humidity (%)</label>
-            <div class="input-wrapper">
-              <input type="number" id="humidity" name="humidity" step="0.01" placeholder="Enter Humidity" required>
-              <i class="fas fa-tint input-icon"></i>
-            </div>
-            <div class="hidden-error" id="humidity-error"></div>
+        <div class="form-buttons">
+          <button type="button" class="btn btn-back back-to-main"><i class="fas fa-arrow-left"></i> Back to Main</button>
+          <div class="step-buttons">
+            <button type="button" class="btn btn-back" id="backToStep2"><i class="fas fa-arrow-left"></i> Previous</button>
+            <button type="submit" class="btn btn-submit" id="submitButton"><i class="fas fa-save"></i> Submit</button>
           </div>
         </div>
-      </div>
-      
-      <div class="form-section">
-        <h3 class="form-section-title">Economic Factors</h3>
-        <div class="form-grid">
-          <div class="form-group">
-            <label for="electricityPrice">Electricity Price ($/kWh)</label>
-            <div class="input-wrapper">
-              <input type="number" id="electricityPrice" name="electricityPrice" step="0.01" placeholder="Enter Electricity Price" required>
-              <i class="fas fa-dollar-sign input-icon"></i>
-            </div>
-            <div class="hidden-error" id="electricityPrice-error"></div>
-          </div>
-          
-          <div class="form-group">
-            <label for="predictedLoad">Predicted Load (kW)</label>
-            <div class="input-wrapper">
-              <input type="number" id="predictedLoad" name="predictedLoad" step="0.01" placeholder="Enter Predicted Load" required>
-              <i class="fas fa-chart-line input-icon"></i>
-            </div>
-            <div class="hidden-error" id="predictedLoad-error"></div>
-          </div>
-        </div>
-      </div>
-      
-      <div class="form-buttons">
-        <button type="button" class="btn btn-back" id="backButton">
-          <i class="fas fa-arrow-left"></i> Back
-        </button>
-        <button type="reset" class="btn btn-reset" id="resetButton">
-          <i class="fas fa-redo"></i> Reset
-        </button>
-        <button type="submit" class="btn btn-submit" id="submitButton">
-          <i class="fas fa-save"></i> Submit
-        </button>
       </div>
     </form>
   </div>
-
   <script>
-    // Function to get CSRF token from cookies (if needed)
     function getCookie(name) {
       let cookieValue = null;
       if (document.cookie && document.cookie !== '') {
         const cookies = document.cookie.split(';');
         for (let cookie of cookies) {
           cookie = cookie.trim();
-          // Does this cookie string begin with the name we want?
           if (cookie.substring(0, name.length + 1) === (name + '=')) {
             cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
             break;
@@ -506,149 +460,44 @@
       }
       return cookieValue;
     }
-
     document.addEventListener('DOMContentLoaded', function() {
+      const mainUrl = "{% url 'main' %}";
       const form = document.getElementById('householdForm');
-      const backButton = document.getElementById('backButton');
+      const nextToStep2Button = document.getElementById('nextToStep2');
+      const nextToStep3Button = document.getElementById('nextToStep3');
+      const backToStep1Button = document.getElementById('backToStep1');
+      const backToStep2Button = document.getElementById('backToStep2');
       const submitButton = document.getElementById('submitButton');
-      const resetButton = document.getElementById('resetButton');
       const inputFields = form.querySelectorAll('input, select');
-      
-      // Calculate power consumption automatically from voltage and current
       const voltageInput = document.getElementById('voltage');
       const currentInput = document.getElementById('current');
       const powerConsumptionInput = document.getElementById('powerConsumption');
-      
       function calculatePower() {
         const voltage = parseFloat(voltageInput.value) || 0;
         const current = parseFloat(currentInput.value) || 0;
         if (voltage > 0 && current > 0) {
-          // P = V × I / 1000 (to convert to kW)
           const power = (voltage * current / 1000).toFixed(2);
           powerConsumptionInput.value = power;
         }
       }
-      
       voltageInput.addEventListener('input', calculatePower);
       currentInput.addEventListener('input', calculatePower);
-      
-      // Form interactions and animations
       inputFields.forEach(field => {
-        // Add focus animation
         field.addEventListener('focus', function() {
           this.parentElement.querySelector('.input-icon').style.color = 'var(--primary-color)';
         });
-        
         field.addEventListener('blur', function() {
           if (!this.value) {
             this.parentElement.querySelector('.input-icon').style.color = '#95a5a6';
           }
         });
       });
-      
-      // Back button functionality
-      backButton.addEventListener('click', function() {
-        window.history.back();
-      });
-      
-      // Reset button confirmation
-      resetButton.addEventListener('click', function(e) {
-        e.preventDefault();
-        if (confirm('Are you sure you want to reset the form?')) {
-          form.reset();
-          // Reset all error messages
-          document.querySelectorAll('.hidden-error').forEach(el => {
-            el.style.display = 'none';
-          });
-        }
-      });
-      
-      // Show loading state on submit
-      function setLoadingState(isLoading) {
-        if (isLoading) {
-          submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
-          submitButton.disabled = true;
-        } else {
-          submitButton.innerHTML = '<i class="fas fa-save"></i> Submit';
-          submitButton.disabled = false;
-        }
-      }
-      
-      // Clear all error displays
-      function clearErrors() {
-        document.querySelectorAll('.hidden-error').forEach(error => {
-          error.style.display = 'none';
-          error.textContent = '';
-        });
-      }
-      
-      // Display error for a specific field
-      function showError(fieldId, message) {
-        const errorElement = document.getElementById(`${fieldId}-error`);
-        if (errorElement) {
-          errorElement.textContent = message;
-          errorElement.style.display = 'block';
-          
-          // Add shake animation to the input
-          const inputElement = document.getElementById(fieldId);
-          inputElement.classList.add('error-shake');
-          setTimeout(() => {
-            inputElement.classList.remove('error-shake');
-          }, 500);
-          
-          // Highlight the input
-          inputElement.style.borderColor = 'var(--danger-color)';
-          setTimeout(() => {
-            inputElement.style.borderColor = '';
-          }, 3000);
-        }
-      }
-      
-      // Enhanced validation function
-      function validateFormData(data) {
-        clearErrors();
-        let isValid = true;
-
-        if (!data.householdId || data.householdId.trim() === '') {
-          showError('householdId', 'Household ID is required');
-          isValid = false;
-        }
-
-        const numericFields = [
-          'voltage', 'current', 'powerConsumption',
-          'solarPower', 'windPower', 'gridSupply',
-          'temperature', 'electricityPrice', 'predictedLoad',
-          'humidity'
-        ];
-        
-        numericFields.forEach(field => {
-          if (isNaN(data[field]) || data[field] < 0) {
-            showError(field, `Must be a non-negative number`);
-            isValid = false;
-          }
-        });
-
-        if (data.humidity > 100) {
-          showError('humidity', 'Humidity must be between 0 and 100');
-          isValid = false;
-        }
-
-        const binaryFields = ['overloadCondition', 'transformerFault'];
-        binaryFields.forEach(field => {
-          if (data[field] === '' || ![0, 1].includes(parseInt(data[field]))) {
-            showError(field, `Please select an option`);
-            isValid = false;
-          }
-        });
-
-        return isValid;
-      }
-
-      // Form submission with validation
-      form.addEventListener('submit', function(event) {
-        event.preventDefault();
-
-        const formData = {
+      const step1Fields = ['householdId', 'voltage', 'current', 'powerConsumption'];
+      const step2Fields = ['solarPower', 'windPower', 'gridSupply', 'overloadCondition', 'transformerFault'];
+      const step3Fields = ['temperature', 'humidity', 'electricityPrice', 'predictedLoad'];
+      const allFields = [...step1Fields, ...step2Fields, ...step3Fields];
+      function getFormData() {
+        return {
           householdId: document.getElementById('householdId').value,
           voltage: parseFloat(document.getElementById('voltage').value),
           current: parseFloat(document.getElementById('current').value),
@@ -663,85 +512,161 @@
           electricityPrice: parseFloat(document.getElementById('electricityPrice').value),
           predictedLoad: parseFloat(document.getElementById('predictedLoad').value)
         };
-
-        if (!validateFormData(formData)) {
-          // Scroll to the first error
+      }
+      function showStep(step) {
+        document.querySelectorAll('.step-container').forEach(container => {
+          container.style.display = 'none';
+        });
+        document.getElementById(`step${step}-container`).style.display = 'block';
+        document.querySelectorAll('.step').forEach(stepEl => {
+          stepEl.classList.remove('active');
+        });
+        document.getElementById(`step${step}`).classList.add('active');
+        const progressWidth = (step - 1) / 2 * 100; // For 3 steps: 0%, 50%, 100%
+        document.getElementById('progressBarFill').style.width = `${progressWidth}%`;
+      }
+      function clearErrors() {
+        document.querySelectorAll('.hidden-error').forEach(error => {
+          error.style.display = 'none';
+          error.textContent = '';
+        });
+      }
+      function showError(fieldId, message) {
+        const errorElement = document.getElementById(`${fieldId}-error`);
+        if (errorElement) {
+          errorElement.textContent = message;
+          errorElement.style.display = 'block';
+          const inputElement = document.getElementById(fieldId);
+          inputElement.classList.add('error-shake');
+          setTimeout(() => {
+            inputElement.classList.remove('error-shake');
+          }, 500);
+          inputElement.style.borderColor = 'var(--error-color)';
+          setTimeout(() => {
+            inputElement.style.borderColor = '';
+          }, 3000);
+        }
+      }
+      function validateFields(fieldIds, data) {
+        clearErrors();
+        let isValid = true;
+        fieldIds.forEach(fieldId => {
+          if (fieldId === 'householdId') {
+            if (!data[fieldId] || data[fieldId].trim() === '') {
+              showError(fieldId, 'Household ID is required');
+              isValid = false;
+            }
+          } else if (['voltage', 'current', 'powerConsumption', 'solarPower', 'windPower', 'gridSupply', 'temperature', 'electricityPrice', 'predictedLoad'].includes(fieldId)) {
+            if (isNaN(data[fieldId]) || data[fieldId] < 0) {
+              showError(fieldId, 'Must be a non-negative number');
+              isValid = false;
+            }
+          } else if (fieldId === 'humidity') {
+            if (isNaN(data[fieldId]) || data[fieldId] < 0 || data[fieldId] > 100) {
+              showError(fieldId, 'Must be a number between 0 and 100');
+              isValid = false;
+            }
+          } else if (['overloadCondition', 'transformerFault'].includes(fieldId)) {
+            if (data[fieldId] === '' || ![0, 1].includes(parseInt(data[fieldId]))) {
+              showError(fieldId, 'Please select an option');
+              isValid = false;
+            }
+          }
+        });
+        return isValid;
+      }
+      // Initial state
+      showStep(1);
+      nextToStep2Button.addEventListener('click', function() {
+        const formData = getFormData();
+        if (validateFields(step1Fields, formData)) {
+          showStep(2);
+        }
+      });
+      nextToStep3Button.addEventListener('click', function() {
+        const formData = getFormData();
+        if (validateFields(step2Fields, formData)) {
+          showStep(3);
+        }
+      });
+      backToStep1Button.addEventListener('click', function() {
+        showStep(1);
+      });
+      backToStep2Button.addEventListener('click', function() {
+        showStep(2);
+      });
+      function setLoadingState(isLoading) {
+        if (isLoading) {
+          submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
+          submitButton.disabled = true;
+        } else {
+          submitButton.innerHTML = '<i class="fas fa-save"></i> Submit';
+          submitButton.disabled = false;
+        }
+      }
+      form.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const formData = getFormData();
+        if (validateFields(allFields, formData)) {
+          const headers = {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken')
+          };
+          setLoadingState(true);
+          fetch('/add-household/', {
+            method: 'POST',
+            headers: headers,
+            body: JSON.stringify(formData)
+          })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            return response.json();
+          })
+          .then(data => {
+            if (data.status === 'success') {
+              const successMessage = document.createElement('div');
+              successMessage.style.position = 'fixed';
+              successMessage.style.top = '20px';
+              successMessage.style.left = '50%';
+              successMessage.style.transform = 'translateX(-50%)';
+              successMessage.style.backgroundColor = 'var(--accent-color)';
+              successMessage.style.color = 'white';
+              successMessage.style.padding = '15px 30px';
+              successMessage.style.borderRadius = 'var(--border-radius)';
+              successMessage.style.boxShadow = 'var(--box-shadow)';
+              successMessage.style.zIndex = '1000';
+              successMessage.textContent = 'Household Data Submitted Successfully!';
+              document.body.appendChild(successMessage);
+              setTimeout(() => {
+                successMessage.style.opacity = '0';
+                successMessage.style.transition = 'opacity 0.5s ease';
+                setTimeout(() => {
+                  document.body.removeChild(successMessage);
+                }, 500);
+              }, 3000);
+              form.reset();
+              showStep(1); // Reset to step 1 after submission
+            } else {
+              alert('Error: ' + (data.message || 'Unknown error occurred'));
+            }
+          })
+          .catch(error => {
+            console.error('Submission Error:', error);
+            alert('An error occurred while submitting the data. Please try again.');
+          })
+          .finally(() => {
+            setLoadingState(false);
+          });
+        } else {
           const firstError = document.querySelector('.hidden-error[style="display: block"]');
           if (firstError) {
             firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
           }
-          return;
         }
-
-        // Set up headers including CSRF if required
-        const headers = {
-          'Content-Type': 'application/json',
-          'X-CSRFToken': getCookie('csrftoken') // For Django CSRF protection
-        };
-
-        // Set loading state
-        setLoadingState(true);
-
-        fetch('/add-household/', {
-          method: 'POST',
-          headers: headers,
-          body: JSON.stringify(formData)
-        })
-        .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-          return response.json();
-        })
-        .then(data => {
-          if (data.status === 'success') {
-            // Show success message
-            const successMessage = document.createElement('div');
-            successMessage.style.position = 'fixed';
-            successMessage.style.top = '20px';
-            successMessage.style.left = '50%';
-            successMessage.style.transform = 'translateX(-50%)';
-            successMessage.style.backgroundColor = 'var(--success-color)';
-            successMessage.style.color = 'white';
-            successMessage.style.padding = '15px 30px';
-            successMessage.style.borderRadius = 'var(--border-radius)';
-            successMessage.style.boxShadow = 'var(--box-shadow)';
-            successMessage.style.zIndex = '1000';
-            successMessage.textContent = 'Household Data Submitted Successfully!';
-            
-            document.body.appendChild(successMessage);
-            
-            setTimeout(() => {
-              successMessage.style.opacity = '0';
-              successMessage.style.transition = 'opacity 0.5s ease';
-              setTimeout(() => {
-                document.body.removeChild(successMessage);
-              }, 500);
-            }, 3000);
-            
-            form.reset();
-            window.location.href = '/main/';
-          } else {
-            alert('Error: ' + (data.message || 'Unknown error occurred'));
-          }
-        })
-        .catch(error => {
-          console.error('Submission Error:', error);
-          alert('An error occurred while submitting the data. Please try again.');
-        })
-        .finally(() => {
-          setLoadingState(false);
-        });
       });
-      
-      // Auto-calculate total energy balance
-      const energyInputs = [
-        document.getElementById('solarPower'),
-        document.getElementById('windPower'),
-        document.getElementById('gridSupply')
-      ];
-      
-      // Add debounce function for performance
+      // Debounce function for input validation
       function debounce(func, wait) {
         let timeout;
         return function(...args) {
@@ -749,18 +674,13 @@
           timeout = setTimeout(() => func.apply(this, args), wait);
         };
       }
-      
-      // Client-side validation as user types
       inputFields.forEach(field => {
         field.addEventListener('input', debounce(function() {
-          // Clear error when user starts typing
           const errorElement = document.getElementById(`${field.id}-error`);
           if (errorElement) {
             errorElement.style.display = 'none';
             field.style.borderColor = '';
           }
-          
-          // Basic validation as user types
           if (field.type === 'number' && field.value !== '') {
             const value = parseFloat(field.value);
             if (isNaN(value) || value < 0) {
@@ -770,6 +690,14 @@
             }
           }
         }, 300));
+      });
+      // Add event listener for back to main buttons
+      document.querySelectorAll('.back-to-main').forEach(button => {
+        button.addEventListener('click', function() {
+          if (confirm('Are you sure you want to go back? Unsaved changes will be lost.')) {
+            window.location.href = mainUrl;
+          }
+        });
       });
     });
   </script>
